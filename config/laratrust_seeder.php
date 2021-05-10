@@ -23,9 +23,6 @@ return [
         ],
         'user' => [
             'profile' => 'r,u',
-        ],
-        'customer' => [
-            
         ]
     ],
 

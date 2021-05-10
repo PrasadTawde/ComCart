@@ -28,7 +28,7 @@ class CreateUsersTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('name');
             $table->string('phone_no');
-            $table->int('pincode');
+            $table->string('pincode');
             $table->string('locality');
             $table->string('address');
             $table->string('city');
