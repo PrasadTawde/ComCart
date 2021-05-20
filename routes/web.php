@@ -28,9 +28,12 @@ Route::get('/status', function () {
 });
 
 
+
 Route::get('/profile/{id}', [UserProfileController::class,'profile']);
 
 
 //update user data
 Route::get('profile/edit/{id}',[UserProfileController::class,'show']);
 Route::post('edit/{id}',[UserProfileController::class,'update']);
+
+
