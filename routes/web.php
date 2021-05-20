@@ -1,8 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserProfileController;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -28,11 +26,3 @@ require __DIR__.'/auth.php';
 Route::get('/status', function () {
     return view('status');
 });
-
-
-Route::get('/profile/{id}', [UserProfileController::class,'profile']);
-
-
-//update user data
-Route::get('profile/edit/{id}',[UserProfileController::class,'show']);
-Route::post('edit/{id}',[UserProfileController::class,'update']);
