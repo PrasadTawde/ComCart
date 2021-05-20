@@ -26,3 +26,10 @@ require __DIR__.'/auth.php';
 Route::get('/status', function () {
     return view('status');
 });
+
+Route::get('/dash-my-profile/{id}', [userProfileController::class,'profile']);
+
+
+//update user data
+Route::get('dash-my-profile/edit/{id}',[userProfileController::class,'showData']);
+Route::post('edit/{id}',[userProfileController::class,'updateData']);
