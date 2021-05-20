@@ -84,7 +84,7 @@
                                             @if(Auth::user()->hasRole('user'))
                                             <li>
 
-                                                <a href="/status"><i class="fas fa-user-circle u-s-m-r-6"></i>
+                                                 <a href="/profile/{{ Auth::user()->id }}"><i class="fas fa-user-circle u-s-m-r-6"></i>
 
                                                     <span>Account</span></a>
                                             </li>
