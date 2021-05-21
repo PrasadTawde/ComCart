@@ -54,7 +54,7 @@
                                                     <a class="dash-active" href="dash-my-profile.html">My Profile</a></li>
                                                 <li>
 
-                                                    <a href="dash-address-book.html">Address Book</a></li>
+                                                    <a href="/address">Address Book</a></li>
                                                 <li>
 
                                                     <a href="dash-track-order.html">Track Order</a></li>
@@ -152,12 +152,9 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-12">
-                                                    <div class="dash__link dash__link--secondary u-s-m-b-30">
-
-                                                        <a data-modal="modal" data-modal-id="#dash-newsletter">Subscribe Newsletter</a></div>
                                                     <div class="u-s-m-b-16">
 
-                                                        <a class="dash__custom-link btn--e-transparent-brand-b-2" href="{{'edit/'.$user->id}}">Edit Profile</a></div>
+                                                        <a class="dash__custom-link btn--e-transparent-brand-b-2" href="{{ '/profile-edit' }}">Edit Profile</a></div>
                                                     <div>
 
                                                         <a class="dash__custom-link btn--e-brand-b-2" href="#">Change Password</a></div>

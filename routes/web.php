@@ -22,18 +22,9 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+require __DIR__.'/admin.php';
+require __DIR__.'/user.php';
 
 Route::get('/status', function () {
     return view('status');
 });
-
-
-
-Route::get('/profile/{id}', [UserProfileController::class,'profile']);
-
-
-//update user data
-Route::get('profile/edit/{id}',[UserProfileController::class,'show']);
-Route::post('edit/{id}',[UserProfileController::class,'update']);
-
-
