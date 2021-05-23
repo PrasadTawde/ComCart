@@ -26,14 +26,13 @@ class CreateUsersTable extends Migration
         Schema::create('user_addresses', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->string('first_name');
-            $table->string('last_name');
+            $table->string('name');
             $table->string('phone_no');
-            $table->string('address');
-            $table->string('country');
-            $table->string('state');
-            $table->string('city');
             $table->string('pincode');
+            $table->string('locality');
+            $table->string('address');
+            $table->string('city');
+            $table->string('state');
             $table->string('type');
             $table->timestamps();
 

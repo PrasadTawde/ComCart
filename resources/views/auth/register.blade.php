@@ -6,26 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link href="/assets/images/favicon.png" rel="shortcut icon">
+    <link href="images/favicon.png" rel="shortcut icon">
     <title>ComCart</title>
 
     <!--====== Google Font ======-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet">
 
     <!--====== Vendor Css ======-->
-    <link rel="stylesheet" href="/assets/css/vendor.css">
+    <link rel="stylesheet" href="css/vendor.css">
 
     <!--====== Utility-Spacing ======-->
-    <link rel="stylesheet" href="/assets/css/utility.css">
+    <link rel="stylesheet" href="css/utility.css">
 
     <!--====== App ======-->
-    <link rel="stylesheet" href="/assets/css/app.css">
+    <link rel="stylesheet" href="css/app.css">
 </head>
 <body class="config">
     <div class="preloader is-active">
         <div class="preloader__wrap">
 
-            <img class="preloader__img" src="/assets/images/preloader.png" alt=""></div>
+            <img class="preloader__img" src="images/preloader.png" alt=""></div>
     </div>
 
     <!--====== Main App ======-->
@@ -45,7 +45,7 @@
 
                         <a class="main-logo" href="index.html">
 
-                            <img src="/assets/images/logo/logo-1.png" alt=""></a>
+                            <img src="images/logo/logo-1.png" alt=""></a>
                         <!--====== End - Main Logo ======-->
 
 
@@ -85,12 +85,66 @@
                                         </ul>
                                         <!--====== End - Dropdown ======-->
                                     </li>
+                                    <li class="has-dropdown" data-tooltip="tooltip" data-placement="left" title="Settings">
+
+                                        <a><i class="fas fa-user-cog"></i></a>
+
+                                        <!--====== Dropdown ======-->
+
+                                        <span class="js-menu-toggle"></span>
+                                        <ul style="width:120px">
+                                            <li class="has-dropdown has-dropdown--ul-right-100">
+
+                                                <a>Language<i class="fas fa-angle-down u-s-m-l-6"></i></a>
+
+                                                <!--====== Dropdown ======-->
+
+                                                <span class="js-menu-toggle"></span>
+                                                <ul style="width:120px">
+                                                    <li>
+
+                                                        <a class="u-c-brand">ENGLISH</a></li>
+                                                    <li>
+
+                                                        <a>ARABIC</a></li>
+                                                    <li>
+
+                                                        <a>FRANCAIS</a></li>
+                                                    <li>
+
+                                                        <a>ESPANOL</a></li>
+                                                </ul>
+                                                <!--====== End - Dropdown ======-->
+                                            </li>
+                                            <li class="has-dropdown has-dropdown--ul-right-100">
+
+                                                <a>Currency<i class="fas fa-angle-down u-s-m-l-6"></i></a>
+
+                                                <!--====== Dropdown ======-->
+
+                                                <span class="js-menu-toggle"></span>
+                                                <ul style="width:225px">
+                                                    <li>
+
+                                                        <a class="u-c-brand">$ - US DOLLAR</a></li>
+                                                    <li>
+
+                                                        <a>£ - BRITISH POUND STERLING</a></li>
+                                                    <li>
+
+                                                        <a>€ - EURO</a></li>
+                                                </ul>
+                                                <!--====== End - Dropdown ======-->
+                                            </li>
+                                        </ul>
+                                        <!--====== End - Dropdown ======-->
+                                    </li>
                                     <li data-tooltip="tooltip" data-placement="left" title="Contact">
 
-                                        <a href="tel:+9198999878**"><i class="fas fa-phone-volume"></i></a></li>
+                                        <a href="tel:+0900901904"><i class="fas fa-phone-volume"></i></a></li>
                                     <li data-tooltip="tooltip" data-placement="left" title="Mail">
 
-                                        <a href="mailto:contact@comcart.com"><i class="far fa-envelope"></i></a></li>
+                                        <a href="mailto:contact@domain.com"><i class="far fa-envelope"></i></a></li>
                                 </ul>
                                 <!--====== End - List ======-->
                             </div>
@@ -298,9 +352,9 @@
                             <div class="lower-footer__content">
                                 <div class="lower-footer__copyright">
 
-                                    <span>Copyright © 2021</span>
+                                    <span>Copyright © 2018</span>
 
-                                    <a href="/">ComCart</a>
+                                    <a href="index.html">Reshop</a>
 
                                     <span>All Right Reserved</span>
                                 </div>
@@ -327,13 +381,13 @@
     <script src="https://www.google-analytics.com/analytics.js" async defer></script>
 
     <!--====== Vendor Js ======-->
-    <script src="/assets/js/vendor.js"></script>
+    <script src="js/vendor.js"></script>
 
     <!--====== jQuery Shopnav plugin ======-->
-    <script src="/assets/js/jquery.shopnav.js"></script>
+    <script src="js/jquery.shopnav.js"></script>
 
     <!--====== App ======-->
-    <script src="/assets/js/app.js"></script>
+    <script src="js/app.js"></script>
 
     <!--====== Noscript ======-->
     <noscript>
