@@ -139,8 +139,8 @@
                             <div class="col-lg-6 col-md-8 u-s-m-b-30">
                                 <div class="l-f-o">
                                     <div class="l-f-o__pad-box">
-                                        <h1 class="gl-h1">Create Account</h1>
-                                        <form class="l-f-o__form" method="post" action="{{ route('register') }}">
+                                        <h1 class="gl-h1">Create Admin Account</h1>
+                                        <form class="l-f-o__form" method="post" action="{{ route('register-admin') }}">
                                             @csrf
                                             <x-auth-validation-errors class="mb-4" :errors="$errors" />
                                             <div class="u-s-m-b-30">

@@ -6,26 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link href="images/favicon.png" rel="shortcut icon">
+    <link href="/assets/images/favicon.png" rel="shortcut icon">
     <title>ComCart</title>
 
     <!--====== Google Font ======-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800" rel="stylesheet">
 
     <!--====== Vendor Css ======-->
-    <link rel="stylesheet" href="css/vendor.css">
+    <link rel="stylesheet" href="/assets/css/vendor.css">
 
     <!--====== Utility-Spacing ======-->
-    <link rel="stylesheet" href="css/utility.css">
+    <link rel="stylesheet" href="/assets/css/utility.css">
 
     <!--====== App ======-->
-    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="/assets/css/app.css">
 </head>
 <body class="config">
     <div class="preloader is-active">
         <div class="preloader__wrap">
 
-            <img class="preloader__img" src="images/preloader.png" alt=""></div>
+            <img class="preloader__img" src="/assets/images/preloader.png" alt=""></div>
     </div>
 
     <!--====== Main App ======-->
@@ -45,7 +45,7 @@
 
                         <a class="main-logo" href="/">
 
-                            <img src="images/logo/logo-1.png" alt=""></a>
+                            <img src="/assets/images/logo/logo-1.png" alt=""></a>
                         <!--====== End - Main Logo ======-->
 
 
@@ -72,7 +72,7 @@
 
                                 <!--====== List ======-->
                                 <ul class="ah-list ah-list--design1 ah-list--link-color-secondary">
-                                    <li class="has-dropdown" data-tooltip="tooltip" data-placement="left" title="Account">
+                                    <li class="has-dropdown">
 
                                         <a><i class="far fa-user-circle"></i></a>
 
@@ -84,7 +84,7 @@
                                             @if(Auth::user()->hasRole('user'))
                                             <li>
 
-                                                <a href="/status"><i class="fas fa-user-circle u-s-m-r-6"></i>
+                                                <a href="/profile"><i class="fas fa-user-circle u-s-m-r-6"></i>
 
                                                     <span>Account</span></a>
                                             </li>
@@ -109,6 +109,155 @@
                                             </li>
                                         @endif
                                         </ul>
+                                        <!--====== End - Dropdown ======-->
+                                    </li>
+                                    <li>
+
+                                        <a href="/wishlist"><i class="far fa-heart"></i></a>
+                                    </li>
+                                    <li class="has-dropdown">
+
+                                        <a class="mini-cart-shop-link"><i class="fas fa-shopping-bag"></i>
+
+                                            <span class="total-item-round">2</span></a>
+
+                                        <!--====== Dropdown ======-->
+
+                                        <span class="js-menu-toggle"></span>
+                                        <div class="mini-cart">
+
+                                            <!--====== Mini Product Container ======-->
+                                            <div class="mini-product-container gl-scroll u-s-m-b-15">
+
+                                                <!--====== Card for mini cart ======-->
+                                                <div class="card-mini-product">
+                                                    <div class="mini-product">
+                                                        <div class="mini-product__image-wrapper">
+
+                                                            <a class="mini-product__link" href="product-detail.html">
+
+                                                                <img class="u-img-fluid" src="/assets/images/product/electronic/product3.jpg" alt=""></a></div>
+                                                        <div class="mini-product__info-wrapper">
+
+                                                            <span class="mini-product__category">
+
+                                                                <a href="shop-side-version-2.html">Electronics</a></span>
+
+                                                            <span class="mini-product__name">
+
+                                                                <a href="product-detail.html">Yellow Wireless Headphone</a></span>
+
+                                                            <span class="mini-product__quantity">1 x</span>
+
+                                                            <span class="mini-product__price">$8</span></div>
+                                                    </div>
+
+                                                    <a class="mini-product__delete-link far fa-trash-alt"></a>
+                                                </div>
+                                                <!--====== End - Card for mini cart ======-->
+
+
+                                                <!--====== Card for mini cart ======-->
+                                                <div class="card-mini-product">
+                                                    <div class="mini-product">
+                                                        <div class="mini-product__image-wrapper">
+
+                                                            <a class="mini-product__link" href="product-detail.html">
+
+                                                                <img class="u-img-fluid" src="/assets/images/product/electronic/product18.jpg" alt=""></a></div>
+                                                        <div class="mini-product__info-wrapper">
+
+                                                            <span class="mini-product__category">
+
+                                                                <a href="shop-side-version-2.html">Electronics</a></span>
+
+                                                            <span class="mini-product__name">
+
+                                                                <a href="product-detail.html">Nikon DSLR Camera 4k</a></span>
+
+                                                            <span class="mini-product__quantity">1 x</span>
+
+                                                            <span class="mini-product__price">$8</span></div>
+                                                    </div>
+
+                                                    <a class="mini-product__delete-link far fa-trash-alt"></a>
+                                                </div>
+                                                <!--====== End - Card for mini cart ======-->
+
+
+                                                <!--====== Card for mini cart ======-->
+                                                <div class="card-mini-product">
+                                                    <div class="mini-product">
+                                                        <div class="mini-product__image-wrapper">
+
+                                                            <a class="mini-product__link" href="product-detail.html">
+
+                                                                <img class="u-img-fluid" src="/assets/images/product/women/product8.jpg" alt=""></a></div>
+                                                        <div class="mini-product__info-wrapper">
+
+                                                            <span class="mini-product__category">
+
+                                                                <a href="shop-side-version-2.html">Women Clothing</a></span>
+
+                                                            <span class="mini-product__name">
+
+                                                                <a href="product-detail.html">New Dress D Nice Elegant</a></span>
+
+                                                            <span class="mini-product__quantity">1 x</span>
+
+                                                            <span class="mini-product__price">$8</span></div>
+                                                    </div>
+
+                                                    <a class="mini-product__delete-link far fa-trash-alt"></a>
+                                                </div>
+                                                <!--====== End - Card for mini cart ======-->
+
+
+                                                <!--====== Card for mini cart ======-->
+                                                <div class="card-mini-product">
+                                                    <div class="mini-product">
+                                                        <div class="mini-product__image-wrapper">
+
+                                                            <a class="mini-product__link" href="product-detail.html">
+
+                                                                <img class="u-img-fluid" src="/assets/images/product/men/product8.jpg" alt=""></a></div>
+                                                        <div class="mini-product__info-wrapper">
+
+                                                            <span class="mini-product__category">
+
+                                                                <a href="shop-side-version-2.html">Men Clothing</a></span>
+
+                                                            <span class="mini-product__name">
+
+                                                                <a href="product-detail.html">New Fashion D Nice Elegant</a></span>
+
+                                                            <span class="mini-product__quantity">1 x</span>
+
+                                                            <span class="mini-product__price">$8</span></div>
+                                                    </div>
+
+                                                    <a class="mini-product__delete-link far fa-trash-alt"></a>
+                                                </div>
+                                                <!--====== End - Card for mini cart ======-->
+                                            </div>
+                                            <!--====== End - Mini Product Container ======-->
+
+
+                                            <!--====== Mini Product Statistics ======-->
+                                            <div class="mini-product-stat">
+                                                <div class="mini-total">
+
+                                                    <span class="subtotal-text">SUBTOTAL</span>
+
+                                                    <span class="subtotal-value">$16</span></div>
+                                                <div class="mini-action">
+
+                                                    <a class="mini-link btn--e-brand-b-2" href="checkout.html">PROCEED TO CHECKOUT</a>
+
+                                                    <a class="mini-link btn--e-transparent-secondary-b-2" href="cart.html">VIEW CART</a></div>
+                                            </div>
+                                            <!--====== End - Mini Product Statistics ======-->
+                                        </div>
                                         <!--====== End - Dropdown ======-->
                                     </li>
                                 </ul>
@@ -396,7 +545,7 @@
 
                                                                 <a class="u-d-block" href="shop-side-version-2.html">
 
-                                                                    <img class="u-img-fluid u-d-block" src="images/banners/banner-mega-0.jpg" alt=""></a></div>
+                                                                    <img class="u-img-fluid u-d-block" src="/assets/images/banners/banner-mega-0.jpg" alt=""></a></div>
                                                         </div>
                                                     </div>
                                                     <!--====== End - Mega Menu Row ======-->
@@ -414,14 +563,14 @@
 
                                                                 <a class="u-d-block" href="shop-side-version-2.html">
 
-                                                                    <img class="u-img-fluid u-d-block" src="images/banners/banner-mega-1.jpg" alt=""></a></div>
+                                                                    <img class="u-img-fluid u-d-block" src="/assets/images/banners/banner-mega-1.jpg" alt=""></a></div>
                                                         </div>
                                                         <div class="col-lg-6 mega-image">
                                                             <div class="mega-banner">
 
                                                                 <a class="u-d-block" href="shop-side-version-2.html">
 
-                                                                    <img class="u-img-fluid u-d-block" src="images/banners/banner-mega-2.jpg" alt=""></a></div>
+                                                                    <img class="u-img-fluid u-d-block" src="/assets/images/banners/banner-mega-2.jpg" alt=""></a></div>
                                                         </div>
                                                     </div>
                                                     <!--====== End - Mega Menu Row ======-->
@@ -598,14 +747,14 @@
 
                                                                 <a class="u-d-block" href="shop-side-version-2.html">
 
-                                                                    <img class="u-img-fluid u-d-block" src="images/banners/banner-mega-3.jpg" alt=""></a></div>
+                                                                    <img class="u-img-fluid u-d-block" src="/assets/images/banners/banner-mega-3.jpg" alt=""></a></div>
                                                         </div>
                                                         <div class="col-lg-3 mega-image">
                                                             <div class="mega-banner">
 
                                                                 <a class="u-d-block" href="shop-side-version-2.html">
 
-                                                                    <img class="u-img-fluid u-d-block" src="images/banners/banner-mega-4.jpg" alt=""></a></div>
+                                                                    <img class="u-img-fluid u-d-block" src="/assets/images/banners/banner-mega-4.jpg" alt=""></a></div>
                                                         </div>
                                                     </div>
                                                     <!--====== End - Mega Menu Row ======-->
@@ -623,21 +772,21 @@
 
                                                                 <a class="u-d-block" href="shop-side-version-2.html">
 
-                                                                    <img class="u-img-fluid u-d-block" src="images/banners/banner-mega-5.jpg" alt=""></a></div>
+                                                                    <img class="u-img-fluid u-d-block" src="/assets/images/banners/banner-mega-5.jpg" alt=""></a></div>
                                                         </div>
                                                         <div class="col-lg-4 mega-image">
                                                             <div class="mega-banner">
 
                                                                 <a class="u-d-block" href="shop-side-version-2.html">
 
-                                                                    <img class="u-img-fluid u-d-block" src="images/banners/banner-mega-6.jpg" alt=""></a></div>
+                                                                    <img class="u-img-fluid u-d-block" src="/assets/images/banners/banner-mega-6.jpg" alt=""></a></div>
                                                         </div>
                                                         <div class="col-lg-4 mega-image">
                                                             <div class="mega-banner">
 
                                                                 <a class="u-d-block" href="shop-side-version-2.html">
 
-                                                                    <img class="u-img-fluid u-d-block" src="images/banners/banner-mega-7.jpg" alt=""></a></div>
+                                                                    <img class="u-img-fluid u-d-block" src="/assets/images/banners/banner-mega-7.jpg" alt=""></a></div>
                                                         </div>
                                                     </div>
                                                     <!--====== End - Mega Menu Row ======-->
@@ -814,14 +963,14 @@
 
                                                                 <a class="u-d-block" href="shop-side-version-2.html">
 
-                                                                    <img class="u-img-fluid u-d-block" src="images/banners/banner-mega-8.jpg" alt=""></a></div>
+                                                                    <img class="u-img-fluid u-d-block" src="/assets/images/banners/banner-mega-8.jpg" alt=""></a></div>
                                                         </div>
                                                         <div class="col-lg-6 mega-image">
                                                             <div class="mega-banner">
 
                                                                 <a class="u-d-block" href="shop-side-version-2.html">
 
-                                                                    <img class="u-img-fluid u-d-block" src="images/banners/banner-mega-9.jpg" alt=""></a></div>
+                                                                    <img class="u-img-fluid u-d-block" src="/assets/images/banners/banner-mega-9.jpg" alt=""></a></div>
                                                         </div>
                                                     </div>
                                                     <!--====== End - Mega Menu Row ======-->
@@ -1145,173 +1294,7 @@
 
                         <!--====== Dropdown Main plugin ======-->
                         <div class="menu-init" id="navigation3">
-
-                            <button class="btn btn--icon toggle-button toggle-button--secondary fas fa-shopping-bag toggle-button-shop" type="button"></button>
-
-                            <span class="total-item-round">2</span>
-
-                            <!--====== Menu ======-->
-                            <div class="ah-lg-mode">
-
-                                <span class="ah-close">✕ Close</span>
-
-                                <!--====== List ======-->
-                                <ul class="ah-list ah-list--design1 ah-list--link-color-secondary">
-                                    <li>
-
-                                        <a href="index.html"><i class="fas fa-home u-c-brand"></i></a></li>
-                                    <li>
-
-                                        <a href="wishlist.html"><i class="far fa-heart"></i></a></li>
-                                    <li class="has-dropdown">
-
-                                        <a class="mini-cart-shop-link"><i class="fas fa-shopping-bag"></i>
-
-                                            <span class="total-item-round">2</span></a>
-
-                                        <!--====== Dropdown ======-->
-
-                                        <span class="js-menu-toggle"></span>
-                                        <div class="mini-cart">
-
-                                            <!--====== Mini Product Container ======-->
-                                            <div class="mini-product-container gl-scroll u-s-m-b-15">
-
-                                                <!--====== Card for mini cart ======-->
-                                                <div class="card-mini-product">
-                                                    <div class="mini-product">
-                                                        <div class="mini-product__image-wrapper">
-
-                                                            <a class="mini-product__link" href="product-detail.html">
-
-                                                                <img class="u-img-fluid" src="images/product/electronic/product3.jpg" alt=""></a></div>
-                                                        <div class="mini-product__info-wrapper">
-
-                                                            <span class="mini-product__category">
-
-                                                                <a href="shop-side-version-2.html">Electronics</a></span>
-
-                                                            <span class="mini-product__name">
-
-                                                                <a href="product-detail.html">Yellow Wireless Headphone</a></span>
-
-                                                            <span class="mini-product__quantity">1 x</span>
-
-                                                            <span class="mini-product__price">$8</span></div>
-                                                    </div>
-
-                                                    <a class="mini-product__delete-link far fa-trash-alt"></a>
-                                                </div>
-                                                <!--====== End - Card for mini cart ======-->
-
-
-                                                <!--====== Card for mini cart ======-->
-                                                <div class="card-mini-product">
-                                                    <div class="mini-product">
-                                                        <div class="mini-product__image-wrapper">
-
-                                                            <a class="mini-product__link" href="product-detail.html">
-
-                                                                <img class="u-img-fluid" src="images/product/electronic/product18.jpg" alt=""></a></div>
-                                                        <div class="mini-product__info-wrapper">
-
-                                                            <span class="mini-product__category">
-
-                                                                <a href="shop-side-version-2.html">Electronics</a></span>
-
-                                                            <span class="mini-product__name">
-
-                                                                <a href="product-detail.html">Nikon DSLR Camera 4k</a></span>
-
-                                                            <span class="mini-product__quantity">1 x</span>
-
-                                                            <span class="mini-product__price">$8</span></div>
-                                                    </div>
-
-                                                    <a class="mini-product__delete-link far fa-trash-alt"></a>
-                                                </div>
-                                                <!--====== End - Card for mini cart ======-->
-
-
-                                                <!--====== Card for mini cart ======-->
-                                                <div class="card-mini-product">
-                                                    <div class="mini-product">
-                                                        <div class="mini-product__image-wrapper">
-
-                                                            <a class="mini-product__link" href="product-detail.html">
-
-                                                                <img class="u-img-fluid" src="images/product/women/product8.jpg" alt=""></a></div>
-                                                        <div class="mini-product__info-wrapper">
-
-                                                            <span class="mini-product__category">
-
-                                                                <a href="shop-side-version-2.html">Women Clothing</a></span>
-
-                                                            <span class="mini-product__name">
-
-                                                                <a href="product-detail.html">New Dress D Nice Elegant</a></span>
-
-                                                            <span class="mini-product__quantity">1 x</span>
-
-                                                            <span class="mini-product__price">$8</span></div>
-                                                    </div>
-
-                                                    <a class="mini-product__delete-link far fa-trash-alt"></a>
-                                                </div>
-                                                <!--====== End - Card for mini cart ======-->
-
-
-                                                <!--====== Card for mini cart ======-->
-                                                <div class="card-mini-product">
-                                                    <div class="mini-product">
-                                                        <div class="mini-product__image-wrapper">
-
-                                                            <a class="mini-product__link" href="product-detail.html">
-
-                                                                <img class="u-img-fluid" src="images/product/men/product8.jpg" alt=""></a></div>
-                                                        <div class="mini-product__info-wrapper">
-
-                                                            <span class="mini-product__category">
-
-                                                                <a href="shop-side-version-2.html">Men Clothing</a></span>
-
-                                                            <span class="mini-product__name">
-
-                                                                <a href="product-detail.html">New Fashion D Nice Elegant</a></span>
-
-                                                            <span class="mini-product__quantity">1 x</span>
-
-                                                            <span class="mini-product__price">$8</span></div>
-                                                    </div>
-
-                                                    <a class="mini-product__delete-link far fa-trash-alt"></a>
-                                                </div>
-                                                <!--====== End - Card for mini cart ======-->
-                                            </div>
-                                            <!--====== End - Mini Product Container ======-->
-
-
-                                            <!--====== Mini Product Statistics ======-->
-                                            <div class="mini-product-stat">
-                                                <div class="mini-total">
-
-                                                    <span class="subtotal-text">SUBTOTAL</span>
-
-                                                    <span class="subtotal-value">$16</span></div>
-                                                <div class="mini-action">
-
-                                                    <a class="mini-link btn--e-brand-b-2" href="checkout.html">PROCEED TO CHECKOUT</a>
-
-                                                    <a class="mini-link btn--e-transparent-secondary-b-2" href="cart.html">VIEW CART</a></div>
-                                            </div>
-                                            <!--====== End - Mini Product Statistics ======-->
-                                        </div>
-                                        <!--====== End - Dropdown ======-->
-                                    </li>
-                                </ul>
-                                <!--====== End - List ======-->
-                            </div>
-                            <!--====== End - Menu ======-->
+                            
                         </div>
                         <!--====== End - Dropdown Main plugin ======-->
                     </div>
@@ -1523,38 +1506,38 @@
                                         <div id="js-product-detail-modal">
                                             <div>
 
-                                                <img class="u-img-fluid" src="images/product/product-d-1.jpg" alt=""></div>
+                                                <img class="u-img-fluid" src="/assets/images/product/product-d-1.jpg" alt=""></div>
                                             <div>
 
-                                                <img class="u-img-fluid" src="images/product/product-d-2.jpg" alt=""></div>
+                                                <img class="u-img-fluid" src="/assets/images/product/product-d-2.jpg" alt=""></div>
                                             <div>
 
-                                                <img class="u-img-fluid" src="images/product/product-d-3.jpg" alt=""></div>
+                                                <img class="u-img-fluid" src="/assets/images/product/product-d-3.jpg" alt=""></div>
                                             <div>
 
-                                                <img class="u-img-fluid" src="images/product/product-d-4.jpg" alt=""></div>
+                                                <img class="u-img-fluid" src="/assets/images/product/product-d-4.jpg" alt=""></div>
                                             <div>
 
-                                                <img class="u-img-fluid" src="images/product/product-d-5.jpg" alt=""></div>
+                                                <img class="u-img-fluid" src="/assets/images/product/product-d-5.jpg" alt=""></div>
                                         </div>
                                     </div>
                                     <div class="u-s-m-t-15">
                                         <div id="js-product-detail-modal-thumbnail">
                                             <div>
 
-                                                <img class="u-img-fluid" src="images/product/product-d-1.jpg" alt=""></div>
+                                                <img class="u-img-fluid" src="/assets/images/product/product-d-1.jpg" alt=""></div>
                                             <div>
 
-                                                <img class="u-img-fluid" src="images/product/product-d-2.jpg" alt=""></div>
+                                                <img class="u-img-fluid" src="/assets/images/product/product-d-2.jpg" alt=""></div>
                                             <div>
 
-                                                <img class="u-img-fluid" src="images/product/product-d-3.jpg" alt=""></div>
+                                                <img class="u-img-fluid" src="/assets/images/product/product-d-3.jpg" alt=""></div>
                                             <div>
 
-                                                <img class="u-img-fluid" src="images/product/product-d-4.jpg" alt=""></div>
+                                                <img class="u-img-fluid" src="/assets/images/product/product-d-4.jpg" alt=""></div>
                                             <div>
 
-                                                <img class="u-img-fluid" src="images/product/product-d-5.jpg" alt=""></div>
+                                                <img class="u-img-fluid" src="/assets/images/product/product-d-5.jpg" alt=""></div>
                                         </div>
                                     </div>
                                 </div>
@@ -1690,7 +1673,7 @@
                                         <span>Item is added successfully!</span></div>
                                     <div class="success__img-wrap">
 
-                                        <img class="u-img-fluid" src="images/product/electronic/product1.jpg" alt=""></div>
+                                        <img class="u-img-fluid" src="/assets/images/product/electronic/product1.jpg" alt=""></div>
                                     <div class="success__info-wrap">
 
                                         <span class="success__name">Beats Bomb Wireless Headphone</span>
@@ -1723,16 +1706,17 @@
     </div>
     <!--====== End - Main App ======-->
 
-    @yield('jsscript')
 
     <!--====== Vendor Js ======-->
-    <script src="js/vendor.js"></script>
+    <script src="/assets/js/vendor.js"></script>
 
     <!--====== jQuery Shopnav plugin ======-->
-    <script src="js/jquery.shopnav.js"></script>
+    <script src="/assets/js/jquery.shopnav.js"></script>
 
     <!--====== App ======-->
-    <script src="js/app.js"></script>
+    <script src="/assets/js/app.js"></script>
+
+    @yield('jsscript')
 
     <!--====== Noscript ======-->
     <noscript>

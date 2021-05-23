@@ -47,56 +47,6 @@
 
                             <img src="/assets/images/logo/logo-1.png" alt=""></a>
                         <!--====== End - Main Logo ======-->
-
-
-                        
-
-
-                        <!--====== Dropdown Main plugin ======-->
-                        <div class="menu-init" id="navigation">
-
-                            <button class="btn btn--icon toggle-button fas fa-cogs" type="button"></button>
-
-                            <!--====== Menu ======-->
-                            <div class="ah-lg-mode">
-
-                                <span class="ah-close">✕ Close</span>
-
-                                <!--====== List ======-->
-                                <ul class="ah-list ah-list--design1 ah-list--link-color-secondary">
-                                    <li class="has-dropdown" data-tooltip="tooltip" data-placement="left" title="Account">
-
-                                        <a><i class="far fa-user-circle"></i></a>
-
-                                        <!--====== Dropdown ======-->
-
-                                        <span class="js-menu-toggle"></span>
-                                        <ul style="width:120px">
-                                            <li>
-
-                                                <a href="/register"><i class="fas fa-user-plus u-s-m-r-6"></i>
-
-                                                    <span>Signup</span></a></li>
-                                            <li>
-
-                                                <a href="/login"><i class="fas fa-lock u-s-m-r-6"></i>
-
-                                                    <span>Signin</span></a></li>
-                                        </ul>
-                                        <!--====== End - Dropdown ======-->
-                                    </li>
-                                    <li data-tooltip="tooltip" data-placement="left" title="Contact">
-
-                                        <a href="tel:+9198999878**"><i class="fas fa-phone-volume"></i></a></li>
-                                    <li data-tooltip="tooltip" data-placement="left" title="Mail">
-
-                                        <a href="mailto:contact@comcart.com"><i class="far fa-envelope"></i></a></li>
-                                </ul>
-                                <!--====== End - List ======-->
-                            </div>
-                            <!--====== End - Menu ======-->
-                        </div>
-                        <!--====== End - Dropdown Main plugin ======-->
                     </div>
                     <!--====== End - Primary Nav ======-->
                 </div>
@@ -139,22 +89,15 @@
                             <div class="col-lg-6 col-md-8 u-s-m-b-30">
                                 <div class="l-f-o">
                                     <div class="l-f-o__pad-box">
-                                        <h1 class="gl-h1">Create Account</h1>
-                                        <form class="l-f-o__form" method="post" action="{{ route('register') }}">
+                                        <h1 class="gl-h1">SIGNIN</h1>
+                                        <form class="l-f-o__form" id="login_form" method="post" action="{{ route('login-admin') }}">
                                             @csrf
                                             <x-auth-validation-errors class="mb-4" :errors="$errors" />
                                             <div class="u-s-m-b-30">
 
-                                                <label class="gl-label" for="name">FULL NAME *</label>
-
-                                                <input class="input-text input-text--primary-style" type="text" id="name" name="name" placeholder="First Name">
-                                            </div>
-                                            <div class="u-s-m-b-30">
-
                                                 <label class="gl-label" for="email">E-MAIL *</label>
 
-                                                <input class="input-text input-text--primary-style" type="text" id="email" name="email" placeholder="Enter E-mail">
-                                            </div>
+                                                <input class="input-text input-text--primary-style" type="text" id="email" name="email" placeholder="Enter E-mail"></div>
                                             <div class="u-s-m-b-30">
 
                                                 <label class="gl-label" for="password">PASSWORD *</label>
@@ -163,16 +106,22 @@
                                             </div>
                                             <div class="u-s-m-b-30">
 
-                                                <label class="gl-label" for="password_confirmation">CONFIRM PASSWORD *</label>
+                                                <!--====== Check Box ======-->
+                                                <div class="check-box">
 
-                                                <input class="input-text input-text--primary-style" type="password" id="password_confirmation" name="password_confirmation" placeholder="Enter Password">
+                                                    <input type="checkbox" id="remember_me" name="remember">
+                                                    <div class="check-box__state check-box__state--primary">
+
+                                                        <label class="check-box__label" for="remember_me">Remember Me</label></div>
+                                                </div>
+                                                <!--====== End - Check Box ======-->
                                             </div>
                                             <div class="gl-inline">
-                                                <div class="u-s-m-b-15">
-                                                    <button class="btn btn--e-transparent-brand-b-2" type="submit">CREATE</button>
+                                                <div class="u-s-m-b-30">
+                                                    <button class="btn btn--e-transparent-brand-b-2" type="submit">LOG IN</button>
                                                 </div>
-                                                <div class="u-s-m-b-15">
-                                                   <a href="/login" class="gl-link">Go Back</a>
+                                                <div class="u-s-m-b-30">
+                                                    <a class="gl-link" href="/forgot">Forgot Your Password?</a>
                                                 </div>
                                             </div>
                                         </form>
