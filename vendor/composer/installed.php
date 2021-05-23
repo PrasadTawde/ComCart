@@ -1,12 +1,12 @@
 <?php return array (
   'root' => 
   array (
-    'pretty_version' => '1.0.0+no-version-set',
-    'version' => '1.0.0.0',
+    'pretty_version' => 'dev-main',
+    'version' => 'dev-main',
     'aliases' => 
     array (
     ),
-    'reference' => NULL,
+    'reference' => 'e07c8de08e6cca4c5528163ee0856df27e7cb3f5',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -422,15 +422,6 @@
         0 => 'v8.34.0',
       ),
     ),
-    'intervention/image' => 
-    array (
-      'pretty_version' => '2.5.1',
-      'version' => '2.5.1.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => 'abbf18d5ab8367f96b3205ca3c89fb2fa598c69e',
-    ),
     'kkszymanowski/traitor' => 
     array (
       'pretty_version' => '0.2.5',
@@ -467,12 +458,12 @@
     ),
     'laravel/laravel' => 
     array (
-      'pretty_version' => '1.0.0+no-version-set',
-      'version' => '1.0.0.0',
+      'pretty_version' => 'dev-main',
+      'version' => 'dev-main',
       'aliases' => 
       array (
       ),
-      'reference' => NULL,
+      'reference' => 'e07c8de08e6cca4c5528163ee0856df27e7cb3f5',
     ),
     'laravel/sail' => 
     array (
