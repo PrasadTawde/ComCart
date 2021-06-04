@@ -67,14 +67,14 @@ Route::get('/logout', [AuthenticatedSessionController::class, 'destroy'])
 
 Route::get('/register-admin', [RegisteredAdminController::class, 'create'])
                 ->middleware('guest')
-                ->name('register');
+                ->name('register-admin');
 
 Route::post('/register-admin', [RegisteredAdminController::class, 'store'])
                 ->middleware('guest');
 
 Route::get('/login-admin', [AuthenticatedAdminSessionController::class, 'create'])
                 ->middleware('guest')
-                ->name('login');
+                ->name('login-admin');
 
 Route::post('/login-admin', [AuthenticatedAdminSessionController::class, 'store'])
                 ->middleware('guest');

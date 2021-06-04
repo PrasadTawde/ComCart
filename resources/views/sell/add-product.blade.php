@@ -26,7 +26,7 @@
                                 <div class="u-s-m-b-30" id="Electronics">
                                     <div class="u-s-m-b-30">
                                     <select class="select-box select-box--primary-style u-w-100" id="catagory" name="category" > 
-                                            <option selected value="{{$category}}">{{$category}}</option>
+                                            <option selected value="{{ $category }}">{{ $category }}</option>
                                     </select>
 
                                     </div>
@@ -35,8 +35,8 @@
                                         <label class="gl-label" for="sub-catagory">Select Product</label>
                                         <select class="select-box select-box--primary-style u-w-100" id="sub-catagory" name="subCategory" >
                                             <option selected>Select</option>
-                                            @foreach($subcat as $sCat)
-                                            <option value="{{$sCat->sub_category}}">{{$sCat->sub_category}}</option>
+                                            @foreach($sub_categories as $sub_category)
+                                            <option value="{{ $sub_category->name }}">{{ $sub_category->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>

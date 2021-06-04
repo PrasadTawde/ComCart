@@ -25,18 +25,13 @@
                             <div class="u-s-m-b-30 ">
                                 <h2 class="gl-h1">Select Category</h2>
 
-                                @foreach($category as $cat)
+                                @foreach($categories as $category)
                                 <div class="u-s-m-b-15">
-                                <button class="gl-s-api__btn gl-s-api__btn--fb" type="button" onclick="location.href='/subCategories/{{$cat->id}}/{{$cat->category}}';"><i class="fab "></i>
+                                <button class="gl-s-api__btn gl-s-api__btn--fb" type="button" onclick="location.href='/sell/{{ $category->id }}/{{ $category->name }}';"><i class="fab "></i>
 
-                                 <span>{{$cat->category}}</span></button>
+                                 <span>{{ $category->name }}</span></button>
                                 </div>
                                 @endforeach
-
-
-
-                                </select>
-
                             </div>
                         </form>
                     </div>

@@ -2,19 +2,17 @@
 
 namespace App\Http\Controllers;
 
-
-use App\Models\SubCategory;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
-use App\Models\Resell_Product as ModelsResell_Product;
+use App\Models\Category;
+use App\Models\SubCategory;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\DB;
 use Intervention\Image\ImageManagerStatic as Image;
-use Illuminate\Database\QueryException;
 
-
-class ResellProductController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,7 +21,8 @@ class ResellProductController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::all();
+        return view('sell.select-category', ['categories' => $categories]);
     }
 
     /**
@@ -31,9 +30,10 @@ class ResellProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id, $category)
     {
-        //
+        $sub_categories = SubCategory::where('id', $id)->get();
+        return view('sell.add-product',['sub_categories' => $sub_categories , 'category' => $category]);
     }
 
     /**
@@ -44,7 +44,6 @@ class ResellProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $request->validate([
             'subCategory' => 'required',
             'title' => 'required',
@@ -53,10 +52,10 @@ class ResellProductController extends Controller
             'images1' => 'required | mimes:jpeg,jpg,png,JPEG,JPG |max:2048',
             'images2' => 'required | mimes:jpeg,jpg,png,JPEG,JPG |max:2048',
         ]);
-        $categoryId = DB::select('select DISTINCT id from categories where category  = ?', [$request->category]);
+        $categoryId = DB::select('select DISTINCT id from categories where name  = ?', [$request->category]);
         $catID = (array)$categoryId[0];
           
-        $SubCategoryId = DB::select('select id from sub_categories where sub_category=?', [$request->subCategory]);
+        $SubCategoryId = DB::select('select id from sub_categories where name = ?', [$request->subCategory]);
         $subCatID = (array)$SubCategoryId[0];
 
         $user_id = Auth::user()->id;
@@ -70,32 +69,31 @@ class ResellProductController extends Controller
         $image2 = Image::make($image2_file);
         Response::make($image2->encode('jpeg'));
         try{
-            $product=DB::table('resell__products')->insert([
+            $product=DB::table('products')->insert([
                 'user_id' => $user_id,
-                'cat_id' => $catID['id'],
-                'subcat_id'  => $subCatID['id'],
+                'category_id' => $catID['id'],
+                'sub_category_id'  => $subCatID['id'],
                 'title' => $request->input('title'),
-                'discription' => $request->input('info'),
+                'description' => $request->input('info'),
                 'price' => $request->input('price'),
                 'image_1' => $image1,
                 'image_2' => $image2
             ]);
         }
         catch(QueryException $qe){
-        If ($qe->errorInfo[0] == "23000" && $qe->errorInfo[1] == "1062"){
-            return $qe->errorInfo[2];
-        }else{
-            return  $qe->errorInfo[2] ;
-        } 
-    }
+            If ($qe->errorInfo[0] == "23000" && $qe->errorInfo[1] == "1062"){
+                return $qe->errorInfo[2];
+            }else{
+                return  $qe->errorInfo[2] ;
+            } 
+        }
 
 
         if ($product) {
-            return redirect('/selectCategory')->with('success', 'Product added ');
+            return redirect('/sell')->with('success', 'Product added ');
         } else {
-            return redirect('/selectCategory')->with('fail', 'something went wrong!!!!');
+            return redirect('/sell')->with('fail', 'something went wrong!!!!');
         }
-
     }
 
     /**

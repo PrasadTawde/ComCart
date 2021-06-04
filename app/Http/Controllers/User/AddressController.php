@@ -43,6 +43,7 @@ class AddressController extends Controller
      */
     public function store(Request $request)
     {
+        dump($request);
         $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',

@@ -1,9 +1,8 @@
 <?php
 
+use App\Http\Controllers\MenuController;
+use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\SubCategoryController;
-use App\Http\Controllers\ResellProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,28 +27,10 @@ require __DIR__.'/auth.php';
 require __DIR__.'/admin.php';
 require __DIR__.'/user.php';
 
-Route::get('/status', function () {
-    return view('status');
-});
 
+Route::get('/shop', [MenuController::class, 'index'])->name('shop');
+Route::get('/category/{category}', [MenuController::class, 'category'])->name('category');
+Route::get('/product/{id}', [ShopController::class, 'index'])->name('product');
 
-
-Route::get('/selectCategory',function(){
-    return view('/seller/selectCategory');
-});
-
-Route::get('/subCategories',function(){
-    return view('seller/subcategories');
-});
-
-Route::resource('Categories','CategoryController');
-
-Route::resource('sub_categories','sub_categoryController');
-
-Route::resource('resell_products','ResellProductController');
-
-Route::get('/selectCategory',[CategoryController::class,'index'])->name('/selectCategory');
-
-Route::get('subCategories/{id}/{category}',[SubCategoryController::class,'show'])->name('/SubCategories/?{id}&{category}');
-
-Route::post('productAdded',[ResellProductController::class,'store'])->name('Add');
+Route::get('fetch_image_1/{id}', [ShopController::class, 'fetch_image_1'])->name('fetch_image_1');
+Route::get('fetch_image_2/{id}', [ShopController::class, 'fetch_image_2'])->name('fetch_image_2');

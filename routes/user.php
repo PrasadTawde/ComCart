@@ -1,11 +1,13 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\AddressController;
 use App\Http\Controllers\User\UserProfileController;
 
 Route::group(['middleware' => ['auth', 'role:user']], function () {
 
+	//manage-address
 	Route::get('/address', [AddressController::class, 'index'])->name('address');
 	Route::get('/address-add', [AddressController::class, 'create'])->name('address-add');
 	Route::post('/address-add', [AddressController::class, 'store'])->name('address-add');
@@ -17,4 +19,10 @@ Route::group(['middleware' => ['auth', 'role:user']], function () {
 	Route::get('/profile', [UserProfileController::class,'profile'])->name('profile');
 	Route::get('/profile-edit',[UserProfileController::class,'show'])->name('profile-edit');
 	Route::post('/profile-edit',[UserProfileController::class,'update'])->name('edit');
+
+	//sell
+	Route::get('/sell', [ProductController::class, 'index'])->name('product');
+	Route::get('/sell/{id}/{category}',[ProductController::class,'create'])->name('/sell/?{id}&{category}');
+	Route::post('productAdded',[ProductController::class,'store'])->name('Add');
+
 });
