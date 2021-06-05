@@ -116,12 +116,12 @@
                             <div class="collapse" id="base">
                                 <ul class="nav nav-collapse">
                                     <li>
-                                        <a href="/category">
+                                        <a href="/categories">
                                             <span class="sub-item">Manage Category</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="/sub-category">
+                                        <a href="/subcategories">
                                             <span class="sub-item">Manage Sub-Category</span>
                                         </a>
                                     </li>
