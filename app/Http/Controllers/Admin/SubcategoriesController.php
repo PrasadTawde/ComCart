@@ -16,10 +16,10 @@ class SubcategoriesController extends Controller
      */
     public function index()
     {
-        $data=new SubcategoriesController;
-        $data = DB::table('subcategories')
-        ->join('category', 'subcategories.category_id', '=', 'category.id')
-        ->select('subcategories.*', 'category.name as category_name')
+        $data = new SubcategoriesController;
+        $data = DB::table('sub_categories')
+        ->join('categories', 'sub_categories.category_id', '=', 'categories.id')
+        ->select('sub_categories.*', 'categories.name as category_name')
         ->get();
         return view('admin.sub-categories',['subcategories'=>$data]);
 
@@ -47,18 +47,16 @@ class SubcategoriesController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string|max:255',
-            'category_name' => 'required',
+            'category' => 'required',
 
 
         ]);
-        $query=DB::table('subcategories')->insert([
+        $query=DB::table('sub_categories')->insert([
             'name'=>$request->input('name'),
-            'category_id'=>$request->input('category_name'),
+            'category_id'=>$request->input('category'),
             'description'=>$request->input('description'),
 
         ]); 
-
-
         return redirect('/subcategories');
     }
 
@@ -70,10 +68,8 @@ class SubcategoriesController extends Controller
      */
     public function show()
     {
-
-
         $data=new SubcategoriesController;
-        $data= DB::select('select * from category');
+        $data= DB::select('select * from categories');
         return view('admin.insert-subcategories',['subcategories'=>$data],);  
     }
 
@@ -85,10 +81,9 @@ class SubcategoriesController extends Controller
      */
     public function edit($id)
     {
-        $data=new SubcategoriesController;
-        $data= DB::select('select * from subcategories where id=?',[$id]);
-        return view('admin.update-subcategories',['subcategories'=>$data]);  
-
+        $data = new SubcategoriesController;
+        $data = DB::select('select * from sub_categories where id=?',[$id]);
+        return view('admin.update-subcategories',['subcategories' => $data]);
     }
 
     /**
@@ -102,9 +97,7 @@ class SubcategoriesController extends Controller
     {
         $name = $request->input('name');
         $description = $request->input('description');
-        
-        
-        DB::update('update subcategories set name = ?,description=? where id = ?',[$name,$description,$id]);
+        DB::update('update sub_categories set name = ?,description=? where id = ?',[$name, $description, $id]);
 
         return redirect('/subcategories'); 
     }
@@ -117,7 +110,7 @@ class SubcategoriesController extends Controller
      */
     public function destroy($id)
     {
-        DB::delete('delete from subcategories where id=?',[$id]);
+        DB::delete('delete from sub_categories where id=?',[$id]);
         return redirect('/subcategories');    
 
     }

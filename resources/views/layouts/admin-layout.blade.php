@@ -30,7 +30,7 @@
         <!--
             Tip 1: You can change the background color of the main header using: data-background-color="blue | purple | light-blue | green | orange | red"
         -->
-        <div class="main-header" data-background-color="orange">
+        <div class="main-header" data-background-color="blue">
             <!-- Logo Header -->
             <div class="logo-header">
                 
@@ -94,8 +94,8 @@
             <div class="sidebar-wrapper scrollbar-inner">
                 <div class="sidebar-content">
                     <ul class="nav">
-                        <li class="nav-item active">
-                            <a href="index.html">
+                        <li class="nav-item {{ (request()->is('admin')) ? 'active' : '' }}">
+                            <a href="/admin">
                                 <i class="fas fa-home"></i>
                                 <p>Dashboard</p>
                                 <span class="badge badge-count">5</span>
@@ -107,20 +107,20 @@
                             </span>
                             <h4 class="text-section">Components</h4>
                         </li>
-                        <li class="nav-item">
-                            <a data-toggle="collapse" href="#base">
+                        <li class="nav-item {{ (request()->is('*categories')) ? 'active' : '' }}">
+                            <a data-toggle="collapse" href="#category_nav">
                                 <i class="fas fa-layer-group"></i>
                                 <p>Categories</p>
                                 <span class="caret"></span>
                             </a>
-                            <div class="collapse" id="base">
+                            <div class="collapse {{ (request()->is('*categories')) ? 'show' : '' }}" id="category_nav">
                                 <ul class="nav nav-collapse">
-                                    <li>
+                                    <li class="{{ (request()->is('categories')) ? 'active' : '' }}">
                                         <a href="/categories">
                                             <span class="sub-item">Manage Category</span>
                                         </a>
                                     </li>
-                                    <li>
+                                    <li class="{{ (request()->is('*subcategories')) ? 'active' : '' }}">
                                         <a href="/subcategories">
                                             <span class="sub-item">Manage Sub-Category</span>
                                         </a>
@@ -135,7 +135,7 @@
         <!-- End Sidebar -->
 
         <div class="main-panel">
-            @yield('main')          
+            @yield('main')
         </div>
     </div>
 </div>
@@ -187,6 +187,8 @@
 
 <!-- Azzara DEMO methods, don't include it in your project! -->
 <script src="/assets/js/setting-demo.js"></script>
+
+@yield('jsscript')
 
 </body>
 </html>

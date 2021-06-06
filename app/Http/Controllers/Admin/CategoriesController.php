@@ -44,7 +44,7 @@ class CategoriesController extends Controller
         'description' => 'required|string|max:255',
         
     ]);
-       $query=DB::table('category')->insert([
+       $query=DB::table('categories')->insert([
         'name'=>$request->input('name'),
         'description'=>$request->input('description')
 
@@ -61,15 +61,15 @@ class CategoriesController extends Controller
      */
     public function show()
     {
-        $data=new CategoriesController;
-        $data= DB::select('select * from category');
+        $data = new CategoriesController;
+        $data = DB::select('select * from categories');
         return view('admin.categories',['categories'=>$data]);  
     }
 
     public function edit($id)
     {
-        $data=new CategoriesController;
-        $data= DB::select('select * from category where id=?',[$id]);
+        $data = new CategoriesController;
+        $data = DB::select('select * from categories where id=?',[$id]);
         return view('admin.update-categories',['categories'=>$data]);  
     }
 
@@ -96,7 +96,7 @@ class CategoriesController extends Controller
         $description = $request->input('description');
         
         
-        DB::update('update category set name = ?,description=? where id = ?',[$name,$description,$id]);
+        DB::update('update categories set name = ?,description=? where id = ?',[$name,$description,$id]);
 
         return redirect('/categories'); 
 
@@ -111,7 +111,7 @@ class CategoriesController extends Controller
     public function destroy($id)
 
     {
-        DB::delete('delete from category where id=?',[$id]);
+        DB::delete('delete from categories where id=?',[$id]);
         return redirect('/categories');   
         
     }
