@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ShoppingCartController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\AddressController;
 use App\Http\Controllers\User\UserProfileController;
@@ -24,5 +25,11 @@ Route::group(['middleware' => ['auth', 'role:user']], function () {
 	Route::get('/sell', [ProductController::class, 'index'])->name('product');
 	Route::get('/sell/{id}/{category}',[ProductController::class,'create'])->name('/sell/?{id}&{category}');
 	Route::post('productAdded',[ProductController::class,'store'])->name('Add');
+
+	//shopping cart 
+	Route::get('/cart', [ShoppingCartController::class, 'index'])->name('cart');
+	Route::get('/add-to-cart/{id}', [ShoppingCartController::class, 'store'])->name('add-to-cart');
+	Route::get('/remove-from-cart/{id}', [ShoppingCartController::class, 'destroy'])->name('remove-from-cart');
+	Route::get('/clear-cart', [ShoppingCartController::class, 'clear'])->name('clear-cart');
 
 });

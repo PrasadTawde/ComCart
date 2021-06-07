@@ -66,8 +66,8 @@
                                     <form class="pd-detail__form">
                                         <div class="pd-detail-inline-2">
                                             <div class="u-s-m-b-15">
-
-                                                <button class="btn btn--e-brand-b-2" type="submit">Add to Cart</button></div>
+                                                <a class="btn btn--e-brand-b-2" href="/add-to-cart/{{ $product_detail->id }}">Add to Cart</a>
+                                            </div>
                                         </div>
                                     </form>
                                 </div>

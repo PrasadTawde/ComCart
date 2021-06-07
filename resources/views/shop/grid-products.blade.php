@@ -945,7 +945,7 @@
                 
                                                         <span class="empty__text-1">Looks like products you're looking for not availabe at the moment.</span>
                 
-                                                        <a class="empty__redirect-link btn--e-brand" href="{{ route('welcome') }}">GO TO HOME</a></div>
+                                                        <a class="empty__redirect-link btn--e-brand" href="/">GO TO HOME</a></div>
                                                 </div>
                                             </div>
                                         @else

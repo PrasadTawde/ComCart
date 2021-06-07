@@ -16,7 +16,7 @@ class ShopController extends Controller
     }
 
     function fetch_image_1($id) {
-        $image = Product::findOrFail($id);
+        $image = Product::withTrashed()->findOrFail($id);
         $image_file = Image::make($image->image_1);
 
         $reponse = Response::make($image_file->encode('jpeg'));
@@ -25,7 +25,7 @@ class ShopController extends Controller
     }
     
     function fetch_image_2($id) {
-        $image = Product::findOrFail($id);
+        $image = Product::withTrashed()->findOrFail($id);
         $image_file = Image::make($image->image_2);
 
         $reponse = Response::make($image_file->encode('jpeg'));
