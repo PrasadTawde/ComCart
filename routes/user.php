@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\RazorpayController;
 use App\Http\Controllers\ShoppingCartController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\AddressController;
@@ -31,5 +32,10 @@ Route::group(['middleware' => ['auth', 'role:user']], function () {
 	Route::get('/add-to-cart/{id}', [ShoppingCartController::class, 'store'])->name('add-to-cart');
 	Route::get('/remove-from-cart/{id}', [ShoppingCartController::class, 'destroy'])->name('remove-from-cart');
 	Route::get('/clear-cart', [ShoppingCartController::class, 'clear'])->name('clear-cart');
+
+	//payment
+	Route::get('/checkout', [RazorpayController::class, 'payment'])->name('checkout');
+	Route::post('/checkout', [RazorpayController::class, 'initiate'])->name('initiate');
+	Route::post('/payment-complete', [RazorpayController::class, 'complete'])->name('complete');
 
 });

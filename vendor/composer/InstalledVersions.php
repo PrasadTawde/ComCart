@@ -25,12 +25,12 @@ class InstalledVersions
 private static $installed = array (
   'root' => 
   array (
-    'pretty_version' => '1.0.0+no-version-set',
-    'version' => '1.0.0.0',
+    'pretty_version' => 'dev-main',
+    'version' => 'dev-main',
     'aliases' => 
     array (
     ),
-    'reference' => NULL,
+    'reference' => '302a8e7bcac82080efd6cf5b25f2024c377a45e9',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -491,12 +491,12 @@ private static $installed = array (
     ),
     'laravel/laravel' => 
     array (
-      'pretty_version' => '1.0.0+no-version-set',
-      'version' => '1.0.0.0',
+      'pretty_version' => 'dev-main',
+      'version' => 'dev-main',
       'aliases' => 
       array (
       ),
-      'reference' => NULL,
+      'reference' => '302a8e7bcac82080efd6cf5b25f2024c377a45e9',
     ),
     'laravel/sail' => 
     array (
@@ -860,12 +860,30 @@ private static $installed = array (
       ),
       'reference' => 'cd4032040a750077205918c86049aa0f43d22947',
     ),
+    'razorpay/razorpay' => 
+    array (
+      'pretty_version' => '2.7.0',
+      'version' => '2.7.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'e28454acdc110b544fc80bec9518b9b86b275a2c',
+    ),
     'rhumsaa/uuid' => 
     array (
       'replaced' => 
       array (
         0 => '4.1.1',
       ),
+    ),
+    'rmccue/requests' => 
+    array (
+      'pretty_version' => 'v1.8.0',
+      'version' => '1.8.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'afbe4790e4def03581c4a0963a1e8aa01f6030f1',
     ),
     'santigarcor/laratrust' => 
     array (
@@ -1554,6 +1572,7 @@ self::$canGetVendors = method_exists('Composer\Autoload\ClassLoader', 'getRegist
 $installed = array();
 
 if (self::$canGetVendors) {
+
 foreach (ClassLoader::getRegisteredLoaders() as $vendorDir => $loader) {
 if (isset(self::$installedByVendor[$vendorDir])) {
 $installed[] = self::$installedByVendor[$vendorDir];

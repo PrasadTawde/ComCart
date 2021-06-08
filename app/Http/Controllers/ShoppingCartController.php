@@ -120,7 +120,7 @@ class ShoppingCartController extends Controller
         //deleting from cart
         ShoppingCart::destroy($id);
 
-        return redirect('cart');
+        return redirect()->back();
     }
 
     public function clear()

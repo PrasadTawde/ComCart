@@ -46,7 +46,7 @@
             </div>
             <!--====== End - Section Intro ======-->
 
-
+            @if ($cart_products->count() > 0)
             <!--====== Section Content ======-->
             <div class="section__content">
                 <div class="container">
@@ -144,10 +144,31 @@
                 </div>
             </div>
             <!--====== End - Section Content ======-->
+            @else
+            <!--====== Section Content ======-->
+            <div class="section__content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 u-s-m-b-30">
+                            <div class="empty">
+                                <div class="empty__wrap">
+
+                                    <span class="empty__big-text">EMPTY</span>
+
+                                    <span class="empty__text-1">No items found on your cart.</span>
+
+                                    <a class="empty__redirect-link btn--e-brand" href="/">CONTINUE SHOPPING</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--====== End - Section Content ======-->
+            @endif
         </div>
         <!--====== End - Section 2 ======-->
 
-
+        @if ($cart_products->count() > 0)
         <!--====== Section 3 ======-->
         <div class="u-s-p-b-60">
 
@@ -157,6 +178,8 @@
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 u-s-m-b-30">
                             <form class="f-cart" action="/checkout" method="post">
+                                @csrf
+                                {{ Session::forget('success') }}  
                                 <div class="row">
                                     <div class="col-lg-4 col-md-6 u-s-m-b-30">
                                         <div class="f-cart__pad-box">
@@ -179,7 +202,9 @@
                                                 </table>
                                             </div>
                                             <div>
-
+                                                <input type="text" name="cart_id" hidden="" value="{{ $product->id }}">
+                                                <input type="text" class="amount" name="product_id" hidden="" value="{{ $product->product_id }}">
+                                                <input type="text" class="amount" name="amount" hidden="" value="{{ $shipping_price + $price }}">
                                                 <button class="btn btn--e-brand-b-2" type="submit"> PROCEED TO CHECKOUT</button></div>
                                         </div>
                                     </div>
@@ -192,6 +217,7 @@
             <!--====== End - Section Content ======-->
         </div>
         <!--====== End - Section 3 ======-->
+        @endif
     </div>
     <!--====== End - App Content ======-->
 

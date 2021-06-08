@@ -12,6 +12,7 @@
         "intervention/image": "^2.5",
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
+        "razorpay/razorpay": "2.*",
         "santigarcor/laratrust": "^6.3"
     },
     "require-dev": {
