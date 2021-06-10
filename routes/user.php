@@ -6,6 +6,7 @@ use App\Http\Controllers\ShoppingCartController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\AddressController;
 use App\Http\Controllers\User\UserProfileController;
+use App\Http\Controllers\CategoryController;
 
 Route::group(['middleware' => ['auth', 'role:user']], function () {
 
@@ -23,9 +24,14 @@ Route::group(['middleware' => ['auth', 'role:user']], function () {
 	Route::post('/profile-edit',[UserProfileController::class,'update'])->name('edit');
 
 	//sell
-	Route::get('/sell', [ProductController::class, 'index'])->name('product');
+	Route::get('/sell', [CategoryController::class, 'index'])->name('product');
 	Route::get('/sell/{id}/{category}',[ProductController::class,'create'])->name('/sell/?{id}&{category}');
 	Route::post('productAdded',[ProductController::class,'store'])->name('Add');
+	Route::get('/my-products',[ProductController::class,'index'])->name('myProduct');
+
+	//search
+	Route::get('search',[ProductController::class,'search'])->name('search');
+	// Route::get('sort',[ProductController::class,'sort'])->name('sort');
 
 	//shopping cart 
 	Route::get('/cart', [ShoppingCartController::class, 'index'])->name('cart');

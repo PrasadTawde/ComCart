@@ -21,8 +21,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
-        return view('sell.select-category', ['categories' => $categories]);
+        $user_id = Auth::user()->id;
+        $products = DB::select('select * from products where user_id=?', [$user_id]);
+        // dd($products);
+        return view('sell.my-products', ['products' => $products]);
     }
 
     /**
@@ -116,6 +118,9 @@ class ProductController extends Controller
     public function edit($id)
     {
         //
+        $data = DB::select('select Distinct * from products where id=?', [$id]);
+
+        return view('/sell/edit-product-details', ['data' => $data]);
     }
 
     /**
@@ -128,6 +133,63 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $request->validate([
+            // 'subCategory' => 'required',
+            'title' => 'required',
+            'info' => 'required',
+            'price' => 'required',
+            // 'images1' => 'required | mimes:jpeg,jpg,png,JPEG,JPG |max:2048',
+            // 'images2' => 'required | mimes:jpeg,jpg,png,JPEG,JPG |max:2048',
+        ]);
+
+
+        if (($request->file('images1')!=NULL) && ($request->file('images2')!=NULL)) {
+            $image1_file = $request->file('images1');
+            $image1 = Image::make($image1_file);
+            Response::make($image1->encode('jpeg'));
+            $image2_file = $request->file('images2');
+            $image2 = Image::make($image2_file);
+            Response::make($image2->encode('jpeg'));
+            $query=DB::update('update products set title = ?,description=?,price=?,image_1=?,image_2=?',[$request->title,$request->info,$request->price,$image1,$image2]);
+
+            if ($query) {
+                return redirect('/my-products')->with('success', 'Product details updated  ');
+            } else {
+                return redirect('/my-products')->with('fail', 'something went wrong!!!!');
+            }
+
+        } else if (($request->file('images1')!=NULL)) {
+            $image1_file = $request->file('images1');
+            $image1 = Image::make($image1_file);
+            Response::make($image1->encode('jpeg'));
+            $query=DB::update('update products set title = ?,description=?,price=?,image_1=?',[$request->title,$request->info,$request->price,$image1]);
+
+            if ($query) {
+                return redirect('/my-products')->with('success', 'Product details updated  ');
+            } else {
+                return redirect('/my-products')->with('fail', 'something went wrong!!!!');
+            }
+
+        } else if (($request->file('images2')!=NULL)) {
+            $image2_file = $request->file('images2');
+            $image2 = Image::make($image2_file);
+            Response::make($image2->encode('jpeg'));
+            $query=DB::update('update products set title = ?,description=?,price=?,image_2=?',[$request->title,$request->info,$request->price,$image2]);
+            
+            if ($query) {
+                return redirect('/my-products')->with('success', 'Product details updated  ');
+            } else {
+                return redirect('/my-products')->with('fail', 'something went wrong!!!!');
+            }
+        }
+        else if(($request->file('images1')==NULL) && ($request->file('images2')==NULL)){
+            $query=DB::update('update products set title = ?,description=?,price=?',[$request->title,$request->info,$request->price]);
+            if ($query) {
+                return redirect('/my-products')->with('success', 'Product details updated  ');
+            } else {
+                return redirect('/my-products')->with('fail', 'something went wrong!!!!');
+            }
+        }
     }
 
     /**
@@ -140,4 +202,30 @@ class ProductController extends Controller
     {
         //
     }
+
+    public function search(Request $req)
+    {
+        $result = DB::table('products')->where('title', 'like', '%' . $req->input('search') . '%')->get();
+        $d = (array)$result[0];
+        $cat = DB::table('categories')->where('id', $d['category_id'])->get();
+        $category = (array)$cat[0];
+        return view('search.search-result', ['result' => $result, 'category' => $category]);
+    }
+
+    public function sort(Request $req)
+    {
+        if($req->get('sort')==='latest'){
+            
+        }else if($req->get('sort')==='bestSelling'){
+
+        }else if($req->get('sort')==='bestRating'){
+
+        }else if($req->get('sort')==='lowestPrice'){
+
+        }else  if($req->get('sort')==='highestPrice'){
+
+        }
+
+    }
 }
+

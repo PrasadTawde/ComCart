@@ -19,8 +19,8 @@ class CategoryController extends Controller
         //
         $category=new Category();
         // $category=category::all();
-        $category=DB::select('select * from categories');
-        return view('seller/selectCategory',['category'=>$category]);
+        $categories=DB::select('select * from categories');
+        return view('sell.select-category',['categories'=>$categories]);
     }
 
     /**
