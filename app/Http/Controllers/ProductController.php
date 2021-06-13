@@ -32,10 +32,11 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id, $category)
+    public function create()
     {
-        $sub_categories = SubCategory::where('id', $id)->get();
-        return view('sell.add-product',['sub_categories' => $sub_categories , 'category' => $category]);
+        // $sub_categories = SubCategory::where('id', $id)->get();
+        $categories = Category::all();
+        return view('sell.add-product',[ 'categories' => $categories ]);
     }
 
     /**
@@ -47,18 +48,15 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'subCategory' => 'required',
-            'title' => 'required',
-            'info' => 'required',
+            'category' => 'required',
+            'sub_category' => 'required',
+            'sub_sub_category' => 'required',
+            'title' => 'required|string|max:255',
+            'description' => 'required|string|max:255',
             'price' => 'required',
             'images1' => 'required | mimes:jpeg,jpg,png,JPEG,JPG |max:2048',
             'images2' => 'required | mimes:jpeg,jpg,png,JPEG,JPG |max:2048',
         ]);
-        $categoryId = DB::select('select DISTINCT id from categories where name  = ?', [$request->category]);
-        $catID = (array)$categoryId[0];
-          
-        $SubCategoryId = DB::select('select id from sub_categories where name = ?', [$request->subCategory]);
-        $subCatID = (array)$SubCategoryId[0];
 
         $user_id = Auth::user()->id;
         $image1_file = $request->file('images1');
@@ -71,12 +69,13 @@ class ProductController extends Controller
         $image2 = Image::make($image2_file);
         Response::make($image2->encode('jpeg'));
         try{
-            $product=DB::table('products')->insert([
+            $product = DB::table('products')->insert([
                 'user_id' => $user_id,
-                'category_id' => $catID['id'],
-                'sub_category_id'  => $subCatID['id'],
+                'category_id' => $request->input('category'),
+                'sub_category_id'  => $request->input('sub_category'),
+                'sub_sub_category_id'  => $request->input('sub_sub_category'),
                 'title' => $request->input('title'),
-                'description' => $request->input('info'),
+                'description' => $request->input('description'),
                 'price' => $request->input('price'),
                 'image_1' => $image1,
                 'image_2' => $image2

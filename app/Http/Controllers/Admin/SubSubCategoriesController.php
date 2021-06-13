@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\Categories;
 use App\Models\Category;
 use App\Models\SubCategory;
+use App\Models\SubSubCategory;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class SubcategoriesController extends Controller
+class SubSubCategoriesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,11 +18,11 @@ class SubcategoriesController extends Controller
      */
     public function index()
     {
-        $subcategories = SubCategory::join('categories', 'sub_categories.category_id', '=', 'categories.id')
-        ->select('sub_categories.*', 'categories.name as category_name')
+        $data = SubSubCategory::join('categories', 'sub_sub_categories.category_id', '=', 'categories.id')
+        ->join('sub_categories', 'sub_sub_categories.sub_category_id', '=', 'sub_categories.id')
+        ->select('sub_categories.*', 'categories.name as category_name', 'sub_categories.name as sub_category_name', 'sub_sub_categories.name as sub_sub_category_name', 'sub_sub_categories.id as sub_sub_category_id')
         ->get();
-
-        return view('admin.sub-categories',['subcategories' => $subcategories]);
+        return view('admin.sub-sub-categories',['data' => $data]);
     }
 
     /**
@@ -44,16 +44,20 @@ class SubcategoriesController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'category' => 'required|string|max:255',
+            'subcategory' => 'required|string|max:255',
             'name' => 'required|string|max:255',
             'description' => 'nullable|string|max:255',
             'category' => 'required',
         ]);
-        $query = SubCategory::create([
-            'name' => $request->input('name'),
+        $query = DB::table('sub_sub_categories')->insert([
             'category_id' => $request->input('category'),
+            'sub_category_id' => $request->input('subcategory'),
+            'name' => $request->input('name'),
             'description' => $request->input('description'),
+
         ]); 
-        return redirect('/subcategories');
+        return redirect('/subsubcategories');
     }
 
     /**
@@ -64,9 +68,9 @@ class SubcategoriesController extends Controller
      */
     public function show()
     {
-        $data = Category::all();
-        
-        return view('admin.insert-subcategories',['subcategories' => $data],);  
+        $categories = Category::all();
+        $subcategories = SubCategory::all();
+        return view('admin.insert-subsubcategories',[ 'categories' => $categories, 'subcategories' => $subcategories ],);
     }
 
     /**
@@ -77,8 +81,8 @@ class SubcategoriesController extends Controller
      */
     public function edit($id)
     {
-        $data = SubCategory::where('id', $id)->get();
-        return view('admin.update-subcategories',['subcategories' => $data]);
+        $data = SubSubCategory::where('id', $id)->get();
+        return view('admin.update-subsubcategories',['subsubcategories' => $data]);
     }
 
     /**
@@ -92,9 +96,9 @@ class SubcategoriesController extends Controller
     {
         $name = $request->input('name');
         $description = $request->input('description');
-        SubCategory::where('id', $id)->update(['name' => $name, 'description' => $description]);
+        SubSubCategory::where('id', $id)->update(['name' => $name, 'description' => $description]);
         
-        return redirect('/subcategories'); 
+        return redirect('/subsubcategories'); 
     }
 
     /**
@@ -105,7 +109,7 @@ class SubcategoriesController extends Controller
      */
     public function destroy($id)
     {
-        DB::delete('delete from sub_categories where id=?',[$id]);
-        return redirect('/subcategories');
+        DB::delete('delete from sub_sub_categories where id=?',[$id]);
+        return redirect('/subsubcategories');
     }
 }

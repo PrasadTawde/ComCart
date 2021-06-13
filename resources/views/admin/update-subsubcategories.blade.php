@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="card">
-                    <form action="/subcategories-update/<?php echo $subcategories[0]->id; ?>" method="POST">
+                    <form action="/subsubcategories-update/<?php echo $subsubcategories[0]->id; ?>" method="POST">
                         @csrf
                         <div class="card-header">
                             <div class="card-title">Update Sub-Category</div>
@@ -20,7 +20,7 @@
                                 <br>
                                 <span style="color: red; font-size: 85%;">{{ $message  }}</span>
                                 @enderror
-                                <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name" value="{{ $subcategories[0]->name }}">                                    
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name" value="{{ $subsubcategories[0]->name }}">                                    
                             </div>
                             <div class="form-group">
                                 <label for="description">Description</label>
@@ -28,8 +28,8 @@
                                 <br>
                                 <span style="color: red; font-size: 85%;">{{ $message  }}</span>
                                 @enderror
-                                <textarea class="form-control" id="description" name="description" rows="5" value="{{ $subcategories[0]->description }}">
-                                    {{ $subcategories[0]->description }}
+                                <textarea class="form-control" id="description" name="description" rows="5" value="{{ $subsubcategories[0]->description }}">
+                                    {{ $subsubcategories[0]->description }}
                                 </textarea>
                             </div>
                         </div>

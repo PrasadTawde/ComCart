@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Categories;
+use App\Models\Category;
 use Illuminate\Support\Facades\DB;
 
 class CategoriesController extends Controller
@@ -26,7 +27,7 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.insert-categories');
     }
 
     /**
@@ -37,20 +38,18 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'icon' => 'required|string|max:255',
+            'description' => 'nullable|string|max:255',
+        ]);
+       $category = Category::create([
+            'name'=>$request->input('name'),
+            'icon'=>$request->input('icon'),
+            'description'=>$request->input('description')
 
-
-       $request->validate([
-        'name' => 'required|string|max:255',
-        'description' => 'nullable|string|max:255',
-        
-    ]);
-       $query=DB::table('categories')->insert([
-        'name'=>$request->input('name'),
-        'description'=>$request->input('description')
-
-    ]);  
+        ]);  
        return redirect('/categories');
-
    }
 
     /**
@@ -61,16 +60,14 @@ class CategoriesController extends Controller
      */
     public function show()
     {
-        $data = new CategoriesController;
-        $data = DB::select('select * from categories');
-        return view('admin.categories',['categories'=>$data]);  
+        $categories = Category::all();
+        return view('admin.categories',['categories'=>$categories]);  
     }
 
     public function edit($id)
     {
-        $data = new CategoriesController;
-        $data = DB::select('select * from categories where id=?',[$id]);
-        return view('admin.update-categories',['categories'=>$data]);  
+        $categories = Category::where('id', $id)->get();
+        return view('admin.update-categories',['categories'=> $categories]);  
     }
 
     /**
@@ -90,16 +87,12 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-       
-
         $name = $request->input('name');
         $description = $request->input('description');
         
+        Category::where('id', $id)->update(['name' => $name, 'description' => $description]);
         
-        DB::update('update categories set name = ?,description=? where id = ?',[$name,$description,$id]);
-
         return redirect('/categories'); 
-
     }
 
     /**
@@ -113,6 +106,5 @@ class CategoriesController extends Controller
     {
         DB::delete('delete from categories where id=?',[$id]);
         return redirect('/categories');   
-        
     }
 }

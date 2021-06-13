@@ -7,6 +7,7 @@
         <input type="text" class="form-control" id="rzp_signature" name="rzp_signature">
         <input type="text" class="form-control" id="rzp_amount" name="rzp_amount">
         <input type="text" class="form-control" id="product_id" name="product_id">
+        <input type="text" class="form-control" id="address_id" name="address_id">
         <input type="text" class="form-control" id="cart_id" name="cart_id">
     <button type="submit" id="rzp-paymentresponse" class="btn btn-primary">Submit</button>
 </form>
@@ -17,6 +18,9 @@
 
     var p_id = {{$response['product_id']}};
     document.getElementById('product_id').value = p_id;
+    
+    var a_id = {{$response['address_id']}};
+    document.getElementById('address_id').value = a_id;
     var c_id = {{$response['cart_id']}};
     document.getElementById('cart_id').value = c_id;
 

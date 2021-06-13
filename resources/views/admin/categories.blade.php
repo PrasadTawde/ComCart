@@ -10,7 +10,7 @@
 						<div class="card-header">
 							<div class="d-flex align-items-center">
 								<h4 class="card-title">Add Category</h4>
-								<a href="/insert-categories" class="btn btn-primary btn-round ml-auto" role="button" aria-pressed="true">Add Category</a>
+								<a href="/categories-insert" class="btn btn-primary btn-round ml-auto" role="button" aria-pressed="true">Add Category</a>
 							</div>
 						</div>
 						<div class="card-body">
@@ -20,31 +20,26 @@
 									<thead>
 										<tr>
 											<th>Name</th>
+											<th>Icon</th>
 											<th>Description</th>
 											<th style="width: 10%">Action</th>
 										</tr>
 									</thead>
-									<tfoot>
-										<tr>
-											<th>Name</th>
-											<th>Description</th>
-											<th>Action</th>
-										</tr>
-									</tfoot>
 									<tbody>
 										@csrf
 
 										@foreach($categories as $category)
 
 										<tr>
-											<td>{{$category->name}}</td>
-											<td>{{$category->description}}</td>
+											<td>{{ $category->name }}</td>
+											<td>{{ $category->icon }}</td>
+											<td>{{ $category->description }}</td>
 											
 											<td>
 												<div class="form-button-action">
-													<a href="/update-categories/{{ $category->id }}" class="btn btn-link btn-primary btn-lg"data-toggle="tooltip" role="button"title="" data-original-title="Edit Task"><i class="fa fa-edit"></i></a>
+													<a href="/categories-update/{{ $category->id }}" class="btn btn-link btn-primary btn-lg"data-toggle="tooltip" role="button"title="" data-original-title="Edit Task"><i class="fa fa-edit"></i></a>
 
-													<a href="/delete-categories/{{ $category->id }}" class="btn btn-link btn-danger"data-toggle="tooltip" role="button"title="" data-original-title="Remove"onclick="return confirm('are you sure you want to delete this category')" ><i class="fa fa-times"></i>
+													<a href="/categories-delete/{{ $category->id }}" class="btn btn-link btn-danger"data-toggle="tooltip" role="button"title="" data-original-title="Remove"onclick="return confirm('are you sure you want to delete this category')" ><i class="fa fa-times"></i>
 
 														Delete</a>
 

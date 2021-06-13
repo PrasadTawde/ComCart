@@ -107,22 +107,27 @@
                             </span>
                             <h4 class="text-section">Components</h4>
                         </li>
-                        <li class="nav-item {{ (request()->is('*categories')) ? 'active' : '' }}">
+                        <li class="nav-item {{ (request()->is('*categories*')) ? 'active' : '' }}">
                             <a data-toggle="collapse" href="#category_nav">
                                 <i class="fas fa-layer-group"></i>
                                 <p>Categories</p>
                                 <span class="caret"></span>
                             </a>
-                            <div class="collapse {{ (request()->is('*categories')) ? 'show' : '' }}" id="category_nav">
+                            <div class="collapse {{ (request()->is('*categories*')) ? 'show' : '' }}" id="category_nav">
                                 <ul class="nav nav-collapse">
-                                    <li class="{{ (request()->is('categories')) ? 'active' : '' }}">
+                                    <li class="{{ (request()->is('categories*')) ? 'active' : '' }}">
                                         <a href="/categories">
                                             <span class="sub-item">Manage Category</span>
                                         </a>
                                     </li>
-                                    <li class="{{ (request()->is('*subcategories')) ? 'active' : '' }}">
+                                    <li class="{{ (request()->is('subcategories*')) ? 'active' : '' }}">
                                         <a href="/subcategories">
                                             <span class="sub-item">Manage Sub-Category</span>
+                                        </a>
+                                    </li>
+                                    <li class="{{ (request()->is('subsubcategories*')) ? 'active' : '' }}">
+                                        <a href="/subsubcategories">
+                                            <span class="sub-item">Manage Sub-Sub-Category</span>
                                         </a>
                                     </li>
                                 </ul>

@@ -43,7 +43,6 @@ class AddressController extends Controller
      */
     public function store(Request $request)
     {
-        dump($request);
         $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
@@ -61,9 +60,10 @@ class AddressController extends Controller
         $address->last_name = $request->last_name;
         $address->phone_no = $request->phone_no;
         $address->address = $request->street_address;
+        $address->country = 'india';
         $address->state = $request->state;
         $address->city = $request->city;
-        $address->locality = $request->city;
+        // $address->locality = $request->city;
         $address->pincode = $request->pincode;
         $address->type = $request->address_type;
 

@@ -23,6 +23,7 @@ class ShoppingCartController extends Controller
             $cart_products = DB::table('shopping_cart')
             ->join('products', 'shopping_cart.product_id', '=', 'products.id')
             ->select('shopping_cart.*', 'products.*','shopping_cart.id')
+            ->where('shopping_cart.user_id', $user_id)
             ->get();
 
             return view('shop.cart-view', ['cart_products' => $cart_products]);
@@ -150,4 +151,23 @@ class ShoppingCartController extends Controller
             return redirect('login');
         }
     }
+
+    public function checkout()
+    {
+        if (Auth::check()) {
+            $user_id = Auth::user()->id;
+            $cart_products = DB::table('shopping_cart')
+            ->join('products', 'shopping_cart.product_id', '=', 'products.id')
+            ->select('shopping_cart.*', 'products.*','shopping_cart.id')
+            ->where('shopping_cart.user_id', $user_id)
+            ->get();
+
+            $addresses = DB::table('user_addresses')->where('user_id', $user_id)->get();
+            return view('shop.checkout', ['cart_products' => $cart_products, 'addresses' => $addresses]);
+        }
+        else {
+            return redirect('login');
+        }
+    }
+
 }

@@ -17,38 +17,56 @@
                                 @endforeach
                             </ul>
                         </div>
-
                         @endif
+
+                        @if(Session::get('success'))
+                        <div class="alert"  style ="background: rgba(13, 230, 13, 0.637) ">
+                            {{Session::get('success')}}
+                        </div>
+                        @endif
+                        @if(Session::get('fail'))
+                        <div class="alert " style ="background: rgba(128, 0, 0, 0.3) ">
+                            {{Session::get('fail')}}
+                        </div>
+                        @endif
+
                         <form class="l-f-o__form" method="post" action="{{route('Add')}}" enctype="multipart/form-data">
                             @csrf
                             <!-- </div> -->
-                            <div class="u-s-m-b-30" id="subCategory">
-                                <div class="u-s-m-b-30" id="Electronics">
+                            <div class="u-s-m-b-30">
+                                <div class="u-s-m-b-30">
                                     <div class="u-s-m-b-30">
-                                    <select class="select-box select-box--primary-style u-w-100" id="catagory" name="category" > 
-                                            <option selected value="{{ $category }}">{{ $category }}</option>
-                                    </select>
-
-                                    </div>
-
-                                    <div class="u-s-m-b-30">
-                                        <label class="gl-label" for="sub-catagory">Select Product</label>
-                                        <select class="select-box select-box--primary-style u-w-100" id="sub-catagory" name="subCategory" >
-                                            <option selected>Select</option>
-                                            @foreach($sub_categories as $sub_category)
-                                            <option value="{{ $sub_category->name }}">{{ $sub_category->name }}</option>
+                                        <label class="gl-label" for="sub-catagory">Select Category</label>
+                                        <select class="select-box select-box--primary-style u-w-100" id="category" name="category" > 
+                                            <option selected disabled>Select Category</option>
+                                            @foreach ($categories as $category)
+                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
 
                                     <div class="u-s-m-b-30">
-                                        <label class="gl-label" for="e-title"> Add Title</label>
+                                        <label class="gl-label" for="sub-catagory">Select Sub-Category</label>
+                                        <select class="select-box select-box--primary-style u-w-100" id="sub_catagory" name="sub_category" >
+                                            <option selected disabled>Select Sub-Category</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="u-s-m-b-30">
+                                        <label class="gl-label" for="sub-catagory">Select Sub-Sub-Category</label>
+                                        <select class="select-box select-box--primary-style u-w-100" id="sub_sub_catagory" name="sub_sub_category" >
+                                            <option selected disabled>Select Sub-Sub-Category</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="u-s-m-b-30">
+                                        <label class="gl-label" for="e-title">Add Title</label>
                                         <input class="input-text input-text--primary-style" type="text" name="title" id="title" placeholder="Add Title" value="{{old('title')}}">
                                     </div>
 
                                     <div class="u-s-m-b-30">
-                                        <label class="gl-label" for="e-info"> Add Discription</label>
-                                        <input class="input-text input-text--primary-style" type="text" name="info" id="info" placeholder="Add Discription" value="{{old('info')}}">
+                                        <label class="gl-label" for="e-info"> Add Description</label>
+                                        <input class="input-text input-text--primary-style" type="text" name="description" id="description" placeholder="Add Description" value="{{old('description')}}">
                                     </div>
 
                                     <div class="u-s-m-b-30">
@@ -100,5 +118,73 @@
 <!--====== End - Section Content ======-->
 </div>
 
+
+@endsection
+
+@section('jsscript')
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        //populating sub categories
+        $('#category').change(function(){
+            var id = $(this).val();
+
+            $('#sub_catagory').find('option').not(':first').remove();
+
+            //ajax
+            $.ajax({
+                url: '/get-sub-categories/'+id,
+                type: 'get',
+                dataType: 'json',
+                success: function(response){
+                    var len = 0;
+                    if (response['data'] != null) {
+                        len = response['data'].length;
+                    }
+
+                    if (len > 0) {
+                        for (var i = 0; i < len; i++) {
+                            var id = response['data'][i].id;
+                            var name = response['data'][i].name;
+                            
+                            var option = "<option value = '"+id+"'>"+name+"</option>";
+                            $('#sub_catagory').append(option);
+                        }
+                    }
+                }
+            });
+        });
+        //populating sub sub categories
+        $('#sub_catagory').change(function(){
+            var id = $(this).val();
+
+            $('#sub_sub_catagory').find('option').not(':first').remove();
+
+            //ajax
+            $.ajax({
+                url: '/get-sub-sub-categories/'+id,
+                type: 'get',
+                dataType: 'json',
+                success: function(response){
+                    var len = 0;
+                    if (response['data'] != null) {
+                        len = response['data'].length;
+                    }
+
+                    if (len > 0) {
+                        for (var i = 0; i < len; i++) {
+                            var id = response['data'][i].id;
+                            var name = response['data'][i].name;
+                            
+                            var option = "<option value = '"+id+"'>"+name+"</option>";
+                            $('#sub_sub_catagory').append(option);
+                        }
+                    }
+                }
+            });
+        });
+
+    });
+</script>
 
 @endsection

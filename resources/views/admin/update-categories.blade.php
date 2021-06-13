@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="card">
-                    <form action="/update-categories/<?php echo $categories[0]->id; ?>" method="POST">
+                    <form action="/categories-update/<?php echo $categories[0]->id; ?>" method="POST">
                         @csrf
                         <div class="card-header">
                             <div class="card-title">Update category</div>

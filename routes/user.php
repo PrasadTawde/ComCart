@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\AddressController;
 use App\Http\Controllers\User\UserProfileController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\FetchController;
+use App\Http\Controllers\ShopController;
 
 Route::group(['middleware' => ['auth', 'role:user']], function () {
 
@@ -24,8 +26,7 @@ Route::group(['middleware' => ['auth', 'role:user']], function () {
 	Route::post('/profile-edit',[UserProfileController::class,'update'])->name('edit');
 
 	//sell
-	Route::get('/sell', [CategoryController::class, 'index'])->name('product');
-	Route::get('/sell/{id}/{category}',[ProductController::class,'create'])->name('/sell/?{id}&{category}');
+	Route::get('/sell',[ProductController::class,'create'])->name('/sell');
 	Route::post('productAdded',[ProductController::class,'store'])->name('Add');
 	Route::get('/my-products',[ProductController::class,'index'])->name('myProduct');
 
@@ -40,8 +41,9 @@ Route::group(['middleware' => ['auth', 'role:user']], function () {
 	Route::get('/clear-cart', [ShoppingCartController::class, 'clear'])->name('clear-cart');
 
 	//payment
-	Route::get('/checkout', [RazorpayController::class, 'payment'])->name('checkout');
-	Route::post('/checkout', [RazorpayController::class, 'initiate'])->name('initiate');
+	Route::get('/checkout', [ShoppingCartController::class, 'checkout'])->name('checkout');
+	Route::get('/payment', [RazorpayController::class, 'payment'])->name('payment');
+	Route::post('/payment', [RazorpayController::class, 'initiate'])->name('initiate');
 	Route::post('/payment-complete', [RazorpayController::class, 'complete'])->name('complete');
 
 });

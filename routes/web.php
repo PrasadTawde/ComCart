@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FetchController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\Route;
@@ -29,8 +30,12 @@ require __DIR__.'/user.php';
 
 
 Route::get('/shop', [MenuController::class, 'index'])->name('shop');
-Route::get('/category/{category}', [MenuController::class, 'category'])->name('category');
+Route::get('/category/{category}/{sub_category}/{sub_sub_category}', [MenuController::class, 'category'])->name('category');
 Route::get('/product/{id}', [ShopController::class, 'index'])->name('product');
 
 Route::get('fetch_image_1/{id}', [ShopController::class, 'fetch_image_1'])->name('fetch_image_1');
 Route::get('fetch_image_2/{id}', [ShopController::class, 'fetch_image_2'])->name('fetch_image_2');
+
+//fetching sub categories & sub sub categories to populate sub category and sub sub category select box
+Route::get('/get-sub-categories/{id}', [FetchController::class, 'getSubCategories']);
+Route::get('/get-sub-sub-categories/{id}', [FetchController::class, 'getSubSubCategories']);
