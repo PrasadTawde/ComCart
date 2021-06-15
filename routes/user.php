@@ -9,6 +9,8 @@ use App\Http\Controllers\User\UserProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FetchController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\User\UserVerificationsController;
+
 
 Route::group(['middleware' => ['auth', 'role:user']], function () {
 
@@ -46,4 +48,12 @@ Route::group(['middleware' => ['auth', 'role:user']], function () {
 	Route::post('/payment', [RazorpayController::class, 'initiate'])->name('initiate');
 	Route::post('/payment-complete', [RazorpayController::class, 'complete'])->name('complete');
 
+
+//user verification
+Route::get('/user-verification', [UserVerificationsController::class, 'create']);
+Route::post('/user-verification',[UserVerificationsController::class,'store'])->name('user-verification');
+
 });
+
+
+
