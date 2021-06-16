@@ -623,6 +623,9 @@ body {
 
 .u-c-silver {
   color: #a0a0a0 !important; }
+.u_c_warning{
+  color: rgb(221, 25, 25) !important;
+}
 
 /*
   * Display Utility

@@ -2980,6 +2980,14 @@ label.error {
     border-color: #ffa534 !important;
     color: #ffffff !important; }
 
+    .btn-orange{
+      background: #ff4500 !important;
+  border-color: #ff4500 !important;
+  color: #ffffff !important; 
+  border-radius: 8px;
+}
+    
+
 .btn-danger {
   background: #f3545d !important;
   border-color: #f3545d !important; }

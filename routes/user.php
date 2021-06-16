@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\AuctionController;
 use App\Http\Controllers\RazorpayController;
 use App\Http\Controllers\ShoppingCartController;
 use Illuminate\Support\Facades\Route;
@@ -31,6 +32,9 @@ Route::group(['middleware' => ['auth', 'role:user']], function () {
 	Route::get('/sell',[ProductController::class,'create'])->name('/sell');
 	Route::post('productAdded',[ProductController::class,'store'])->name('Add');
 	Route::get('/my-products',[ProductController::class,'index'])->name('myProduct');
+	Route::get('edit/{id}',[ProductController::class,'edit']);
+	Route::post('/update/{id}',[ProductController::class,'update']);
+	Route::get('/delete/{id}',[ProductController::class,'destroy']);
 
 	//search
 	Route::get('search',[ProductController::class,'search'])->name('search');
@@ -52,6 +56,13 @@ Route::group(['middleware' => ['auth', 'role:user']], function () {
 //user verification
 Route::get('/user-verification', [UserVerificationsController::class, 'create']);
 Route::post('/user-verification',[UserVerificationsController::class,'store'])->name('user-verification');
+
+// auction
+Route::get('/add-auction-product',[AuctionController::class,'create']);
+Route::post('/auction-product-added',[AuctionController::class,'store'])->name('addAuction');
+Route::get('/auction-products',[AuctionController::class,'index']);
+Route::get('/auction-product-details/{id}',[AuctionController::class,'show'])->name('auction-product-details');
+Route::post('/bid/{id}/{current_bid_amount}',[AuctionController::class,'bid'])->name('bid');
 
 });
 

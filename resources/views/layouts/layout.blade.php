@@ -20,6 +20,11 @@
 
     <!--====== App ======-->
     <link rel="stylesheet" href="/assets/css/app.css">
+    <link rel="stylesheet" href="/assets/css/app.color3.css">
+
+     <!--====== azzara ======-->
+     <link rel="stylesheet" href="/assets/css/azzara.css">
+
 </head>
 <body class="config">
     <div class="preloader is-active">

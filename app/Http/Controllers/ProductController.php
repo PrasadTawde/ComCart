@@ -200,6 +200,12 @@ class ProductController extends Controller
     public function destroy($id)
     {
         //
+        DB::delete('delete from products where id=?',[$id]);
+        
+        $user_id = Auth::user()->id;
+        $products = DB::select('select * from products where user_id=?', [$user_id]);
+        
+        return view('sell.my-products', ['products' => $products]);
     }
 
     public function search(Request $req)
