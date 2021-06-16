@@ -66,4 +66,14 @@ Route::group(['middleware' => ['auth', 'role:staff']], function () {
 	Route::get('/staff', function () {
 		return view('admin.dashboard');
 	})->name('staff');
+
+
+
+	//product verification
+	Route::get('/auction-product-verification', [ProductVerificationsController::class, 'show']);
+
+	Route::get('/product-verification-insert/{id}', [ProductVerificationsController::class, 'create']);
+	Route::post('/product-verification-insert/{id}', [ProductVerificationsController::class, 'store'])->name('/product-verification-insert');
+
+	Route::get('/product-verification-delete/{id}',[ProductVerificationsController::class,'destroy'])->name('product-verification');
 });
