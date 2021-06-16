@@ -9,6 +9,7 @@ use App\Http\Controllers\User\AddressController;
 use App\Http\Controllers\User\UserProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FetchController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\User\MyAccountController;
 use App\Http\Controllers\User\UserVerificationsController;
@@ -66,6 +67,9 @@ Route::group(['middleware' => ['auth', 'role:user']], function () {
 	Route::get('/auction-products',[AuctionController::class,'index'])->name('auction-products');
 	Route::get('/auction-product-details/{id}',[AuctionController::class,'show'])->name('auction-product-details');
 	Route::post('/bid/{id}/{current_bid_amount}',[AuctionController::class,'bid'])->name('bid');
+
+	Route::get('/orders', [OrderController::class, 'index'])->name('orders');
+	Route::get('/orders-track/{id}', [OrderController::class, 'show'])->name('orders-track');
 
 });
 

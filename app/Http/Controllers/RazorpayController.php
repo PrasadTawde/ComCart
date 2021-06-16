@@ -31,7 +31,7 @@ class RazorpayController extends Controller
             $order->address_id = $request->all()['address'];
             $order->payment_mode = 'cash';
             $order->payment_id = Str::random(20);
-            $order->status = 'Processing';
+            $order->status = 'processing';
             $order->save();
 
             //deleting product from cart

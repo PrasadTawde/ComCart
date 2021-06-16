@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Admin\SubcategoriesController;
 use App\Http\Controllers\Admin\SubSubCategoriesController;
+use App\Http\Controllers\User\UserVerificationsController;
 
 Route::group(['middleware' => ['auth', 'role:admin|staff']], function () {
 	
@@ -43,6 +44,11 @@ Route::group(['middleware' => ['auth', 'role:admin|staff']], function () {
 	//delete
 	Route::get('/subsubcategories-update/{id}',[SubSubCategoriesController::class,'edit'])->name('subsubcategories-update');
 	Route::post('/subsubcategories-update/{id}',[SubSubCategoriesController::class,'update'])->name('subsubcategories-update');
+
+	//user verification for auction
+	Route::get('/user-verify', [UserVerificationsController::class, 'index'])->name('user-verify');
+	Route::get('/user-verify-update/{id}', [UserVerificationsController::class, 'edit'])->name('user-verify-update');
+	Route::post('/user-verify-update/{id}', [UserVerificationsController::class, 'update'])->name('user-verify-update');
 	
 });
 

@@ -133,6 +133,12 @@
                                 </ul>
                             </div>
                         </li>
+                        <li class="nav-item {{ (request()->is('user-verify*')) ? 'active' : '' }}">
+                            <a href="/user-verify">
+                                <i class="fas fa-user"></i>
+                                <p>User Verification</p>
+                            </a>
+                        </li>
                         @if(Auth::user()->hasRole('admin'))
                             <li class="nav-item {{ (request()->is('manage-staff*')) ? 'active' : '' }}">
                                 <a href="/manage-staff">

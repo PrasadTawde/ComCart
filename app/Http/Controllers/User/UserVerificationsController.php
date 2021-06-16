@@ -21,7 +21,11 @@ class UserVerificationsController extends Controller
      */
     public function index()
     {
-        //
+        $users = UserVerifications::join('users', 'user_verifications.user_id', '=', 'users.id')
+        ->select('user_verifications.*', 'users.*', 'user_verifications.id as verify_id')
+        ->get();
+
+        return view('admin.user-verify',['users' => $users]);
     }
 
     /**
@@ -88,7 +92,12 @@ class UserVerificationsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $users = UserVerifications::join('users', 'user_verifications.user_id', '=', 'users.id')
+        ->where('user_verifications.id', $id)
+        ->select('user_verifications.*', 'users.*', 'user_verifications.id as verify_id')
+        ->get();
+
+        return view('admin.user-verify-update',['users' => $users]);
     }
 
     /**
@@ -100,7 +109,16 @@ class UserVerificationsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'status' => 'required|string',
+            'remarks' => 'nullable|string|max:255',
+        ]);
+
+        $name = $request->input('name');
+        $description = $request->input('description');
+        UserVerifications::where('id', $id)->update(['status' => $request->status, 'remark' => $request->remarks]);
+        
+        return redirect('/user-verify'); 
     }
 
     /**
