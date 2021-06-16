@@ -1,18 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\StaffLoginDetailsMail;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
-use App\Models\UserProfile;
-use Illuminate\Support\Facades\DB;
-use Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
-use App\Models\UserVerifications;
-
-
-class UserVerificationsController extends Controller
+class StaffController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,7 +19,8 @@ class UserVerificationsController extends Controller
      */
     public function index()
     {
-        //
+        $staff_users = User::whereRoleIs('staff')->get();
+        return view('admin.manage-staff', ['staff_users' => $staff_users]);
     }
 
     /**
@@ -31,8 +30,7 @@ class UserVerificationsController extends Controller
      */
     public function create()
     {
-        $user_verifications = DB::table('user_verifications')->get();
-        return view('user.user-verification', ['user_verifications' => $user_verifications]);
+        return view('admin.manage-staff-add');
     }
 
     /**
@@ -44,29 +42,28 @@ class UserVerificationsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'date_of_birth' => 'required|string|max:10',
-            'document_type' => 'required',
-            'phone_no' => 'required|string|max:10',
-            'identification_no' => 'required|string|max:10',
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
         ]);
+        $username = strstr($request->input('email'), '@', true);
+        $password = ucfirst($username.'#12345QWERTY');
+        
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($password),
+        ]);
+        $user->attachRole('staff');
+        event(new Registered($user));
+        //send password through email
+        $details = [
+            'email' => $request->email,
+            'password' => $password
+        ];
+        Mail::to($request->email)->send(new StaffLoginDetailsMail($details));
+        
+        return redirect('/manage-staff');
 
-        $UserVerification = new UserVerifications;
-        $UserVerification->user_id = Auth::user()->id;
-        $UserVerification->date_of_birth = $request->date_of_birth;
-        $UserVerification->document_type = $request->document_type;
-        $UserVerification->phone_no = $request->phone_no;
-        $UserVerification->identification_no = $request->identification_no;
-        $UserVerification->save();
-
-        $user = User::findOrFail(Auth::user()->id);
-        $user->attachPermission('auctioneer');
-
-        if ($UserVerification) {
-            return redirect('/my-account');  
-        } else {
-            $user->detachPermissions('auctioneer');
-            return redirect('/my-account');  
-        }
     }
 
     /**
@@ -111,6 +108,9 @@ class UserVerificationsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+
+        return redirect('/manage-staff'); 
     }
 }

@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\AuthenticatedAdminSessionController;
+use App\Http\Controllers\Auth\AuthenticatedStaffSessionController;
+use App\Http\Controllers\Auth\ChnagePasswordController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Auth\EmailVerificationPromptController;
@@ -65,6 +67,13 @@ Route::get('/logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->middleware('auth')
                 ->name('logout');
 
+Route::get('/change-password', [ChnagePasswordController::class, 'create'])
+                ->middleware('auth')
+                ->name('change-password');
+                
+Route::post('/change-password', [ChnagePasswordController::class, 'update'])
+                ->name('change-password');
+
 Route::get('/register-admin', [RegisteredAdminController::class, 'create'])
                 ->middleware('guest')
                 ->name('register-admin');
@@ -77,4 +86,12 @@ Route::get('/login-admin', [AuthenticatedAdminSessionController::class, 'create'
                 ->name('login-admin');
 
 Route::post('/login-admin', [AuthenticatedAdminSessionController::class, 'store'])
+                ->middleware('guest');
+
+//staff login
+Route::get('/login-staff', [AuthenticatedStaffSessionController::class, 'create'])
+                ->middleware('guest')
+                ->name('login-staff');
+
+Route::post('/login-staff', [AuthenticatedStaffSessionController::class, 'store'])
                 ->middleware('guest');

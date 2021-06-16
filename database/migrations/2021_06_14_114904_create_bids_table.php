@@ -18,7 +18,7 @@ class CreateBidsTable extends Migration
             $table->unsignedBigInteger('auction_id');
             $table->unsignedBigInteger('from'); //user id of the use who is bidding
             $table->string('bid_amount');
-            $table->string('status');
+            $table->string('status')->nullable();
             $table->timestamps();
 
             $table->foreign('from')->references('id')->on('users')

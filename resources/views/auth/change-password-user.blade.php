@@ -101,55 +101,49 @@
                         <div class="col-lg-9 col-md-12">
                             <div class="dash__box dash__box--shadow dash__box--radius dash__box--bg-white">
                                 <div class="dash__pad-2">
-                                    <h1 class="dash__h1 u-s-m-b-14">User Verification</h1>
-
-                                    <span class="dash__text u-s-m-b-30">We need your verification details.</span>
-                                    <form class="dash-address-manipulation" action="/user-verification" method="POST">
+                                    <h1 class="dash__h1 u-s-m-b-14">Change Password</h1>
+                                    <form class="dash-address-manipulation" action="/change-password" method="POST">
                                         @csrf
                                         <div class="gl-inline">
                                             <div class="u-s-m-b-30">
-
-                                                <label class="gl-label" for="user-dateofbirth">Date Of Birth *</label>
-                                                @error('date_of_birth')
+                                                @if (session()->has('error'))
+                                                <span style="color: red; font-size: 80%;">{{ session()->get('error')  }}</span>
+                                                @endif
+                                                @if (session()->has('success'))
+                                                <span style="color: rgb(0, 255, 64); font-size: 80%;">{{ session()->get('success')  }}</span>
+                                                @endif
+                                                <label class="gl-label" for="address-fname">Current Password</label>
+                                                @error('current_password')
                                                     <span style="color: red; font-size: 80%;">{{ $message  }}</span>
                                                 @enderror
-                                                <input class="input-text input-text--primary-style" type="date" id="user-dateofbirth" name="date_of_birth" placeholder="Date Of Birth" value="{{ old('date_of_birth') }}"></div>
-
-                                                <div class="u-s-m-b-30">
-
-                                                <!--====== Select Box ======-->
-
-                                                <label class="gl-label" for="user-documenttype">Document Type *</label>
-                                                @error('document_type *')
-                                                    <span style="color: red; font-size: 80%;">{{ $message  }}</span>
-                                                @enderror
-                                                <select class="select-box select-box--primary-style" id="user-documenttype" name="document_type">
-                                                    <option selected value="">Select Document Type</option>
-                                                    <option value="Adhar Card" >Adhar Card</option>
-                                                    <option value="Driving License" >Driving License</option>
-                                                    <option value="Voters ID" >Voters ID</option>
-                                                    <option value="PAN card">PAN card</option>
-
-                                                </select>
-                                                <!--====== End - Select Box ======-->
+                                                <input class="input-text input-text--primary-style" type="text" id="current_password" name="current_password" placeholder="Enter current password" value="{{ old('current_password') }}">
                                             </div>
-                                           
+                                            <div class="u-s-m-b-30">
+                                            </div>
+                                        </div>
+                                        <div class="gl-inline u-s-m-r-10">
+                                            <div class="u-s-m-b-30">
+
+                                                <label class="gl-label" for="address-lname">New Password</label>
+                                                @error('new_password')
+                                                    <span style="color: red; font-size: 80%;">{{ $message  }}</span>
+                                                @enderror
+                                                <input class="input-text input-text--primary-style" type="password" id="new_password" name="new_password" placeholder="Enter new password" value="{{ old('new_password') }}">
+                                            </div>
+                                            <div class="u-s-m-b-30">
+                                            </div>
                                         </div>
                                         <div class="gl-inline">
                                             <div class="u-s-m-b-30">
 
-                                                <label class="gl-label" for="user-phone">Phone *</label>
-                                                @error('phone_no')
+                                                <label class="gl-label" for="address-fname">Confirm Password</label>
+                                                @error('confirm_password')
                                                     <span style="color: red; font-size: 80%;">{{ $message  }}</span>
                                                 @enderror
-                                                <input class="input-text input-text--primary-style" type="text" id="user-phone" name="phone_no" placeholder="Phone Number" value="{{ old('phone_no') }}"></div>
+                                                <input class="input-text input-text--primary-style" type="password" id="confirm_password" name="confirm_password" placeholder="Enter new password again" value="{{ old('confirm_password') }}">
+                                            </div>
                                             <div class="u-s-m-b-30">
-
-                                                <label class="gl-label" for="user-identificationnumber">Identification Number *</label>
-                                                @error('identification_no')
-                                                    <span style="color: red; font-size: 80%;">{{ $message  }}</span>
-                                                @enderror
-                                                <input class="input-text input-text--primary-style" type="text" id="user-identificationnumber" name="identification_no" placeholder="Identification Number" value="{{ old('identification_no') }}"></div>
+                                            </div>
                                         </div>
                                         <button class="btn btn--e-brand-b-2" type="submit">SAVE</button>
                                     </form>

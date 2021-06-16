@@ -5,10 +5,7 @@ use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Admin\SubcategoriesController;
 use App\Http\Controllers\Admin\SubSubCategoriesController;
 
-Route::group(['middleware' => ['auth', 'role:admin']], function () {
-	Route::get('/admin', function () {
-		return view('admin.dashboard');
-	})->name('admin');
+Route::group(['middleware' => ['auth', 'role:admin|staff']], function () {
 	
 	//category
 	Route::get('/categories', [CategoriesController::class,'show'])->name('categories');
@@ -47,5 +44,26 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
 	Route::get('/subsubcategories-update/{id}',[SubSubCategoriesController::class,'edit'])->name('subsubcategories-update');
 	Route::post('/subsubcategories-update/{id}',[SubSubCategoriesController::class,'update'])->name('subsubcategories-update');
 	
+});
+
+//user specific routes for admin
+Route::group(['middleware' => ['auth', 'role:admin']], function () {
+	//admin dashboard
+	Route::get('/admin', function () {
+		return view('admin.dashboard');
+	})->name('admin');
 	
+	//manage - staff
+	Route::get('/manage-staff', [StaffController::class, 'index'])->name('manage-staff');
+	Route::get('/manage-staff-add', [StaffController::class, 'create'])->name('manage-staff-add');
+	Route::post('/manage-staff-add', [StaffController::class, 'store'])->name('manage-staff-add');
+	Route::get('/manage-staff-remove/{id}', [StaffController::class, 'destroy'])->name('manage-staff-destroy');
+
+});
+
+//user specific routes for staff
+Route::group(['middleware' => ['auth', 'role:staff']], function () {
+	Route::get('/staff', function () {
+		return view('admin.dashboard');
+	})->name('staff');
 });

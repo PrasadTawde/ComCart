@@ -133,6 +133,14 @@
                                 </ul>
                             </div>
                         </li>
+                        @if(Auth::user()->hasRole('admin'))
+                            <li class="nav-item {{ (request()->is('manage-staff*')) ? 'active' : '' }}">
+                                <a href="/manage-staff">
+                                    <i class="fas fa-users"></i>
+                                    <p>Manage Staff</p>
+                                </a>
+                            </li>
+                        @endif
                     </ul>
                 </div>
             </div>

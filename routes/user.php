@@ -10,6 +10,7 @@ use App\Http\Controllers\User\UserProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FetchController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\User\MyAccountController;
 use App\Http\Controllers\User\UserVerificationsController;
 
 
@@ -27,7 +28,10 @@ Route::group(['middleware' => ['auth', 'role:user']], function () {
 	Route::get('/profile', [UserProfileController::class,'profile'])->name('profile');
 	Route::get('/profile-edit',[UserProfileController::class,'show'])->name('profile-edit');
 	Route::post('/profile-edit',[UserProfileController::class,'update'])->name('edit');
-
+	
+	//my-account
+	Route::get('/my-account', [MyAccountController::class, 'index'])->name('my-account');
+	
 	//sell
 	Route::get('/sell',[ProductController::class,'create'])->name('/sell');
 	Route::post('productAdded',[ProductController::class,'store'])->name('Add');
@@ -52,17 +56,16 @@ Route::group(['middleware' => ['auth', 'role:user']], function () {
 	Route::post('/payment', [RazorpayController::class, 'initiate'])->name('initiate');
 	Route::post('/payment-complete', [RazorpayController::class, 'complete'])->name('complete');
 
+	//user verification
+	Route::get('/user-verification', [UserVerificationsController::class, 'create']);
+	Route::post('/user-verification',[UserVerificationsController::class,'store'])->name('user-verification');
 
-//user verification
-Route::get('/user-verification', [UserVerificationsController::class, 'create']);
-Route::post('/user-verification',[UserVerificationsController::class,'store'])->name('user-verification');
-
-// auction
-Route::get('/add-auction-product',[AuctionController::class,'create']);
-Route::post('/auction-product-added',[AuctionController::class,'store'])->name('addAuction');
-Route::get('/auction-products',[AuctionController::class,'index']);
-Route::get('/auction-product-details/{id}',[AuctionController::class,'show'])->name('auction-product-details');
-Route::post('/bid/{id}/{current_bid_amount}',[AuctionController::class,'bid'])->name('bid');
+	// auction
+	Route::get('/add-auction-product',[AuctionController::class,'create'])->name('add-auction-product');
+	Route::post('/auction-product-added',[AuctionController::class,'store'])->name('addAuction');
+	Route::get('/auction-products',[AuctionController::class,'index'])->name('auction-products');
+	Route::get('/auction-product-details/{id}',[AuctionController::class,'show'])->name('auction-product-details');
+	Route::post('/bid/{id}/{current_bid_amount}',[AuctionController::class,'bid'])->name('bid');
 
 });
 

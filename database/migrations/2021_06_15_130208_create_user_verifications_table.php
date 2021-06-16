@@ -21,7 +21,7 @@ class CreateUserVerificationsTable extends Migration
             $table->string('identification_no');
             $table->string('phone_no');
             $table->string('status')->default('processing');     
-            $table->string('remark');
+            $table->string('remark')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');

@@ -42,30 +42,24 @@
                                     <!--====== Dashboard Features ======-->
                                     <div class="dash__box dash__box--bg-white dash__box--shadow u-s-m-b-30">
                                         <div class="dash__pad-1">
-
+        
                                             <span class="dash__text u-s-m-b-16">Hello, {{ Auth::user()->name }}</span>
                                             <ul class="dash__f-list">
                                                 <li>
-
-                                                    <a href="dashboard.html">Manage My Account</a></li>
+        
+                                                    <a class="{{ (request()->is('*my-account*')) ? 'dash-active' : '' }}" href="/my-account">Manage My Account</a></li>
                                                 <li>
-
-                                                    <a href="/profile">My Profile</a></li>
+        
+                                                    <a class="{{ (request()->is('profile*')) ? 'dash-active' : '' }}" href="/profile">My Profile</a></li>
                                                 <li>
-
-                                                    <a class="dash-active" href="/address">Address Book</a></li>
+        
+                                                    <a class="{{ (request()->is('address*')) ? 'dash-active' : '' }}" href="/address">Address Book</a></li>
                                                 <li>
-
-                                                    <a href="dash-track-order.html">Track Order</a></li>
+        
+                                                    <a class="{{ (request()->is('orders-track*')) ? 'dash-active' : '' }}" href="/orders-track">Track Order</a></li>
                                                 <li>
-
-                                                    <a href="dash-my-order.html">My Orders</a></li>
-                                                <li>
-
-                                                    <a href="dash-payment-option.html">My Payment Options</a></li>
-                                                <li>
-
-                                                    <a href="dash-cancellation.html">My Returns & Cancellations</a></li>
+        
+                                                    <a class="{{ (request()->is('orders*')) ? 'dash-active' : '' }}" href="/orders">My Orders</a></li>
                                             </ul>
                                         </div>
                                     </div>

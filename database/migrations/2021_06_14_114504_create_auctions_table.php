@@ -24,6 +24,7 @@ class CreateAuctionsTable extends Migration
             $table->binary('image_1');
             $table->binary('image_2');
             $table->string('min_bid_amount');
+            $table->string('current_bid_amount');
             $table->string('starting_time');
             $table->string('ending_time');
             // $table->string('status');
