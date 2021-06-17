@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CategoriesController;
+use App\Http\Controllers\Admin\ProductVerificationsController;
 use App\Http\Controllers\Admin\SubcategoriesController;
 use App\Http\Controllers\Admin\SubSubCategoriesController;
 use App\Http\Controllers\User\UserVerificationsController;
@@ -49,6 +50,12 @@ Route::group(['middleware' => ['auth', 'role:admin|staff']], function () {
 	Route::get('/user-verify', [UserVerificationsController::class, 'index'])->name('user-verify');
 	Route::get('/user-verify-update/{id}', [UserVerificationsController::class, 'edit'])->name('user-verify-update');
 	Route::post('/user-verify-update/{id}', [UserVerificationsController::class, 'update'])->name('user-verify-update');
+
+	//product verification
+	Route::get('/product-verification', [ProductVerificationsController::class, 'show']);
+	Route::get('/product-verification-insert/{id}', [ProductVerificationsController::class, 'create']);
+	Route::post('/product-verification-insert/{id}', [ProductVerificationsController::class, 'store'])->name('/product-verification-insert');
+	Route::get('/product-verification-delete/{id}',[ProductVerificationsController::class,'destroy'])->name('product-verification');
 	
 });
 
@@ -72,14 +79,4 @@ Route::group(['middleware' => ['auth', 'role:staff']], function () {
 	Route::get('/staff', function () {
 		return view('admin.dashboard');
 	})->name('staff');
-
-
-
-	//product verification
-	Route::get('/auction-product-verification', [ProductVerificationsController::class, 'show']);
-
-	Route::get('/product-verification-insert/{id}', [ProductVerificationsController::class, 'create']);
-	Route::post('/product-verification-insert/{id}', [ProductVerificationsController::class, 'store'])->name('/product-verification-insert');
-
-	Route::get('/product-verification-delete/{id}',[ProductVerificationsController::class,'destroy'])->name('product-verification');
 });

@@ -133,6 +133,12 @@
                                 </ul>
                             </div>
                         </li>
+                        <li class="nav-item {{ (request()->is('product-verification*')) ? 'active' : '' }}">
+                            <a href="/product-verification">
+                                <i class="fas fa-gavel"></i>
+                                <p>Product Verification</p>
+                            </a>
+                        </li>
                         <li class="nav-item {{ (request()->is('user-verify*')) ? 'active' : '' }}">
                             <a href="/user-verify">
                                 <i class="fas fa-user"></i>

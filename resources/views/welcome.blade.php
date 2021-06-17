@@ -20,11 +20,11 @@
 
                                 <span class="content-span-3 u-c-secondary">Find electronics on best prices, Also Discover most selling products of electronics</span>
 
-                                <span class="content-span-4 u-c-secondary">Starting At
+                                {{-- <span class="content-span-4 u-c-secondary">Starting At
 
-                                    <span class="u-c-brand">$1050.00</span></span>
+                                    <span class="u-c-brand">$1050.00</span></span> --}}
 
-                                <a class="shop-now-link btn--e-brand" href="shop-side-version-2.html">SHOP NOW</a></div>
+                                <a class="shop-now-link btn--e-brand" href="/category/Electronics/Mobiles/Mobile%20Phones">SHOP NOW</a></div>
                         </div>
                     </div>
                 </div>
@@ -41,16 +41,16 @@
 
                                 <span class="content-span-3 u-c-white">Find electronics on best prices, Also Discover most selling products of electronics</span>
 
-                                <span class="content-span-4 u-c-white">Starting At
+                                {{-- <span class="content-span-4 u-c-white">Starting At
 
-                                    <span class="u-c-brand">$380.00</span></span>
+                                    <span class="u-c-brand">$380.00</span></span> --}}
 
-                                <a class="shop-now-link btn--e-brand" href="shop-side-version-2.html">SHOP NOW</a></div>
+                                <a class="shop-now-link btn--e-brand" href="/category/Electronics/Mobiles/Mobile%20Phones">SHOP NOW</a></div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="hero-slide hero-slide--3">
+            {{-- <div class="hero-slide hero-slide--3">
                 <div class="container">
                     <div class="row">
                         <div class="col-12">
@@ -70,13 +70,13 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
     <!--====== End - Primary Slider ======-->
 
 
-    <!--====== Section 1 ======-->
+    {{-- <!--====== Section 1 ======-->
     <div class="u-s-p-y-60">
 
         <!--====== Section Intro ======-->
@@ -1895,7 +1895,7 @@
         </div>
         <!--====== End - Section Content ======-->
     </div>
-    <!--====== End - Section 12 ======-->
+    <!--====== End - Section 12 ======--> --}}
 </div>
 <!--====== End - App Content ======-->
 

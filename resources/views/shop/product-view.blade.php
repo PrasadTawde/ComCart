@@ -55,13 +55,13 @@
                                 <div class="u-s-m-b-15">
 
                                     <span class="pd-detail__preview-desc">{{ $product_detail->description }}</span></div>
-                                <div class="u-s-m-b-15">
+                                {{-- <div class="u-s-m-b-15">
                                     <div class="pd-detail__inline">
 
                                         <span class="pd-detail__click-wrap"><i class="far fa-heart u-s-m-r-6"></i>
 
                                             <a href="/wishlist">Add to Wishlist</a></div>
-                                </div>
+                                </div> --}}
                                 <div class="u-s-m-b-15">
                                     <form class="pd-detail__form">
                                         <div class="pd-detail-inline-2">
@@ -127,53 +127,6 @@
                                                         <span>Returns accepted if product not as described.</span></li>
                                                 </ul>
                                             </div>
-                                            {{-- <div class="u-s-m-b-15">
-                                                <h4>PRODUCT INFORMATION</h4>
-                                            </div>
-                                            <div class="u-s-m-b-15">
-                                                <div class="pd-table gl-scroll">
-                                                    <table>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td>Main Material</td>
-                                                                <td>Cotton</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Color</td>
-                                                                <td>Green, Blue, Red</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Sleeves</td>
-                                                                <td>Long Sleeve</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Top Fit</td>
-                                                                <td>Regular</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Print</td>
-                                                                <td>Not Printed</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Neck</td>
-                                                                <td>Round Neck</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Pieces Count</td>
-                                                                <td>1 Piece</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Occasion</td>
-                                                                <td>Casual</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>Shipping Weight (kg)</td>
-                                                                <td>0.5</td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div> --}}
                                         </div>
                                     </div>
                                     <!--====== End - Tab 1 ======-->
@@ -185,7 +138,7 @@
             </div>
             <!--====== End - Product Detail Tab ======-->
             @endforeach
-            <div class="u-s-p-b-90">
+            {{-- <div class="u-s-p-b-90">
 
                 <!--====== Section Intro ======-->
                 <div class="section__intro u-s-m-b-46">
@@ -460,7 +413,7 @@
                     </div>
                 </div>
                 <!--====== End - Section Content ======-->
-            </div>
+            </div> --}}
             <!--====== End - Section 1 ======-->
         </div>
         <!--====== End - App Content ======-->
