@@ -1,0 +1,69 @@
+<!DOCTYPE html>    
+    <head>    
+        <title>My Orders</title>    
+    </head> 
+    
+    <body>    
+    
+        <link href = "MyOrders.css" type = "text/css" rel = "stylesheet"/>    
+    	<div>
+			<font size="8%" color="black">My Orders</font>
+			<h6>Here you can find all your orders<h6>
+		</div> 
+ 
+            <div class = "container">    
+                <div class = "form_group">    
+                   <label>Show:</label>
+                    <select id="orders" name="orders">
+					  <option value="5">Last 5 days orders</option>
+						<option value="15">Last 15 days orders</option>
+						<option value="30">Last 30 days orders</option>
+						<option value="6">Last 6 months orders</option>
+						<option value="12">Last 12 months orders</option>
+						<option value="All">All orders</option>
+					</select>
+                </div> 
+
+                <div>    
+                    <label>&nbsp;Order ID:</label>
+                     &nbsp;<input type = "text" name = "id" value = "" required/>
+                </div>
+
+                <div class = "form_group">    
+                    <label>Placed on:</label> 
+					<input type="date" id="birthday" name="birthday">
+				 </div> 
+
+                <div class = "form_group">    
+                    <label>Order is:</label>    
+                     <select id="stateType" name="stateType">
+					    <option value="Transit">In Transit</option>
+					    <option value="Shipped">Shipped</option>
+					    <option value="OutForDelivery">Out for Delivery</option>
+					    <option value="Delivered">Delivered</option>
+						<option value="Returned">Being Returned</option>	
+						<option value="Refund">Refund Processed</option>
+				 	</select>       
+                </div>
+
+                <div class = "form_group">    
+                    <label>Oder Quantity:</label>    
+                    <input type = "number" name = "qty" value = "" required/>    
+                </div>  
+
+                <div class = "form_group">    
+                    <label>Order Total:</label>    
+                    <input type = "number" name = "total" value = "" required/>    
+                </div>
+
+                 <div class = "form_group">
+    				<input type = "upload" value = "Search">
+ 				 </div>
+
+            </div> 
+
+        </form> 
+
+    </body>  
+
+</html>  
