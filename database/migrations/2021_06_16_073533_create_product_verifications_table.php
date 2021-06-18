@@ -17,9 +17,9 @@ class CreateProductVerificationsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('auction_id');
             $table->string('status')->default('processing');     
-            $table->string('remark');
+            $table->string('remark')->nullable();
             $table->timestamps();
-
+            
             $table->foreign('auction_id')->references('id')->on('auctions')->onUpdate('cascade')->onDelete('cascade');
         });
     }

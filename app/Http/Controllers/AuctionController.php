@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Auction;
+use App\Models\AuctionProductVerifications;
 use Illuminate\Http\Request;
 
 use App\Models\Category;
@@ -50,15 +51,14 @@ class AuctionController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        // dd($request->all());
+        //dd($request->all());
         $request->validate([
             'category' => 'required',
             'sub_category' => 'required',
             'sub_sub_category' => 'required',
             'title' => 'required|string|max:255',
             'description' => 'required|string|max:255',
-            'bid-amount' => 'required',
+            'bid_amount' => 'required',
             'images1' => 'required | mimes:jpeg,jpg,png,JPEG,JPG |max:2048',
             'images2' => 'required | mimes:jpeg,jpg,png,JPEG,JPG |max:2048',
         ]);
@@ -73,23 +73,27 @@ class AuctionController extends Controller
         $image2 = Image::make($image2_file);
         Response::make($image2->encode('jpeg'));
         
-        $current_bid_amount=(int)$request->input('bid-amount');
+        $current_bid_amount=(int)$request->bid_amount;
 
         try{
-            $product = DB::table('auctions')->insert([
+            $product = Auction::create([
                 'user_id' => $user_id,
-                'category_id' => $request->input('category'),
-                'sub_category_id'  => $request->input('sub_category'),
-                'sub_sub_category_id'  => $request->input('sub_sub_category'),
-                'title' => $request->input('title'),
-                'description' => $request->input('description'),
+                'category_id' => $request->category,
+                'sub_category_id'  => $request->sub_category,
+                'sub_sub_category_id'  => $request->sub_sub_category,
+                'title' => $request->title,
+                'description' => $request->description,
                 'image_1' => $image1,
                 'image_2' => $image2,
-                'min_bid_amount' => $request->input('bid-amount'),
+                'min_bid_amount' => $request->bid_amount,
                 'current_bid_amount' => $current_bid_amount,
-                'starting_time' => $request->input('start-time'),
-                'ending_time' => $request->input('end-time'),
+                'starting_time' => $request->start_time,
+                'ending_time' => $request->end_time,
                
+            ]);
+
+            AuctionProductVerifications::create([
+                'auction_id' => $product->id,
             ]);
         }
         catch(QueryException $qe){

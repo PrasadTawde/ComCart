@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Auction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Auth;
@@ -67,7 +68,10 @@ class ProductVerificationsController extends Controller
      */
     public function show()
     {
-        $auctions = AuctionProductVerifications::all();
+        $auctions = Auction::join('product_verifications', 'product_verifications.auction_id', '=', 'auctions.id')
+        ->select('auctions.*', 'product_verifications.*',)
+        ->get();
+
         return view('admin.auction-product-verification',['auctions'=>$auctions]);    
     }
 

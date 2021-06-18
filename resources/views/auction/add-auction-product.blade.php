@@ -71,17 +71,17 @@
 
                                     <div class="u-s-m-b-30">
                                         <label class="gl-label" for="bid-amount">Minimum Bid Amount</label>
-                                        <input class="input-text input-text--primary-style" type="number" name="bid-amount" id="bid-amount" placeholder="Enter the minimum bid amount" value="{{old('bid-amount')}}">
+                                        <input class="input-text input-text--primary-style" type="number" name="bid_amount" id="bid_amount" placeholder="Enter the minimum bid amount" value="{{old('bid_amount')}}">
                                     </div>
                                     <div class="gl-inline">
                                         <div class="u-s-m-b-30">
                                             <label class="gl-label" for="start-time">Start Of Auction</label>
-                                            <input class="input-text input-text--primary-style" type="datetime-local" name="start-time" id="start-time" placeholder="Enter the price" value="{{old('start-time')}}">
+                                            <input class="input-text input-text--primary-style" type="datetime-local" name="start_time" id="start_time" placeholder="Enter the price" value="{{old('start_time')}}">
                                         </div>
 
                                         <div class="u-s-m-b-30">
                                             <label class="gl-label" for="end-time">End Of Auction</label>
-                                            <input class="input-text input-text--primary-style" type="datetime-local" name="end-time" id="end-time" placeholder="Enter the price" value="{{old('end-time')}}">
+                                            <input class="input-text input-text--primary-style" type="datetime-local" name="end_time" id="end_time" placeholder="Enter the price" value="{{old('end_time')}}">
                                         </div>
 
 

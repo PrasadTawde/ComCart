@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class AuctionProductVerifications extends Model
 {
     use HasFactory;
-    protected $table='auctions';
-
+    protected $table='product_verifications';
+    protected $fillable = [
+        'auction_id',
+    ];
 }

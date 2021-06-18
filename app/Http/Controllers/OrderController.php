@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Addresses;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -18,6 +19,7 @@ class OrderController extends Controller
     {
         $orders = Order::join('products', 'orders.product_id', '=', 'products.id')
         ->join('payments', 'orders.payment_id', '=', 'payments.razorpay_id')
+        ->where('orders.user_id', Auth::user()->id)
         ->select('products.*', 'orders.*', 'payments.*', 'orders.id as order_id', 'payments.amount as paid_amount')
         ->get();
         return view('user.orders', ['orders' => $orders]);
@@ -55,6 +57,7 @@ class OrderController extends Controller
         $orders = Order::join('products', 'orders.product_id', '=', 'products.id')
         ->join('payments', 'orders.payment_id', '=', 'payments.razorpay_id')
         ->where('orders.id', $id)
+        ->where('orders.user_id', Auth::user()->id)
         ->select('products.*', 'orders.*', 'payments.*', 'orders.id as order_id', 'payments.amount as paid_amount')
         ->get();
         

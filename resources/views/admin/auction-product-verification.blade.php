@@ -16,50 +16,48 @@
 					<div class="card-body">
 						<!-- Modal -->
 						<div class="table-responsive">
-							<table id="category-table" class="display table table-striped table-hover" >
+							<table id="auctions-table" class="display table table-striped table-hover" >
 								<thead>
 									<tr>
-										<th>title</th>
+										<th>Title</th>
 										<th>Description</th>
-										<th>Img1</th>
-										<th>Img2</th>
-										<th>min_bid_amount</th>
-										<th>starting_time</th>
-										<th>ending_time</th>
-
-
+										<th>Image 1</th>
+										<th>Image 2</th>
+										<th>Minimum Bid Amount</th>
+										<th>Starting Time</th>
+										<th>Ending Time</th>
+										<th>Status</th>
+										<th>Remarks</th>
 										<th style="width: 10%">Action</th>
 									</tr>
 								</thead>
 								<tbody>
 									@csrf
-
 									@foreach($auctions as $auction)
-
 									<tr>
 										<td>{{ $auction->title }}</td>
 										<td>{{ $auction->description }}</td>
 										<td>
-											<div><img src="/fetch_image_1/{{ $auction->id }}" alt="" width="100" height="80"></div>
+											<div><img src="/fetch_auction_image_1/{{ $auction->auction_id }}" alt="" width="100" height="80"></div>
 										</td>
 										<td>
-											<div><img src="/fetch_image_2/{{ $auction->id }}" alt="" width="100" height="80"></div>
+											<div><img src="/fetch_auction_image_2/{{ $auction->auction_id }}" alt="" width="100" height="80"></div>
 										</td>
-
 										<td>{{ $auction->min_bid_amount }}</td>
 										<td>{{ $auction->starting_time }}</td>
 										<td>{{ $auction->ending_time }}</td>
+										<td>{{ $auction->status }}</td>
+										<td>{{ $auction->remark }}</td>
 										<td>
+											<div class="form-button-action">
+												<a href="/product-verification-update/{{ $auction->id }}" class="btn btn-link btn-primary btn-lg"data-toggle="tooltip" role="button"title="" data-original-title="Edit Task"><i class="fa fa-edit"></i></a>
 
-										<div class="form-button-action">
-											<a href="/product-verification-insert/{{ $auction->id }}" class="btn btn-link btn-primary btn-lg"data-toggle="tooltip" role="button"title="" data-original-title="Edit Task"><i class="fa fa-edit"></i></a>
+												<a href="/product-verification-delete/{{$auction->id }}" class="btn btn-link btn-danger"data-toggle="tooltip" role="button"title="" data-original-title="Remove"onclick="return confirm('are you sure you want to delete ')" ><i class="fa fa-times"></i>
 
-											<a href="/product-verification-delete/{{$auction->id }}" class="btn btn-link btn-danger"data-toggle="tooltip" role="button"title="" data-original-title="Remove"onclick="return confirm('are you sure you want to delete ')" ><i class="fa fa-times"></i>
+												Delete</a>
 
-											Delete</a>
-
-										</div>
-									</td>
+											</div>
+										</td>
 									</tr>
 
 									@endforeach
