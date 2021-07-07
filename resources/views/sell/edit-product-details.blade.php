@@ -28,11 +28,11 @@
                             <div class="u-s-m-b-30" id="subCategory">
                                 <div class="u-s-m-b-30" id="Electronics">
                                     <div class="u-s-m-b-30">
-                                    
+
                                     </div>
 
                                     <div class="u-s-m-b-30">
-                                       
+
                                     </div>
 
                                     <div class="u-s-m-b-30">
@@ -44,7 +44,10 @@
                                         <label class="gl-label" for="e-info"> Add New Discription</label>
                                         <input class="input-text input-text--primary-style" type="text" name="info" id="info" placeholder="{{$data[0]->description}}" value="{{$data[0]->description}}">
                                     </div>
-
+                                    <div class="u-s-m-b-30">
+                                        <label class="gl-label" for="e-quantity">Enter New Quantity</label>
+                                        <input class="input-text input-text--primary-style" type="number" name="quantity" id="quantity" placeholder="{{$data[0]->quantity}}" value="{{$data[0]->quantity}}">
+                                    </div>
                                     <div class="u-s-m-b-30">
                                         <label class="gl-label" for="e-price">Enter New Price</label>
                                         <input class="input-text input-text--primary-style" type="number" name="price" id="price" placeholder="{{$data[0]->price}}" value="{{$data[0]->price}}">
@@ -67,14 +70,14 @@
                                         <div class="gl-inline">
                                             <div class="u-s-m-b-15">
                                                 <button class="btn btn--e-brand-b-2" type="submit" >
-                                                 <span>Update Details</span></button>
-                                            </div>
-                                        </div>
-                                    </div>
+                                                   <span>Update Details</span></button>
+                                               </div>
+                                           </div>
+                                       </div>
 
-                                </div>
+                                   </div>
 
-                                <div class="u-s-m-b-30" id="Furniture" style="display:none">
+                                   <div class="u-s-m-b-30" id="Furniture" style="display:none">
                                     <div>
 
 

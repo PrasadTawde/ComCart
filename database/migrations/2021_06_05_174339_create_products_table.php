@@ -21,6 +21,7 @@ class CreateProductsTable extends Migration
             // $table->unsignedBigInteger('sub_sub_category_id');
             $table->string('title');
             $table->string('description')->nullable();
+            $table->string('quantity');
             $table->string('price');
             $table->binary('image_1');
             $table->binary('image_2');

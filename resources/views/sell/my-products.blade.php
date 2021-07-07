@@ -22,6 +22,7 @@
                         <th>Sr No</th>
                         <th>Title</th>
                         <th>Description</th>
+                        <th>Quantity</th>
                         <th>Price</th>
                         <th>Image </th>
                         <th>Image</th>
@@ -34,6 +35,7 @@
                         <th>Sr No</th>
                         <th>Title</th>
                         <th>Description</th>
+                        <th>Quantity</th>
                         <th>Price</th>
                         <th>Image </th>
                         <th>Image</th>
@@ -49,6 +51,7 @@
                         <td> {{$i++}}</td>
                         <td>{{$product->title}}</td>
                         <td>{{$product->description}}</td>
+                        <td>{{$product->quantity}}</td>
                         <td>{{$product->price}}</td>
                         <td>
                             <div><img src="/fetch_image_1/{{ $product->id }}" alt="" width="100" height="80"></div>

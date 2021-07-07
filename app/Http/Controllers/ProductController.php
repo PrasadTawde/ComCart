@@ -53,6 +53,7 @@ class ProductController extends Controller
             'sub_sub_category' => 'required',
             'title' => 'required|string|max:255',
             'description' => 'required|string|max:255',
+            'quantity' => 'required',
             'price' => 'required',
             'images1' => 'required | mimes:jpeg,jpg,png,JPEG,JPG |max:2048',
             'images2' => 'required | mimes:jpeg,jpg,png,JPEG,JPG |max:2048',
@@ -76,6 +77,7 @@ class ProductController extends Controller
                 'sub_sub_category_id'  => $request->input('sub_sub_category'),
                 'title' => $request->input('title'),
                 'description' => $request->input('description'),
+                'quantity' => $request->input('quantity'),
                 'price' => $request->input('price'),
                 'image_1' => $image1,
                 'image_2' => $image2
@@ -137,6 +139,8 @@ class ProductController extends Controller
             'title' => 'required',
             'info' => 'required',
             'price' => 'required',
+            'quantity' => 'required',
+
             // 'images1' => 'required | mimes:jpeg,jpg,png,JPEG,JPG |max:2048',
             // 'images2' => 'required | mimes:jpeg,jpg,png,JPEG,JPG |max:2048',
         ]);
@@ -149,7 +153,7 @@ class ProductController extends Controller
             $image2_file = $request->file('images2');
             $image2 = Image::make($image2_file);
             Response::make($image2->encode('jpeg'));
-            $query=DB::update('update products set title = ?,description=?,price=?,image_1=?,image_2=?',[$request->title,$request->info,$request->price,$image1,$image2]);
+            $query=DB::update('update products set title = ?,description=?,quantity=?,price=?,image_1=?,image_2=? where id=?',[$request->title,$request->info,$request->quantity,$request->price,$image1,$image2,$id]);
 
             if ($query) {
                 return redirect('/my-products')->with('success', 'Product details updated  ');
@@ -161,7 +165,7 @@ class ProductController extends Controller
             $image1_file = $request->file('images1');
             $image1 = Image::make($image1_file);
             Response::make($image1->encode('jpeg'));
-            $query=DB::update('update products set title = ?,description=?,price=?,image_1=?',[$request->title,$request->info,$request->price,$image1]);
+            $query=DB::update('update products set title = ?,description=?,quantity=?,price=?,image_1=? where id = ?',[$request->title,$request->info,$request->quantity,$request->price,$image1,$id]);
 
             if ($query) {
                 return redirect('/my-products')->with('success', 'Product details updated  ');
@@ -173,7 +177,7 @@ class ProductController extends Controller
             $image2_file = $request->file('images2');
             $image2 = Image::make($image2_file);
             Response::make($image2->encode('jpeg'));
-            $query=DB::update('update products set title = ?,description=?,price=?,image_2=?',[$request->title,$request->info,$request->price,$image2]);
+            $query=DB::update('update products set title = ?,description=?,quantity=?,price=?,image_2=? where id=?',[$request->title,$request->info,$request->quantity,$request->price,$image2,$id]);
             
             if ($query) {
                 return redirect('/my-products')->with('success', 'Product details updated  ');
@@ -182,7 +186,7 @@ class ProductController extends Controller
             }
         }
         else if(($request->file('images1')==NULL) && ($request->file('images2')==NULL)){
-            $query=DB::update('update products set title = ?,description=?,price=?',[$request->title,$request->info,$request->price]);
+            $query=DB::update('update products set title = ?,description=?,quantity=?,price=? where id= ?',[$request->title,$request->info,$request->quantity,$request->price,$id]);
             if ($query) {
                 return redirect('/my-products')->with('success', 'Product details updated  ');
             } else {

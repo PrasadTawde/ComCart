@@ -40,7 +40,7 @@
                                         <select class="select-box select-box--primary-style u-w-100" id="category" name="category" > 
                                             <option selected disabled>Select Category</option>
                                             @foreach ($categories as $category)
-                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -70,6 +70,10 @@
                                     </div>
 
                                     <div class="u-s-m-b-30">
+                                        <label class="gl-label" for="e-price">Quantity</label>
+                                        <input class="input-text input-text--primary-style" type="number" name="quantity" id="quantity" placeholder="Enter the quantity" value="{{old('quantity')}}">
+                                    </div>
+                                    <div class="u-s-m-b-30">
                                         <label class="gl-label" for="e-price">Price</label>
                                         <input class="input-text input-text--primary-style" type="number" name="price" id="price" placeholder="Enter the price" value="{{old('price')}}">
                                     </div>
@@ -91,14 +95,14 @@
                                         <div class="gl-inline">
                                             <div class="u-s-m-b-15">
                                                 <button class="btn btn--e-brand-b-2" type="submit" >
-                                                 <span>Add Product</span></button>
-                                            </div>
-                                        </div>
-                                    </div>
+                                                   <span>Add Product</span></button>
+                                               </div>
+                                           </div>
+                                       </div>
 
-                                </div>
+                                   </div>
 
-                                <div class="u-s-m-b-30" id="Furniture" style="display:none">
+                                   <div class="u-s-m-b-30" id="Furniture" style="display:none">
                                     <div>
 
 
