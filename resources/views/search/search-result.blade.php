@@ -56,6 +56,20 @@
                                 </form>
                             </div>
                         </div>
+                        @if($result == null && $category == null)
+                        <div class="col-lg-12 col-md-12 u-s-m-b-30">
+                            <div class="empty">
+                                <div class="empty__wrap">
+
+                                    <span class="empty__big-text">Oops</span>
+
+                                    <span class="empty__text-1">Looks like products you're looking for not availabe at the moment.</span>
+
+                                    <a class="empty__redirect-link btn--e-brand" href="/">GO TO HOME</a>
+                                </div>
+                            </div>
+                        </div>
+                        @elseif($result!=NULL )
                         @foreach($result as $res)
                         <div class="shop-p__collection">
                             <div class="row is-grid-active">
@@ -108,6 +122,7 @@
                             </div>
                         </div>
                         @endforeach
+                        @endif
                         <div class="u-s-p-y-60">
 
                             <!--====== Pagination ======-->

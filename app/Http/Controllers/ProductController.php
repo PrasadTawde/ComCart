@@ -36,7 +36,7 @@ class ProductController extends Controller
     {
         // $sub_categories = SubCategory::where('id', $id)->get();
         $categories = Category::all();
-        return view('sell.add-product',[ 'categories' => $categories ]);
+        return view('sell.add-product', ['categories' => $categories]);
     }
 
     /**
@@ -63,13 +63,13 @@ class ProductController extends Controller
         $image1_file = $request->file('images1');
         $image1 = Image::make($image1_file);
         Response::make($image1->encode('jpeg'));
-        
+
 
 
         $image2_file = $request->file('images2');
         $image2 = Image::make($image2_file);
         Response::make($image2->encode('jpeg'));
-        try{
+        try {
             $product = DB::table('products')->insert([
                 'user_id' => $user_id,
                 'category_id' => $request->input('category'),
@@ -82,13 +82,12 @@ class ProductController extends Controller
                 'image_1' => $image1,
                 'image_2' => $image2
             ]);
-        }
-        catch(QueryException $qe){
-            If ($qe->errorInfo[0] == "23000" && $qe->errorInfo[1] == "1062"){
+        } catch (QueryException $qe) {
+            if ($qe->errorInfo[0] == "23000" && $qe->errorInfo[1] == "1062") {
                 return $qe->errorInfo[2];
-            }else{
-                return  $qe->errorInfo[2] ;
-            } 
+            } else {
+                return  $qe->errorInfo[2];
+            }
         }
 
 
@@ -146,47 +145,44 @@ class ProductController extends Controller
         ]);
 
 
-        if (($request->file('images1')!=NULL) && ($request->file('images2')!=NULL)) {
+        if (($request->file('images1') != NULL) && ($request->file('images2') != NULL)) {
             $image1_file = $request->file('images1');
             $image1 = Image::make($image1_file);
             Response::make($image1->encode('jpeg'));
             $image2_file = $request->file('images2');
             $image2 = Image::make($image2_file);
             Response::make($image2->encode('jpeg'));
-            $query=DB::update('update products set title = ?,description=?,quantity=?,price=?,image_1=?,image_2=? where id=?',[$request->title,$request->info,$request->quantity,$request->price,$image1,$image2,$id]);
+            $query = DB::update('update products set title = ?,description=?,quantity=?,price=?,image_1=?,image_2=? where id=?', [$request->title, $request->info, $request->quantity, $request->price, $image1, $image2, $id]);
 
             if ($query) {
                 return redirect('/my-products')->with('success', 'Product details updated  ');
             } else {
                 return redirect('/my-products')->with('fail', 'something went wrong!!!!');
             }
-
-        } else if (($request->file('images1')!=NULL)) {
+        } else if (($request->file('images1') != NULL)) {
             $image1_file = $request->file('images1');
             $image1 = Image::make($image1_file);
             Response::make($image1->encode('jpeg'));
-            $query=DB::update('update products set title = ?,description=?,quantity=?,price=?,image_1=? where id = ?',[$request->title,$request->info,$request->quantity,$request->price,$image1,$id]);
+            $query = DB::update('update products set title = ?,description=?,quantity=?,price=?,image_1=? where id = ?', [$request->title, $request->info, $request->quantity, $request->price, $image1, $id]);
 
             if ($query) {
                 return redirect('/my-products')->with('success', 'Product details updated  ');
             } else {
                 return redirect('/my-products')->with('fail', 'something went wrong!!!!');
             }
-
-        } else if (($request->file('images2')!=NULL)) {
+        } else if (($request->file('images2') != NULL)) {
             $image2_file = $request->file('images2');
             $image2 = Image::make($image2_file);
             Response::make($image2->encode('jpeg'));
-            $query=DB::update('update products set title = ?,description=?,quantity=?,price=?,image_2=? where id=?',[$request->title,$request->info,$request->quantity,$request->price,$image2,$id]);
-            
+            $query = DB::update('update products set title = ?,description=?,quantity=?,price=?,image_2=? where id=?', [$request->title, $request->info, $request->quantity, $request->price, $image2, $id]);
+
             if ($query) {
                 return redirect('/my-products')->with('success', 'Product details updated  ');
             } else {
                 return redirect('/my-products')->with('fail', 'something went wrong!!!!');
             }
-        }
-        else if(($request->file('images1')==NULL) && ($request->file('images2')==NULL)){
-            $query=DB::update('update products set title = ?,description=?,quantity=?,price=? where id= ?',[$request->title,$request->info,$request->quantity,$request->price,$id]);
+        } else if (($request->file('images1') == NULL) && ($request->file('images2') == NULL)) {
+            $query = DB::update('update products set title = ?,description=?,quantity=?,price=? where id= ?', [$request->title, $request->info, $request->quantity, $request->price, $id]);
             if ($query) {
                 return redirect('/my-products')->with('success', 'Product details updated  ');
             } else {
@@ -204,37 +200,36 @@ class ProductController extends Controller
     public function destroy($id)
     {
         //
-        DB::delete('delete from products where id=?',[$id]);
-        
+        DB::delete('delete from products where id=?', [$id]);
+
         $user_id = Auth::user()->id;
         $products = DB::select('select * from products where user_id=?', [$user_id]);
-        
+
         return view('sell.my-products', ['products' => $products]);
     }
 
     public function search(Request $req)
     {
-        $result = DB::table('products')->where('title', 'like', '%' . $req->input('search') . '%')->get();
-        $d = (array)$result[0];
-        $cat = DB::table('categories')->where('id', $d['category_id'])->get();
-        $category = (array)$cat[0];
-        return view('search.search-result', ['result' => $result, 'category' => $category]);
+        $result = DB::select('select * from products where title like  ? ', ["% $req->input('search') %"]);
+
+        if (count($result) <= 0) {
+            $category = null;
+            return view('search.search-result', ['result' => $result, 'category' => $category]);
+        } else {
+            $d = (array)$result[0];
+            $cat = DB::table('categories')->where('id', $d['category_id'])->get();
+            $category = (array)$cat[0];
+            return view('search.search-result', ['result' => $result, 'category' => $category]);
+        } 
     }
 
     public function sort(Request $req)
     {
-        if($req->get('sort')==='latest'){
-            
-        }else if($req->get('sort')==='bestSelling'){
-
-        }else if($req->get('sort')==='bestRating'){
-
-        }else if($req->get('sort')==='lowestPrice'){
-
-        }else  if($req->get('sort')==='highestPrice'){
-
+        if ($req->get('sort') === 'latest') {
+        } else if ($req->get('sort') === 'bestSelling') {
+        } else if ($req->get('sort') === 'bestRating') {
+        } else if ($req->get('sort') === 'lowestPrice') {
+        } else  if ($req->get('sort') === 'highestPrice') {
         }
-
     }
 }
-

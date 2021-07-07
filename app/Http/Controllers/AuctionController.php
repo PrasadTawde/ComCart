@@ -26,9 +26,8 @@ class AuctionController extends Controller
     public function index()
     {
         //
-        $products=DB::select('select * from auctions');
-        return view('/auction/auction-products',['products' =>$products]);
-        
+        $products = DB::select('select * from auctions');
+        return view('/auction/auction-products', ['products' => $products]);
     }
 
     /**
@@ -40,7 +39,7 @@ class AuctionController extends Controller
     {
         //
         $categories = Category::all();
-        return view('auction.add-auction-product',[ 'categories' => $categories ]);
+        return view('auction.add-auction-product', ['categories' => $categories]);
     }
 
     /**
@@ -68,14 +67,14 @@ class AuctionController extends Controller
         $image1_file = $request->file('images1');
         $image1 = Image::make($image1_file);
         Response::make($image1->encode('jpeg'));
-        
+
         $image2_file = $request->file('images2');
         $image2 = Image::make($image2_file);
         Response::make($image2->encode('jpeg'));
-        
-        $current_bid_amount=(int)$request->bid_amount;
 
-        try{
+        $current_bid_amount = (int)$request->bid_amount;
+
+        try {
             $product = Auction::create([
                 'user_id' => $user_id,
                 'category_id' => $request->category,
@@ -89,19 +88,18 @@ class AuctionController extends Controller
                 'current_bid_amount' => $current_bid_amount,
                 'starting_time' => $request->start_time,
                 'ending_time' => $request->end_time,
-               
+
             ]);
 
             AuctionProductVerifications::create([
                 'auction_id' => $product->id,
             ]);
-        }
-        catch(QueryException $qe){
-            If ($qe->errorInfo[0] == "23000" && $qe->errorInfo[1] == "1062"){
+        } catch (QueryException $qe) {
+            if ($qe->errorInfo[0] == "23000" && $qe->errorInfo[1] == "1062") {
                 return $qe->errorInfo[2];
-            }else{
-                return  $qe->errorInfo[2] ;
-            } 
+            } else {
+                return  $qe->errorInfo[2];
+            }
         }
 
         if ($product) {
@@ -109,8 +107,6 @@ class AuctionController extends Controller
         } else {
             return redirect('/add-auction-product')->with('fail', 'something went wrong!!!!');
         }
-
-
     }
 
     /**
@@ -121,21 +117,21 @@ class AuctionController extends Controller
      */
     public function show($id)
     {
-        
-        $Productdata=new Auction();
-        $Productdata=DB::select('select * from auctions where id=?',[$id]);
-        $data=(array)$Productdata[0];
 
-        $highest_bid=DB::select("select bids.from from bids where auction_id=? and bid_amount=(select max(bid_amount) from bids)",[$id]);
-        if($highest_bid==NULL){
-            $high_bid=null;
-        }else{
-            $hb=(array)$highest_bid[0];
-            $highest_bidder=DB::select('select name from users where id = ?',[$hb['from']]);
-            $high_bid=$highest_bidder[0];
+        $Productdata = new Auction();
+        $Productdata = DB::select('select * from auctions where id=?', [$id]);
+        $data = (array)$Productdata[0];
+
+        $highest_bid = DB::select("select bids.from from bids where auction_id=? and bid_amount=(select max(bid_amount) from bids)", [$id]);
+        if ($highest_bid == NULL) {
+            $high_bid = null;
+        } else {
+            $hb = (array)$highest_bid[0];
+            $highest_bidder = DB::select('select name from users where id = ?', [$hb['from']]);
+            $high_bid = $highest_bidder[0];
         }
-       
-        return view('auction.auction-product-view',['data'=>$data ,'high_bid'=>$high_bid]);
+
+        return view('auction.auction-product-view', ['data' => $data, 'high_bid' => $high_bid]);
     }
 
     /**
@@ -172,7 +168,8 @@ class AuctionController extends Controller
         //
     }
 
-   public function fetch_auction_image_1($id) {
+    public function fetch_auction_image_1($id)
+    {
         $image = Auction::withTrashed()->findOrFail($id);
         $image_file = Image::make($image->image_1);
 
@@ -180,8 +177,9 @@ class AuctionController extends Controller
         $reponse->header('Content-Type', 'image/jpeg');
         return $reponse;
     }
-    
-    public function fetch_auction_image_2($id) {
+
+    public function fetch_auction_image_2($id)
+    {
         $image = Auction::withTrashed()->findOrFail($id);
         $image_file = Image::make($image->image_2);
         $reponse = Response::make($image_file->encode('jpeg'));
@@ -189,29 +187,26 @@ class AuctionController extends Controller
         return $reponse;
     }
 
-    public function bid(Request $req,$id,$bid_amount){
-    
-    //    $req->validate(
-    //      [  'bid-amount' => 'requred']
-    //    );
-       $user_id=Auth::user()->id;
-       $amount=$bid_amount+$req->input('bid-amount');
-        if(DB::select('select id from bids where bids.from=?',[$user_id])){
-        $query=DB::update('update bids set bid_amount=?',[$amount]);       
-        }
-        else{
-       $query= DB::table('bids')->insert([ 
-            'auction_id' => $id,
-            'from' => $user_id,
-            'bid_amount' => $amount
-        ]);
-    }
+    public function bid(Request $req, $id, $bid_amount)
+    {
 
-        if($query){
-            DB::update('update auctions set current_bid_amount=? where id=?',[$amount,$id]);
+        //    $req->validate(
+        //      [  'bid-amount' => 'requred']
+        //    );
+        $user_id = Auth::user()->id;
+        if (DB::select('select id from bids where bids.from=? and auction_id=?', [$user_id,$id])) {
+            $query = DB::update('update bids set bid_amount=? where bids.from=? and auction_id=?', [$req->input('bid-amount'), $user_id,$id]);
+        } else {
+            $query = DB::table('bids')->insert([
+                'auction_id' => $id,
+                'from' => $user_id,
+                'bid_amount' => $req->input('bid-amount')
+            ]);
+        }
+
+        if ($query) {
+            DB::update('update auctions set current_bid_amount=? where id=?', [$req->input('bid-amount'), $id]);
             return redirect('auction-products');
         }
-
     }
-
 }

@@ -16,10 +16,12 @@
                             <div id="pd-o-initiate">
                                 <div class="pd-o-img-wrap" data-src="/fetch_auction_image_1/{{ $data['id'] }}">
 
-                                    <img class="u-img-fluid" src="/fetch_auction_image_1/{{ $data['id'] }}" data-zoom-image="/fetch_auction_image_1/{{ $data['id'] }}" alt=""></div>
+                                    <img class="u-img-fluid" src="/fetch_auction_image_1/{{ $data['id'] }}" data-zoom-image="/fetch_auction_image_1/{{ $data['id'] }}" alt="">
+                                </div>
                                 <div class="pd-o-img-wrap" data-src="/fetch_auction_image_1/{{ $data['id'] }}">
 
-                                    <img class="u-img-fluid" src="/fetch_auction_image_2/{{ $data['id'] }}" data-zoom-image="/fetch_auction_image_2/{{ $data['id'] }}" alt=""></div>
+                                    <img class="u-img-fluid" src="/fetch_auction_image_2/{{ $data['id'] }}" data-zoom-image="/fetch_auction_image_2/{{ $data['id'] }}" alt="">
+                                </div>
                             </div>
                         </div>
                         <div class="u-s-m-t-15">
@@ -27,10 +29,12 @@
                                 <div id="pd-o-thumbnail">
                                     <div>
 
-                                        <img class="u-img-fluid" src="/fetch_auction_image_1/{{ $data['id'] }}" alt=""></div>
+                                        <img class="u-img-fluid" src="/fetch_auction_image_1/{{ $data['id'] }}" alt="">
+                                    </div>
                                     <div>
 
-                                        <img class="u-img-fluid" src="/fetch_auction_image_2/{{ $data['id'] }}" alt=""></div>
+                                        <img class="u-img-fluid" src="/fetch_auction_image_2/{{ $data['id'] }}" alt="">
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -57,11 +61,12 @@
 
                             <?php date_default_timezone_set("Asia/Kolkata");
                             $today = date('d-m-y h:i:s');
-                            $startdate = date('d-m-y h:i:s',strtotime($data['starting_time']));
-                            $enddate = date('d-m-y h:i:s',strtotime($data['ending_time']));
+                            $startdate = date('d-m-y h:i:s', strtotime($data['starting_time']));
+                            $enddate = date('d-m-y h:i:s', strtotime($data['ending_time']));
                             $currentDate = strtotime($today);
                             $starting = strtotime($startdate);
                             $ending = strtotime($enddate);
+                            $currentAount = $data['current_bid_amount'] + 0;
                             ?>
                             @if($currentDate>$ending && $currentDate>$starting)
 
@@ -78,7 +83,7 @@
 
                         <div class="u-s-m-b-15">
                             <form class="pd-detail__form">
-                            {{ csrf_field() }}
+                                {{ csrf_field() }}
                                 <div class="pd-detail-inline-2">
                                     <div class="u-s-m-b-15">
                                         <!-- <input class="input-text input-text--primary-style" type="text" name="" id="" placeholder="₹0.00">
@@ -89,7 +94,7 @@
                             </form>
                         </div>
 
-                        
+
                         @elseif($currentDate>$starting)
                         <div class="pd-detail__inline-2">
 
@@ -105,7 +110,7 @@
                                 <span> </span>
                                 <!-- <h4 class=" " style="color:green"> {{date('d/M/Y h:i:s',strtotime($data['starting_time'])) }}</h4> -->
                                 <h4 class=" " style="color:green">Auction is Live</h4>
-                               
+
 
                                 <span>Auction Ends On: </span>
                                 <h4 class=" u_c_warning"> {{date('d/M/Y h:i:s',strtotime($data['ending_time']))  }}</h4>
@@ -115,10 +120,20 @@
 
                         <div class="u-s-m-b-15">
                             <form class="pd-detail__form" method="post" action="/bid/{{$data['id']}}/{{$data['current_bid_amount']}}">
-                            {{ csrf_field() }}
+                                {{ csrf_field() }}
                                 <div class="pd-detail-inline-2">
                                     <div class="u-s-m-b-15">
-                                        <input class="input-text input-text--primary-style" type="text" name="bid-amount" id="" placeholder="₹0.00">
+                                    <input class="input-text input-text--primary-style" type="number" name="bid-amount" min="<?php echo$currentAount?>" value="<?php echo $currentAount ?>" id="">
+                                        <span> @if($errors->any())
+                                            <div>
+                                                <ul>
+                                                    @foreach($errors->all() as $error)
+                                                    <li>{{$error}}</li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                            @endif
+                                        </span>
                                         <input type="submit" class="btn btn--e-brand-b-2">
                                         <!-- <a class="btn btn--e-brand-b-2" href="">Add to Cart</a> -->
                                     </div>
@@ -127,13 +142,13 @@
                         </div>
 
                         <div class="pd-detail__inline">
-                        @if($high_bid==NULL)
-                                <h5><span>No biddings yet </span></h5>
-                                @else
-                                <h4 class=" " style="color:red">Highest Bidder :<span style="color:blue;">{{$high_bid->name }}</span></h4>
-                                
-                                @endif
-                            </div>
+                            @if($high_bid==NULL)
+                            <h5><span>No biddings yet </span></h5>
+                            @else
+                            <h4 class=" " style="color:red">Highest Bidder :<span style="color:blue;">{{$high_bid->name }}</span></h4>
+
+                            @endif
+                        </div>
 
                         @elseif($currentDate < $starting) <div class="pd-detail__inline-2">
 
