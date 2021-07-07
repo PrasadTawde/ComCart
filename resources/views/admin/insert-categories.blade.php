@@ -29,7 +29,7 @@
                                     <span style="color: red; font-size: 85%;">{{ $message  }}</span>
                                     @enderror
                                     <input type="text" class="form-control" id="icon" name="icon" placeholder="Enter icon name" value="{{ old('icon') }}">
-                                    <small class="form-text text-muted">(Browse icons name from faticons.com and enter them here. eg. fas fa-tv)</small>                                        
+                                    <small class="form-text text-muted">(Browse icons name from https://fontawesome.com/ and enter them here. eg. fas fa-tv)</small>                                        
                                 </div>
                                 <div class="form-group">
                                     <label for="description">Description</label><small class="form-text text-muted">(optional)</small>

@@ -2,9 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CategoriesController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductVerificationsController;
 use App\Http\Controllers\Admin\SubcategoriesController;
 use App\Http\Controllers\Admin\SubSubCategoriesController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\User\UserVerificationsController;
 
 Route::group(['middleware' => ['auth', 'role:admin|staff']], function () {
@@ -56,15 +58,19 @@ Route::group(['middleware' => ['auth', 'role:admin|staff']], function () {
 	Route::get('/product-verification-insert/{id}', [ProductVerificationsController::class, 'create']);
 	Route::post('/product-verification-insert/{id}', [ProductVerificationsController::class, 'store'])->name('/product-verification-insert');
 	Route::get('/product-verification-delete/{id}',[ProductVerificationsController::class,'destroy'])->name('product-verification');
+
+	//manage orders
+	Route::get('/manage-orders', [OrderController::class, 'create']);
+	Route::get('/manage-order-update/{id}', [OrderController::class, 'edit'])->name('order-update');
+	Route::post('/manage-order-update/{id}', [OrderController::class, 'update'])->name('order-update');
+
 	
 });
 
 //user specific routes for admin
 Route::group(['middleware' => ['auth', 'role:admin']], function () {
 	//admin dashboard
-	Route::get('/admin', function () {
-		return view('admin.dashboard');
-	})->name('admin');
+	Route::get('/admin', [DashboardController::class, 'index'])->name('admin');
 	
 	//manage - staff
 	Route::get('/manage-staff', [StaffController::class, 'index'])->name('manage-staff');

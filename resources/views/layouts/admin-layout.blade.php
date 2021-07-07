@@ -34,7 +34,7 @@
             <!-- Logo Header -->
             <div class="logo-header">
                 
-                <a href="index.html" class="logo">
+                <a href="/admin" class="logo">
                     <img src="/assets/images/logo/logo-2.png" alt="" class="navbar-brand">
                 </a>
                 <button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -67,8 +67,8 @@
                                     <div class="user-box">
                                         <div class="avatar-lg"><img src="/assets/images/user-icon.png" alt="image profile" class="avatar-img rounded"></div>
                                         <div class="u-text">
-                                            <h4>Hizrian</h4>
-                                            <p class="text-muted">hello@example.com</p>
+                                            <h4>{{ Auth::user()->name }}</h4>
+                                            <p class="text-muted">{{ Auth::user()->email }}</p>
                                         </div>
                                     </div>
                                 </li>
@@ -153,6 +153,12 @@
                                 </a>
                             </li>
                         @endif
+                        <li class="nav-item {{ (request()->is('manage-order*')) ? 'active' : '' }}">
+                            <a href="/manage-orders">
+                                <i class="fas fa-box-open"></i>
+                                <p>Manage Orders</p>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>

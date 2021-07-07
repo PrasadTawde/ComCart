@@ -107,7 +107,15 @@
                                                     <div class="description__info-wrap">
                                                         <div>
 
-                                                            <span class="manage-o__badge badge--processing">{{ $order->status }}</span></div>
+                                                            <span class="manage-o__badge 
+                                                            @if($order->status == 'processing')
+                                                                {{'badge--processing'}}
+                                                            @elseif($order->status == 'shipped')
+                                                                {{'badge--shipped'}}
+                                                            @elseif($order->status == 'delivered' || $order->status == 'cancelled')
+                                                                {{'badge--delivered'}}
+                                                            @endif
+                                                            ">{{ $order->status }}</span></div>
                                                         <div>
 
                                                             <span class="manage-o__text-2 u-c-silver">Total:

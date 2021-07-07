@@ -97,20 +97,26 @@
                                                     @if ($order->status == 'delivered')
                                                         {{'Delivered on '.$order->estimate_delivery_date }}
                                                     @endif
+                                                    @if ($order->status == 'cancelled')
+                                                        <span class="manage-o__badge badge--delivered">Cancelled</span>
+                                                    @endif
                                                 </div>
                                                 <div class="manage-o__icon"><i class="fas fa-truck u-s-m-r-5"></i>
 
                                                     <span class="manage-o__text">Standard</span></div>
                                             </div>
-                                            <div class="manage-o__timeline">
+                                            <div class="manage-o__timeline" >
                                                 <div class="timeline-row">
                                                     <div class="col-lg-4 u-s-m-b-30">
                                                         <div class="timeline-step">
                                                             <div class="timeline-l-i @if ($order->status == 'processing' || $order->status == 'shipped' || $order->status == 'delivered')
                                                                 {{'timeline-l-i--finish'}}
-                                                            @endif">
-
-                                                                <span class="timeline-circle"></span></div>
+                                                            @elseif($order->status == 'cancelled')
+                                                                {{'timeline-l-i--finish-brand'}}
+                                                            @endif
+                                                            
+                                                            ">
+                                                            <span class="timeline-circle"></span></div>
 
                                                             <span class="timeline-text">Processing</span>
                                                         </div>
@@ -119,6 +125,8 @@
                                                         <div class="timeline-step">
                                                             <div class="timeline-l-i @if ($order->status == 'shipped' || $order->status == 'delivered')
                                                                 {{'timeline-l-i--finish'}}
+                                                            @elseif($order->status == 'cancelled')
+                                                                {{'timeline-l-i--finish-brand'}}
                                                             @endif ">
 
                                                                 <span class="timeline-circle"></span></div>
@@ -130,12 +138,16 @@
                                                         <div class="timeline-step">
                                                             <div class="timeline-l-i @if ($order->status == 'delivered')
                                                                 {{'timeline-l-i--finish'}}
+                                                            @elseif($order->status == 'cancelled')
+                                                                {{'timeline-l-i--finish-brand'}}
                                                             @endif">
 
                                                                 <span class="timeline-circle"></span></div>
 
                                                             <span class="timeline-text">Delivered</span>
-                                                            <span>Expected Delivery :{{ $order->estimate_delivery_date }}</span>
+                                                            @if($order->status != 'cancelled')
+                                                                <span>Expected Delivery :{{ $order->estimate_delivery_date }}</span>
+                                                            @endif
                                                         </div>
                                                     </div>
                                                 </div>

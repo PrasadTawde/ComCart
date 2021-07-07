@@ -3591,6 +3591,9 @@ input::-ms-clear {
     .timeline-l-i.timeline-l-i--finish .timeline-circle:before {
       background-color: #6B5AED; }
 
+.timeline-l-i.timeline-l-i--finish-brand {
+  border-color: #ff4500; }
+
 .timeline-text {
   margin-top: 20px;
   font-size: 13px;

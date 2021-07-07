@@ -33,7 +33,11 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        $orders = Order::join('products', 'orders.product_id', '=', 'products.id')
+        ->join('payments', 'orders.payment_id', '=', 'payments.razorpay_id')
+        ->select('products.*', 'orders.*', 'payments.*', 'orders.id as order_id', 'payments.amount as paid_amount')
+        ->get();
+        return view('admin.manage-orders', ['orders' => $orders]);
     }
 
     /**
@@ -78,7 +82,13 @@ class OrderController extends Controller
      */
     public function edit($id)
     {
-        //
+        $orders = Order::join('products', 'orders.product_id', '=', 'products.id')
+        ->join('payments', 'orders.payment_id', '=', 'payments.razorpay_id')
+        ->where('orders.id', $id)
+        ->select('products.*', 'orders.*', 'payments.*', 'orders.id as order_id', 'payments.amount as paid_amount')
+        ->get();
+
+        return view('admin.update-order', ['orders' => $orders]);
     }
 
     /**
@@ -90,7 +100,16 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'status' => 'required',
+        ]);
+
+        $order = Order::find($id);
+        $order->status = $request->status;
+        
+        $order->save();
+
+        return redirect('/manage-orders');
     }
 
     /**
