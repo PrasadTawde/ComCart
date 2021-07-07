@@ -16,10 +16,10 @@
                         <ul class="breadcrumb__list">
                             <li class="has-separator">
 
-                                <a href="index.html">Home</a></li>
+                                <a href="/">Home</a></li>
                             <li class="is-marked">
 
-                                <a href="dashboard.html">My Account</a></li>
+                                <a href="/orders">My Orders</a></li>
                         </ul>
                     </div>
                 </div>
@@ -56,7 +56,11 @@
                                             <a class="{{ (request()->is('address*')) ? 'dash-active' : '' }}" href="/address">Address Book</a></li>
                                         <li>
 
-                                            <a class="{{ (request()->is('orders*')) ? 'dash-active' : '' }}" href="/orders">My Orders</a></li>
+                                            <a class="{{ (request()->is('orders*')) ? 'dash-active' : '' }}" href="/orders">My Orders</a>
+                                        </li>
+                                        <li>
+
+                                            <a class="{{ (request()->is('my-products*')) ? 'dash-active' : '' }}" href="/my-products">My Products</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -97,7 +101,7 @@
                                                     <div class="description__container">
                                                         <div class="description__img-wrap">
 
-                                                            <img class="u-img-fluid" src="/fetch_image_1/{{ $order->id }}" alt=""></div>
+                                                            <img class="u-img-fluid" src="/fetch_image_1/{{ $order->product_id }}" alt="ordered_prod"></div>
                                                         <div class="description-title">{{ $order->title }}</div>
                                                     </div>
                                                     <div class="description__info-wrap">

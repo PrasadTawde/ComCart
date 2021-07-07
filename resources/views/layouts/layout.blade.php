@@ -168,7 +168,7 @@
 
                                                                 <a class="mini-product__link" href="product-detail.html">
 
-                                                                    <img class="u-img-fluid" src="/assets/images/product/electronic/product3.jpg" alt=""></a></div>
+                                                                    <img class="u-img-fluid" src="/fetch_image_1/{{ $product->product_id }}" alt="product_img"></a></div>
                                                             <div class="mini-product__info-wrapper">
 
                                                                 {{-- <span class="mini-product__category">
@@ -408,19 +408,13 @@
                                             <ul>
                                                 <li>
 
-                                                    <a href="cart.html">Cart</a></li>
-                                                <li>
-
                                                     <a href="dashboard.html">Account</a></li>
                                                 <li>
 
-                                                    <a href="">Manufacturer</a></li>
+                                                    <a href="/orders">Orders</a></li>
                                                 <li>
 
-                                                    <a href="dash-payment-option.html">Finance</a></li>
-                                                <li>
-
-                                                    <a href="">Shop</a></li>
+                                                    <a href="/">Shop</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -433,19 +427,10 @@
                                             <ul>
                                                 <li>
 
-                                                    <a href="about.html">About us</a></li>
+                                                    <a href="/about">About us</a></li>
                                                 <li>
 
-                                                    <a href="contact.html">Contact Us</a></li>
-                                                <li>
-
-                                                    <a href="index.html">Sitemap</a></li>
-                                                <li>
-
-                                                    <a href="dash-my-order.html">Delivery</a></li>
-                                                <li>
-
-                                                    <a href="">Store</a></li>
+                                                    <a href="/contact">Contact Us</a></li>
                                             </ul>
                                         </div>
                                     </div>

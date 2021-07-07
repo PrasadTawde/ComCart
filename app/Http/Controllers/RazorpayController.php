@@ -10,11 +10,12 @@ use Razorpay\Api\Api;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 class RazorpayController extends Controller
 {
-    private $razorpay_id = "rzp_test_YQhD1SQpzPaAZg";
-    private $razorpay_key = "jBi2KNbXHDy4IUdUVK28WrKH";
+    private $razorpay_id = "rzp_test_29mNCEHnUwpMe3";
+    private $razorpay_key = "xBkyOFnNZugk8JxZljvtjvHA";
 
     public function payment() {
         return view('shop.payment');
@@ -24,22 +25,31 @@ class RazorpayController extends Controller
 
         if ($request->payment == 'cash') {
             //payment through cash
-            //saving in has order table
+            //genrating payment id
+            $pay_id = Str::random(20);
+            //saving in order table
             $order = new Order();
             $order->user_id = Auth::user()->id;
             $order->product_id = $request->all()['product_id'];
             $order->address_id = $request->all()['address'];
             $order->payment_mode = 'cash';
-            $order->payment_id = Str::random(20);
+            $order->payment_id = $pay_id;
             $order->status = 'processing';
+            $order->estimate_delivery_date = Carbon::now()->addDay(10)->toDateTimeString();
             $order->save();
+
+            $pay = new Payment();
+            $pay->order_id = '---';
+            $pay->razorpay_id = $pay_id;
+            $pay->amount = $request->amount;
+            $pay->save();
 
             //deleting product from cart
             ShoppingCart::destroy($request->all()['cart_id']);
 
             return view('shop.payment-success-page');
 
-        } elseif ($request->payment == 'razorpay') {
+        } else if ($request->payment == 'razorpay') {
             //genrating random recipt id
             $receiptId = Str::random(20);
 
@@ -51,7 +61,10 @@ class RazorpayController extends Controller
                 'amount' => $request->all()['amount'] * 100,
                 'currency' => 'INR'
             ));
-
+            //validte address is availble or not
+            $request->validate([
+                'address_id' => 'required',
+            ]);
             $response = [
                 'orderId' => $order['id'],
                 'razorpayId' => $this->razorpay_id,
@@ -62,6 +75,10 @@ class RazorpayController extends Controller
                 'address_id' => $request->all()['address'],
                 'cart_id' => $request->all()['cart_id'],
             ];
+
+            //deleting product from cart
+            ShoppingCart::destroy($request->all()['cart_id']);
+
             return view('shop.payment-page',compact('response'));
         }       
         
@@ -89,14 +106,15 @@ class RazorpayController extends Controller
             $pay->amount = $amount;
             $pay->save();
 
-            //saving in has rented table
+            //saving in has order table
             $order = new Order();
             $order->user_id = $user_id;
             $order->product_id = $request->all()['product_id'];
             $order->address_id = $request->all()['address_id'];
             $order->payment_mode = 'razorpay';
             $order->payment_id = $request->all()['rzp_paymentid'];
-            $order->status = 'Processing';
+            $order->status = 'processing';
+            $order->estimate_delivery_date = Carbon::now()->addDay(10)->toDateTimeString();
             $order->save();
 
             //deleting product from cart

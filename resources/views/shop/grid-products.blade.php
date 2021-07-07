@@ -117,9 +117,9 @@
                                                             {{-- <a class="aspect aspect--bg-grey aspect--square u-d-block" href="{{ route('product', ['slug']) }}"> --}}
 
                                                                 <img class="aspect__img" src="/fetch_image_1/{{ $product->id }}" alt=""></a>
-                                                            <div class="product-m__quick-look">
+                                                            {{-- <div class="product-m__quick-look">
 
-                                                                <a class="fas fa-search" data-modal="modal" data-modal-id="#quick-look" data-tooltip="tooltip" data-placement="top" title="Quick Look"></a></div>
+                                                                <a class="fas fa-search" data-modal="modal" data-modal-id="#quick-look" data-tooltip="tooltip" data-placement="top" title="Quick Look"></a></div> --}}
                                                             <div class="product-m__add-cart">
 
                                                                 <a class="btn--e-brand" href="/add-to-cart/{{ $product->id }}">Add to Cart</a></div>
@@ -137,9 +137,9 @@
                                                                 <div class="product-m__preview-description">
                                                                     <span>{{ $product->description }}</span>
                                                                 </div>
-                                                                <div class="product-m__wishlist">
+                                                                {{-- <div class="product-m__wishlist">
 
-                                                                    <a class="far fa-heart" href="#" data-tooltip="tooltip" data-placement="top" title="Add to Wishlist"></a></div>
+                                                                    <a class="far fa-heart" href="#" data-tooltip="tooltip" data-placement="top" title="Add to Wishlist"></a></div> --}}
                                                             </div>
                                                         </div>
                                                     </div>

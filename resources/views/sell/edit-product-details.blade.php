@@ -22,7 +22,7 @@
                         </div>
 
                         @endif
-                        <form class="l-f-o__form" method="post" action="/update/{{$data[0]->id}}" enctype="multipart/form-data">
+                        <form class="l-f-o__form" method="post" action="/product-update/{{$data[0]->id}}" enctype="multipart/form-data">
                             @csrf
                             <!-- </div> -->
                             <div class="u-s-m-b-30" id="subCategory">

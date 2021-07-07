@@ -163,7 +163,12 @@ class ShoppingCartController extends Controller
             ->get();
 
             $addresses = DB::table('user_addresses')->where('user_id', $user_id)->get();
-            return view('shop.checkout', ['cart_products' => $cart_products, 'addresses' => $addresses]);
+
+            if ($cart_products->isEmpty()) {
+                return view('shop.cart-view', ['cart_products' => $cart_products]);
+            }else {
+                return view('shop.checkout', ['cart_products' => $cart_products, 'addresses' => $addresses]);
+            }
         }
         else {
             return redirect('login');

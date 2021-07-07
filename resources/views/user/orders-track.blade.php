@@ -16,10 +16,10 @@
                         <ul class="breadcrumb__list">
                             <li class="has-separator">
 
-                                <a href="index.html">Home</a></li>
+                                <a href="/">Home</a></li>
                             <li class="is-marked">
 
-                                <a href="dashboard.html">My Account</a></li>
+                                <a href="/orders">My Orders</a></li>
                         </ul>
                     </div>
                 </div>
@@ -56,7 +56,11 @@
                                             <a class="{{ (request()->is('address*')) ? 'dash-active' : '' }}" href="/address">Address Book</a></li>
                                         <li>
 
-                                            <a class="{{ (request()->is('orders*')) ? 'dash-active' : '' }}" href="/orders">My Orders</a></li>
+                                            <a class="{{ (request()->is('orders*')) ? 'dash-active' : '' }}" href="/orders">My Orders</a>
+                                        </li>
+                                        <li>
+
+                                            <a class="{{ (request()->is('my-products*')) ? 'dash-active' : '' }}" href="/my-products">My Products</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -89,7 +93,11 @@
                                                     <span class="manage-o__text">Package 1</span></div>
                                             </div>
                                             <div class="dash-l-r">
-                                                <div class="manage-o__text u-c-secondary"></div>
+                                                <div class="manage-o__text u-c-secondary">
+                                                    @if ($order->status == 'delivered')
+                                                        {{'Delivered on '.$order->estimate_delivery_date }}
+                                                    @endif
+                                                </div>
                                                 <div class="manage-o__icon"><i class="fas fa-truck u-s-m-r-5"></i>
 
                                                     <span class="manage-o__text">Standard</span></div>
@@ -98,7 +106,7 @@
                                                 <div class="timeline-row">
                                                     <div class="col-lg-4 u-s-m-b-30">
                                                         <div class="timeline-step">
-                                                            <div class="timeline-l-i @if ($order->status == 'processing')
+                                                            <div class="timeline-l-i @if ($order->status == 'processing' || $order->status == 'shipped' || $order->status == 'delivered')
                                                                 {{'timeline-l-i--finish'}}
                                                             @endif">
 
@@ -109,7 +117,7 @@
                                                     </div>
                                                     <div class="col-lg-4 u-s-m-b-30">
                                                         <div class="timeline-step">
-                                                            <div class="timeline-l-i @if ($order->status == 'shipped')
+                                                            <div class="timeline-l-i @if ($order->status == 'shipped' || $order->status == 'delivered')
                                                                 {{'timeline-l-i--finish'}}
                                                             @endif ">
 
@@ -127,6 +135,7 @@
                                                                 <span class="timeline-circle"></span></div>
 
                                                             <span class="timeline-text">Delivered</span>
+                                                            <span>Expected Delivery :{{ $order->estimate_delivery_date }}</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -135,7 +144,7 @@
                                                 <div class="description__container">
                                                     <div class="description__img-wrap">
 
-                                                        <img class="u-img-fluid" src="/fetch_image_1/{{ $order->id }}" alt=""></div>
+                                                        <img class="u-img-fluid" src="/fetch_image_1/{{ $order->product_id }}" alt=""></div>
                                                     <div class="description-title">{{ $order->title }}</div>
                                                 </div>
                                                 <div class="description__info-wrap">
@@ -174,7 +183,7 @@
                                                 </div>
                                                 <div class="dash-l-r u-s-m-b-8">
                                                     <div class="manage-o__text-2 u-c-secondary">Shipping Fee</div>
-                                                    <div class="manage-o__text-2 u-c-secondary">₹50</div>
+                                                    <div class="manage-o__text-2 u-c-secondary">₹100</div>
                                                 </div>
                                                 <div class="dash-l-r u-s-m-b-8">
                                                     <div class="manage-o__text-2 u-c-secondary">Total</div>

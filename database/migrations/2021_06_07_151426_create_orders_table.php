@@ -21,6 +21,7 @@ class CreateOrdersTable extends Migration
             $table->string('payment_mode');
             $table->string('payment_id');
             $table->string('status');
+            $table->date('estimate_delivery_date');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')

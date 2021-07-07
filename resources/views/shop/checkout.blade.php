@@ -16,10 +16,10 @@
                                 <ul class="breadcrumb__list">
                                     <li class="has-separator">
 
-                                        <a href="index.html">Home</a></li>
+                                        <a href="/">Home</a></li>
                                     <li class="is-marked">
 
-                                        <a href="checkout.html">Checkout</a></li>
+                                        <a href="/checkout">Checkout</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -62,7 +62,7 @@
                                                                         {{-- <span class="o-card__quantity">Quantity x 1</span> --}}
                                                                         @php
                                                                             $price = $price + $product->price;
-                                                                            $shipping_price = $shipping_price + 50;
+                                                                            $shipping_price = $shipping_price + 100;
                                                                         @endphp
                                                                         <span class="o-card__price">{{ '₹'.$product->price }}</span></div>
                                                                 </div>
@@ -80,7 +80,11 @@
                                                 <div class="o-summary__box">
                                                     <h1 class="checkout-f__h1">SHIPPING & BILLING</h1>
                                                     <div class="ship-b">
-                                                        @if ($cart_products->count() < 0)
+                                                        @if ($addresses->isEmpty())
+
+                                                        @error('address_id')
+                                                            <span style="color: red; font-size: 95%;">{{ 'Add Shipping & Billing Address' }}</span>
+                                                        @enderror
                                                         <div>
                                                             <a class="dash__custom-link btn--e-brand-b-2" href="/address-add"><i class="fas fa-plus u-s-m-r-8"></i>
                                                                 <span>Add New Address</span>
@@ -92,7 +96,7 @@
                                                             <div class="ship-b__box u-s-m-b-10">
                                                                 <p class="ship-b__p">{{ $address->address.' '.$address->city.' '.$address->state.' '.$address->pincode.' +91'.$address->phone_no }}</p>
                                                                 <div class="radio-box">
-                                                                    <input type="radio" name="address" id="address_{{ $address->id }}" value="{{ $address->id }}" checked>
+                                                                    <input type="radio" name="address" id="address_{{ $address->id }}" value="{{ $address->id }}" checked required>
                                                                     <div class="radio-box__state radio-box__state--primary">
 
                                                                         <label class="radio-box__label" for="address_1"></label></div>

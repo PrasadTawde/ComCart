@@ -15,11 +15,11 @@
                             <div class="breadcrumb__wrap">
                                 <ul class="breadcrumb__list">
                                     <li class="has-separator">
-
-                                        <a href="index.html">Home</a></li>
+        
+                                        <a href="/">Home</a></li>
                                     <li class="is-marked">
-
-                                        <a href="dash-address-edit.html">My Account</a></li>
+        
+                                        <a href="/address-add">Address Book</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -57,6 +57,9 @@
                                                 <li>
         
                                                     <a class="{{ (request()->is('orders*')) ? 'dash-active' : '' }}" href="/orders">My Orders</a></li>
+                                                <li>
+
+                                                    <a class="{{ (request()->is('my-products*')) ? 'dash-active' : '' }}" href="/my-products">My Products</a></li>
                                             </ul>
                                         </div>
                                     </div>

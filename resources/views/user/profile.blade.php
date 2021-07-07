@@ -16,10 +16,10 @@
                                 <ul class="breadcrumb__list">
                                     <li class="has-separator">
 
-                                        <a href="index.html">Home</a></li>
+                                        <a href="/">Home</a></li>
                                     <li class="is-marked">
 
-                                        <a href="dash-my-profile.html">My Account</a></li>
+                                        <a href="/profile">My Profile</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -56,7 +56,11 @@
                                                     <a class="{{ (request()->is('address*')) ? 'dash-active' : '' }}" href="/address">Address Book</a></li>
                                                 <li>
         
-                                                    <a class="{{ (request()->is('orders*')) ? 'dash-active' : '' }}" href="/orders">My Orders</a></li>
+                                                    <a class="{{ (request()->is('orders*')) ? 'dash-active' : '' }}" href="/orders">My Orders</a>
+                                                </li>
+                                                <li>
+
+                                                    <a class="{{ (request()->is('my-products*')) ? 'dash-active' : '' }}" href="/my-products">My Products</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -114,7 +118,7 @@
                                                         <a class="dash__custom-link btn--e-transparent-brand-b-2" href="{{ '/profile-edit' }}">Edit Profile</a></div>
                                                     <div>
 
-                                                        <a class="dash__custom-link btn--e-brand-b-2" href="#">Change Password</a></div>
+                                                        <a class="dash__custom-link btn--e-brand-b-2" href="/change-password">Change Password</a></div>
                                                 </div>
                                             </div>
                                         </div>

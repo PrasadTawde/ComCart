@@ -22,6 +22,7 @@ class OrderController extends Controller
         ->where('orders.user_id', Auth::user()->id)
         ->select('products.*', 'orders.*', 'payments.*', 'orders.id as order_id', 'payments.amount as paid_amount')
         ->get();
+
         return view('user.orders', ['orders' => $orders]);
     }
 

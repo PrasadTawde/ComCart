@@ -91,7 +91,7 @@
                                                 <td>
                                                     @php
                                                         $price = $price + $product->price;
-                                                        $shipping_price = $shipping_price + 50;
+                                                        $shipping_price = $shipping_price + 100;
                                                     @endphp
                                                     <span class="table-p__price">{{ '₹'.$product->price }}</span>
                                                 </td>
