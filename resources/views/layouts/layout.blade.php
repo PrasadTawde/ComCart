@@ -370,13 +370,13 @@
                                 <span class="outer-footer__content-title">Contact Us</span>
                                 <div class="outer-footer__text-wrap"><i class="fas fa-home"></i>
 
-                                    <span>4247 Ashford Drive Virginia VA-20006 USA</span></div>
+                                    <span>Goa University</span></div>
                                 <div class="outer-footer__text-wrap"><i class="fas fa-phone-volume"></i>
 
-                                    <span>(+0) 900 901 904</span></div>
+                                    <span>+91 98787687**</span></div>
                                 <div class="outer-footer__text-wrap"><i class="far fa-envelope"></i>
 
-                                    <span>contact@domain.com</span></div>
+                                    <span>contact@comcart.com</span></div>
                                 <div class="outer-footer__social">
                                     <ul>
                                         <li>
@@ -408,7 +408,7 @@
                                             <ul>
                                                 <li>
 
-                                                    <a href="dashboard.html">Account</a></li>
+                                                    <a href="/my-account">Account</a></li>
                                                 <li>
 
                                                     <a href="/orders">Orders</a></li>
@@ -430,7 +430,7 @@
                                                     <a href="/about">About us</a></li>
                                                 <li>
 
-                                                    <a href="/contact">Contact Us</a></li>
+                                                    <a href="/contact-us">Contact Us</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -480,20 +480,18 @@
                             <div class="lower-footer__content">
                                 <div class="lower-footer__copyright">
 
-                                    <span>Copyright © 2018</span>
+                                    <span>Template By </span>
 
-                                    <a href="index.html">Reshop</a>
+                                    <a href="https://github.com/ahmadHuss/ludus-free-premium-ecommerce-template">Ahmad Hussnain</a>
 
-                                    <span>All Right Reserved</span></div>
-                                <div class="lower-footer__payment">
-                                    <ul>
-                                        <li><i class="fab fa-cc-stripe"></i></li>
-                                        <li><i class="fab fa-cc-paypal"></i></li>
-                                        <li><i class="fab fa-cc-mastercard"></i></li>
-                                        <li><i class="fab fa-cc-visa"></i></li>
-                                        <li><i class="fab fa-cc-discover"></i></li>
-                                        <li><i class="fab fa-cc-amex"></i></li>
-                                    </ul>
+                                    <span>(Ludus Free E-commerce Template)</span>
+                                </div>
+                                <div class="lower-footer__copyright">
+                                    <span>Copyright © 2021</span>
+
+                                    <a href="/">{{ config('app.name') }}</a>
+
+                                    <span>All Right Reserved</span>
                                 </div>
                             </div>
                         </div>
@@ -506,7 +504,7 @@
 
 
         <!--====== Quick Look Modal ======-->
-        <div class="modal fade" id="quick-look">
+        {{-- <div class="modal fade" id="quick-look">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content modal--shadow">
 
@@ -689,12 +687,12 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <!--====== End - Quick Look Modal ======-->
 
 
         <!--====== Add to Cart Modal ======-->
-        <div class="modal fade" id="add-to-cart">
+        {{-- <div class="modal fade" id="add-to-cart">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content modal-radius modal-shadow">
 
@@ -735,7 +733,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <!--====== End - Add to Cart Modal ======-->
 
     </div>

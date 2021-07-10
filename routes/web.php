@@ -43,3 +43,11 @@ Route::get('/get-sub-sub-categories/{id}', [FetchController::class, 'getSubSubCa
 //fetching image from auction table
 Route::get('/fetch_auction_image_1/{id}', [FetchController::class, 'fetch_auction_image_1'])->name('fetch_auction_image_1');
 Route::get('/fetch_auction_image_2/{id}', [FetchController::class, 'fetch_auction_image_2'])->name('fetch_auction_image_2');
+
+Route::get('/about', function(){
+    return view('shop.about');
+});
+
+Route::get('/contact-us', function(){
+    return view('shop.contact');
+});

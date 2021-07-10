@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Account;
 use App\Models\Order;
 use App\Models\Payment;
+use App\Models\Product;
 use App\Models\ShoppingCart;
 use Razorpay\Api\Api;
 use Illuminate\Http\Request;
@@ -27,6 +29,12 @@ class RazorpayController extends Controller
             //payment through cash
             //genrating payment id
             $pay_id = Str::random(20);
+
+            //validte address is availble or not
+            $request->validate([
+                'address' => 'required',
+            ]);
+
             //saving in order table
             $order = new Order();
             $order->user_id = Auth::user()->id;
@@ -47,12 +55,35 @@ class RazorpayController extends Controller
             //deleting product from cart
             ShoppingCart::destroy($request->all()['cart_id']);
 
+
+            //adding balaces to accounts 
+            $brokerage = (5 / 100) * $request->amount;
+
+            $user_product_id = Product::where('id', $request->all()['product_id'])
+                ->select('user_id')
+                ->first();
+
+
+            if (Account::where('user_id', $user_product_id->user_id)->exists()) {
+                $account = Account::where('user_id', $user_product_id->user_id)->first();
+                $account->debit = $account->debit + $brokerage;
+                $account->settlement = $account->settlement - $brokerage;
+                $account->save();
+            }
+            else{
+                $account = new Account;
+                $account->user_id = $user_product_id->user_id;
+                $account->debit = $brokerage;
+                $account->settlement = $account->settlement - $brokerage;
+                $account->save();
+            }
+
             return view('shop.payment-success-page');
 
         } else if ($request->payment == 'razorpay') {
             //genrating random recipt id
             $receiptId = Str::random(20);
-
+            
             $api = new Api($this->razorpay_id, $this->razorpay_key);
 
             //creating order
@@ -63,7 +94,7 @@ class RazorpayController extends Controller
             ));
             //validte address is availble or not
             $request->validate([
-                'address_id' => 'required',
+                'address' => 'required',
             ]);
             $response = [
                 'orderId' => $order['id'],
@@ -75,10 +106,30 @@ class RazorpayController extends Controller
                 'address_id' => $request->all()['address'],
                 'cart_id' => $request->all()['cart_id'],
             ];
+           
+            $user_product_id = Product::where('id', $request->all()['product_id'])
+                ->select('user_id')
+                ->first();
+            
+                $brokerage = (95 / 100) * $request->amount;
 
-            //deleting product from cart
-            ShoppingCart::destroy($request->all()['cart_id']);
+            if (Account::where('user_id', $user_product_id->user_id)->exists()) {
+                $account = Account::where('user_id', $user_product_id->user_id)->first();
+                $account->credit = $account->credit + $brokerage;
+                $account->settlement = $account->settlement - $brokerage;
+                $account->save();
+            }
+            else{
+                $account = new Account;
+                $account->user_id = $user_product_id->user_id;
+                $account->credit = $brokerage;
+                $account->settlement = $account->settlement - $brokerage;
+                $account->save();
+            }
 
+            // //deleting product from cart
+            // ShoppingCart::destroy($request->all()['cart_id']);
+            
             return view('shop.payment-page',compact('response'));
         }       
         

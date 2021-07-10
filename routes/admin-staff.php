@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProductVerificationsController;
+use App\Http\Controllers\Admin\StaffController;
 use App\Http\Controllers\Admin\SubcategoriesController;
 use App\Http\Controllers\Admin\SubSubCategoriesController;
 use App\Http\Controllers\OrderController;
@@ -55,14 +57,17 @@ Route::group(['middleware' => ['auth', 'role:admin|staff']], function () {
 
 	//product verification
 	Route::get('/product-verification', [ProductVerificationsController::class, 'show']);
-	Route::get('/product-verification-insert/{id}', [ProductVerificationsController::class, 'create']);
-	Route::post('/product-verification-insert/{id}', [ProductVerificationsController::class, 'store'])->name('/product-verification-insert');
+	Route::get('/product-verification-update/{id}', [ProductVerificationsController::class, 'create']);
+	Route::post('/product-verification-update/{id}', [ProductVerificationsController::class, 'update'])->name('/product-verification-insert');
 	Route::get('/product-verification-delete/{id}',[ProductVerificationsController::class,'destroy'])->name('product-verification');
 
 	//manage orders
 	Route::get('/manage-orders', [OrderController::class, 'create']);
 	Route::get('/manage-order-update/{id}', [OrderController::class, 'edit'])->name('order-update');
 	Route::post('/manage-order-update/{id}', [OrderController::class, 'update'])->name('order-update');
+
+	//manage-accounts
+	Route::get('/manage-accounts', [AccountController::class, 'index']);
 
 	
 });
@@ -82,7 +87,5 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
 
 //user specific routes for staff
 Route::group(['middleware' => ['auth', 'role:staff']], function () {
-	Route::get('/staff', function () {
-		return view('admin.dashboard');
-	})->name('staff');
+	Route::get('/staff', [DashboardController::class, 'index'])->name('admin');
 });

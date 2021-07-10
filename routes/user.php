@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AuctionController;
 use App\Http\Controllers\RazorpayController;
@@ -70,6 +71,9 @@ Route::group(['middleware' => ['auth', 'role:user']], function () {
 
 	Route::get('/orders', [OrderController::class, 'index'])->name('orders');
 	Route::get('/orders-track/{id}', [OrderController::class, 'show'])->name('orders-track');
+
+	Route::post('/settle', [AccountController::class, 'update'])->name('settle');
+	Route::post('/settle-payment', [AccountController::class, 'complete'])->name('complete');
 
 });
 

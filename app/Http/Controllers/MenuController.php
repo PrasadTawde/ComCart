@@ -25,7 +25,9 @@ class MenuController extends Controller
         if($sub_sub_category_id == null) {
             return view('shop.grid-products', ['products' => null]);
         } else {
-            $products = Product::where('sub_sub_category_id', $sub_sub_category_id->id)->get();
+            $products = Product::where('sub_sub_category_id', $sub_sub_category_id->id)
+                ->where('quantity', '>', 0 )
+                ->get();
                        
             if ($products->isEmpty()) {
                 return view('shop.grid-products', ['products' => null]);

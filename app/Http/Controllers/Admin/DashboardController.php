@@ -29,9 +29,13 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function staff()
     {
-        //
+        $orders = Order::count();
+        $users = User::count();
+        $auctioneers = Auction::count();
+
+        return view('admin.dashboard', ['orders' => $orders, 'users' => $users, 'auctioneers' => $auctioneers]);
     }
 
     /**

@@ -108,13 +108,13 @@
                                                 <div class="dash__pad-3">
                                                     <h2 class="dash__h2 u-s-m-b-8"><i class="fas fa-info u-s-m-r-6"></i>Auctioneer Status</h2>
                                                     <div class="pd-detail__inline">
-                                                        <span @if ($vefication_status->status == 'verified')
+                                                        <span @if ($verification_status->status == 'verified')
                                                             class="pd-detail__stock" 
                                                         @else
                                                             class="pd-detail__left"
-                                                        @endif>{{ ucfirst($vefication_status->status) }}</span>
+                                                        @endif>{{ ucfirst($verification_status->status) }}</span>
                                                     </div><br>
-                                                    @if ($vefication_status->status == 'verified')
+                                                    @if ($verification_status->status == 'verified')
                                                         <div class="pd-detail__inline">
                                                             <a class="dash__custom-link btn--e-brand-b-2" href="/add-auction-product">
                                                                 <span>Add Product</span>
@@ -141,6 +141,28 @@
                                                     <div class="dash__link dash__link--secondary u-s-m-b-8">
                                                         <a href="{{ route('change-password') }}">Change Password</a>
                                                     </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 u-s-m-b-30">
+                                            <div class="dash__box dash__box--bg-grey dash__box--shadow-2 u-h-100">
+                                                <div class="dash__pad-3">
+                                                    <h2 class="dash__h2 u-s-m-b-8"><i class="fas fa-wallet u-s-m-r-6"></i> Account Balances</h2>
+                                                    <br>
+                                                    @if ($settlement_amount != null)
+                                                        <span class="dash__text">{{ '₹'. $settlement_amount->settlement }}</span>
+                                                        @if ($settlement_amount->settlement < 0)
+                                                        <form action="/settle" method="post">
+                                                            @csrf
+                                                            {{ Session::forget('success') }}
+                                                            <input type="text" name="amount" hidden="" value="{{ $settlement_amount->settlement/-1 }}">
+                                                            <button class="btn btn--e-brand-b-2" type="submit">Pay</button>
+                                                        </form>
+                                                        @endif
+                                                    @else
+                                                    <span class="dash__text">{{ '₹0' }}</span>
+
+                                                    @endif
                                                 </div>
                                             </div>
                                         </div>                                        

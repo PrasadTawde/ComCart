@@ -125,7 +125,7 @@ class AddressController extends Controller
         $address->address = $request->street_address;
         $address->state = $request->state;
         $address->city = $request->city;
-        $address->locality = $request->city;
+        // $address->locality = $request->city;
         $address->pincode = $request->pincode;
         $address->type = $request->address_type;
         

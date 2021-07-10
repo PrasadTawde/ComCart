@@ -44,20 +44,20 @@ class ProductVerificationsController extends Controller
     public function store(Request $request,$id)
     {
         
-          $request->validate([
+        //   $request->validate([
             
-            'status' => 'required|string|max:255',
-            'remark' => 'required|string|max:255',
-        ]);
+        //     'status' => 'required|string|max:255',
+        //     'remark' => 'nullable',
+        // ]);
         
 
 
-        $ProductVerification = new ProductVerifications;
-        $ProductVerification->auction_id = $id;
-        $ProductVerification->status = $request->status;
-        $ProductVerification->remark = $request->remark;
-        $ProductVerification->save();
-        return redirect('/auction-product-verification');      
+        // $ProductVerification = new ProductVerifications;
+        // $ProductVerification->auction_id = $id;
+        // $ProductVerification->status = $request->status;
+        // $ProductVerification->remark = $request->remark;
+        // $ProductVerification->save();
+        // return redirect('/product-verification');      
     }
 
     /**
@@ -95,7 +95,16 @@ class ProductVerificationsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            
+            'status' => 'required|string|max:255',
+            'remark' => 'nullable',
+        ]);
+
+        ProductVerifications::where('id', $id)->update(['status' => $request->status, 'remark' => $request->remark]);
+
+        return redirect('/product-verification');  
+
     }
 
     /**

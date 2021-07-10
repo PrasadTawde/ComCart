@@ -61,8 +61,11 @@ class ShoppingCartController extends Controller
             $cart->product_id = $id;
             $cart->save();
 
-            //soft deleting same product from products table
-            Product::find($id)->delete();
+            //deleting quntity from product table
+            $product = Product::find($id);
+            $product->quantity = $product->quantity -1;
+            $product->save();
+
             return redirect('cart');
         }
         else{
@@ -116,9 +119,13 @@ class ShoppingCartController extends Controller
     {
         //restoring back in products table
         $product_id = ShoppingCart::where('id',$id)->select('product_id')->first();
-        Product::onlyTrashed()->whereIn('id', $product_id)->restore();
 
-        //deleting from cart
+        $product = Product::find($product_id)->first();
+        // dd($product);
+        $product->quantity = $product->quantity + 1;
+        $product->save();
+
+        // deleting from cart
         ShoppingCart::destroy($id);
 
         return redirect()->back();
@@ -136,7 +143,10 @@ class ShoppingCartController extends Controller
 
                 foreach ($products as $product) {
                     $id = $product->product_id;
-                    Product::onlyTrashed()->where('id', $id)->restore();
+                    // Product::onlyTrashed()->where('id', $id)->restore();
+                    $product = Product::find($id);
+                    $product->quantity = $product->quantity + 1;
+                    $product->save();
                 }
 
                 //delete all the products from cart

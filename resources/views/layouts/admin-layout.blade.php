@@ -159,6 +159,12 @@
                                 <p>Manage Orders</p>
                             </a>
                         </li>
+                        <li class="nav-item {{ (request()->is('manage-accounts*')) ? 'active' : '' }}">
+                            <a href="/manage-accounts">
+                                <i class="fas fa-wallet"></i>
+                                <p>Manage Accounts</p>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>

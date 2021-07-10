@@ -55,11 +55,11 @@
                             <div class="table-responsive">
                                 <table class="table-p">
                                     <tbody>
-                                        @php
+                                        {{-- @php
                                             $price = 0;
                                             $shipping_price = 0;
                                             $tax = 0;
-                                        @endphp
+                                        @endphp --}}
                                         <!--====== Row ======-->
                                         @foreach ($cart_products as $product)
                                             <tr>
@@ -89,10 +89,10 @@
                                                     </div>
                                                 </td>
                                                 <td>
-                                                    @php
+                                                    {{-- @php
                                                         $price = $price + $product->price;
                                                         $shipping_price = $shipping_price + 100;
-                                                    @endphp
+                                                    @endphp --}}
                                                     <span class="table-p__price">{{ '₹'.$product->price }}</span>
                                                 </td>
                                                 <td>
@@ -186,15 +186,25 @@
                                                     <tbody>
                                                         <tr>
                                                             <td>SHIPPING</td>
-                                                            <td>{{ '₹'.$shipping_price }}</td>
+                                                            <td>
+                                                                {{ '₹100 - ₹500' }}
+                                                            </td>
                                                         </tr>
                                                         <tr>
-                                                            <td>SUBTOTAL</td>
-                                                            <td>{{ '₹'.$price }}</td>
+                                                            <td></td>
+                                                            <td>
+                                                            <span style="color: red;font-size: 80%">*Shipping charges will be collected on delivery and may vary</span>
+
+                                                            </td>
                                                         </tr>
+                                                        {{-- <tr>
+                                                            <td>SUBTOTAL</td>
+                                                            <td>{{ '₹'.$product->price }}</td>
+                                                        </tr> --}}
                                                         <tr>
                                                             <td>GRAND TOTAL</td>
-                                                            <td>{{ '₹'.$shipping_price + $price }}</td>
+                                                            {{-- <td>{{ '₹'.$shipping_price + $price }}</td> --}}
+                                                            <td>{{ '₹'.$product->price }}</td>
                                                         </tr>
                                                     </tbody>
                                                 </table>

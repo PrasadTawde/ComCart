@@ -51,10 +51,10 @@
                     <div class="form-action mb-3">
                         <button class="btn btn-primary btn-rounded btn-login" type="submit">Sign In</button>
                     </div>
-                    <div class="login-account">
+                    {{-- <div class="login-account">
                         <span class="msg">Don't have an account yet ?</span>
                         <a href="/register-admin" id="show-signup" class="link">Sign Up</a>
-                    </div>
+                    </div> --}}
                 </form>
 			</div>
 		</div>

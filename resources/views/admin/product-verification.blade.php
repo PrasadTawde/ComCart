@@ -15,7 +15,7 @@
                     </div>
                     <div class="card-body">
                         <!-- Modal -->
-                        <form class="dash-address-manipulation" action="/product-verification-insert/{{$product_verifications[0]->auction_id}}" method="POST">
+                        <form class="dash-address-manipulation" action="/product-verification-update/{{$product_verifications[0]->auction_id}}" method="POST">
                             @csrf
 
 
@@ -24,15 +24,21 @@
                                                 <!--====== Select Box ======-->
 
                                                 <label class="gl-label" for="status">status *</label>
-                                                @error('status *')
+                                                @error('status')
                                                     <span style="color: red; font-size: 80%;">{{ $message  }}</span>
                                                 @enderror
                                                 <select class="select-box select-box--primary-style" id="user-status" name="status">
-                                                    <option selected value="">Choose Status</option>
+                                                    <option disabled="">Choose Status</option>
                                                   
 
-                                                    <option value="Processing">Processing</option>
-                                                    <option value="Approved" >Approved</option>
+                                                    <option value="processing" 
+                                                    @if($product_verifications[0]->status == 'processing' ) {{ 'selected' }} 
+                                                    @endif
+                                                    >Processing</option>
+                                                    <option value="approved" 
+                                                    @if($product_verifications[0]->status == 'approved' ) {{ 'selected' }} 
+                                                    @endif
+                                                    >Approved</option>
 
                                                 </select>
                                                 <!--====== End - Select Box ======-->

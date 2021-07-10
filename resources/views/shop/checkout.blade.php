@@ -42,11 +42,11 @@
                                                 <div class="o-summary__box">
                                                     <h1 class="checkout-f__h1">ORDER SUMMARY</h1>
                                                     <div class="o-summary__item-wrap gl-scroll">
-                                                        @php
+                                                        {{-- @php
                                                             $price = 0;
                                                             $shipping_price = 0;
                                                             $tax = 0;
-                                                        @endphp
+                                                        @endphp --}}
                                                         @foreach ($cart_products as $product)
                                                             <div class="o-card">
                                                                 <div class="o-card__flex">
@@ -60,10 +60,10 @@
                                                                             <a href="{{ route('product', [$product->product_id]) }}">{{ $product->title }}</a></span>
                 
                                                                         {{-- <span class="o-card__quantity">Quantity x 1</span> --}}
-                                                                        @php
+                                                                        {{-- @php
                                                                             $price = $price + $product->price;
                                                                             $shipping_price = $shipping_price + 100;
-                                                                        @endphp
+                                                                        @endphp --}}
                                                                         <span class="o-card__price">{{ '₹'.$product->price }}</span></div>
                                                                 </div>
                 
@@ -118,15 +118,18 @@
                                                         <tbody>
                                                             <tr>
                                                                 <td>SHIPPING</td>
-                                                                <td>{{ '₹'.$shipping_price }}</td>
+                                                                <td>{{ '₹100 - ₹500' }}</td>
                                                             </tr>
                                                             <tr>
-                                                                <td>SUBTOTAL</td>
-                                                                <td>{{ '₹'.$price }}</td>
+                                                                <td></td>
+                                                                <td>
+                                                                <span style="color: red;font-size: 80%">*Shipping charges will be collected on delivery and may vary</span>
+    
+                                                                </td>
                                                             </tr>
                                                             <tr>
                                                                 <td>GRAND TOTAL</td>
-                                                                <td>{{ '₹'.$shipping_price + $price }}</td>
+                                                                <td>{{ '₹'.$product->price }}</td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -165,7 +168,7 @@
                                                         </div>
                                                         <input type="text" name="cart_id" hidden="" value="{{ $product->id }}">
                                                         <input type="text" name="product_id" hidden="" value="{{ $product->product_id }}">
-                                                        <input type="text" name="amount" hidden="" value="{{ $shipping_price + $price }}">
+                                                        <input type="text" name="amount" hidden="" value="{{ $product->price }}">
                                                         <div>
                                                             <button class="btn btn--e-brand-b-2" type="submit">PLACE ORDER</button>
                                                         </div>

@@ -62,15 +62,17 @@
 
                                             <a href="/wishlist">Add to Wishlist</a></div>
                                 </div> --}}
-                                <div class="u-s-m-b-15">
-                                    <form class="pd-detail__form">
-                                        <div class="pd-detail-inline-2">
-                                            <div class="u-s-m-b-15">
-                                                <a class="btn btn--e-brand-b-2" href="/add-to-cart/{{ $product_detail->id }}">Add to Cart</a>
+                                @if ($product_detail->quantity > 0)
+                                    <div class="u-s-m-b-15">
+                                        <form class="pd-detail__form">
+                                            <div class="pd-detail-inline-2">
+                                                <div class="u-s-m-b-15">
+                                                    <a class="btn btn--e-brand-b-2" href="/add-to-cart/{{ $product_detail->id }}">Add to Cart</a>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </form>
-                                </div>
+                                        </form>
+                                    </div>
+                                @endif
                                 <div class="u-s-m-b-15">
 
                                     <span class="pd-detail__label u-s-m-b-8">Product Policy:</span>

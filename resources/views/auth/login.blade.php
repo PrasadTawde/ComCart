@@ -43,7 +43,7 @@
 
                         <!--====== Main Logo ======-->
 
-                        <a class="main-logo" href="index.html">
+                        <a class="main-logo" href="/">
 
                             <img src="/assets/images/logo/logo-1.png" alt=""></a>
                         <!--====== End - Main Logo ======-->
@@ -147,7 +147,7 @@
 
                                                 <label class="gl-label" for="email">E-MAIL *</label>
 
-                                                <input class="input-text input-text--primary-style" type="text" id="email" name="email" placeholder="Enter E-mail"></div>
+                                                <input class="input-text input-text--primary-style" type="text" id="email" name="email" placeholder="Enter E-mail" value="{{ old('email') }}"></div>
                                             <div class="u-s-m-b-30">
 
                                                 <label class="gl-label" for="password">PASSWORD *</label>
@@ -203,10 +203,10 @@
                                 <span class="outer-footer__content-title">Contact Us</span>
                                 <div class="outer-footer__text-wrap"><i class="fas fa-home"></i>
 
-                                    <span>42** Goa University, Goa India</span></div>
+                                    <span>Goa University</span></div>
                                 <div class="outer-footer__text-wrap"><i class="fas fa-phone-volume"></i>
 
-                                    <span>+91 9009876***</span></div>
+                                    <span>+91 98787687**</span></div>
                                 <div class="outer-footer__text-wrap"><i class="far fa-envelope"></i>
 
                                     <span>contact@comcart.com</span></div>
@@ -214,20 +214,19 @@
                                     <ul>
                                         <li>
 
-                                            <a class="s-fb--color-hover" href="#"><i class="fab fa-facebook-f"></i></a>
-                                        </li>
+                                            <a class="s-fb--color-hover" href="#"><i class="fab fa-facebook-f"></i></a></li>
                                         <li>
 
-                                            <a class="s-tw--color-hover" href="#"><i class="fab fa-twitter"></i></a>
-                                        </li>
+                                            <a class="s-tw--color-hover" href="#"><i class="fab fa-twitter"></i></a></li>
                                         <li>
 
-                                            <a class="s-youtube--color-hover" href="#"><i class="fab fa-youtube"></i></a>
-                                        </li>
+                                            <a class="s-youtube--color-hover" href="#"><i class="fab fa-youtube"></i></a></li>
                                         <li>
 
-                                            <a class="s-insta--color-hover" href="#"><i class="fab fa-instagram"></i></a>
-                                        </li>
+                                            <a class="s-insta--color-hover" href="#"><i class="fab fa-instagram"></i></a></li>
+                                        <li>
+
+                                            <a class="s-gplus--color-hover" href="#"><i class="fab fa-google-plus-g"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -236,22 +235,35 @@
                             <div class="row">
                                 <div class="col-lg-6 col-md-6">
                                     <div class="outer-footer__content u-s-m-b-40">
+
+                                        <span class="outer-footer__content-title">Information</span>
+                                        <div class="outer-footer__list-wrap">
+                                            <ul>
+                                                <li>
+
+                                                    <a href="/my-account">Account</a></li>
+                                                <li>
+
+                                                    <a href="/orders">Orders</a></li>
+                                                <li>
+
+                                                    <a href="/">Shop</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="outer-footer__content u-s-m-b-40">
                                         <div class="outer-footer__list-wrap">
 
                                             <span class="outer-footer__content-title">Our Company</span>
                                             <ul>
                                                 <li>
 
-                                                    <a href="/about">About us</a>
-                                                </li>
+                                                    <a href="/about">About us</a></li>
                                                 <li>
 
-                                                    <a href="/contact">Contact Us</a>
-                                                </li>
-                                                <li>
-
-                                                    <a href="/patner">Patners</a>
-                                                </li>
+                                                    <a href="/contact-us">Contact Us</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -301,9 +313,16 @@
                             <div class="lower-footer__content">
                                 <div class="lower-footer__copyright">
 
+                                    <span>Template By </span>
+
+                                    <a href="https://github.com/ahmadHuss/ludus-free-premium-ecommerce-template">Ahmad Hussnain</a>
+
+                                    <span>(Ludus Free E-commerce Template)</span>
+                                </div>
+                                <div class="lower-footer__copyright">
                                     <span>Copyright © 2021</span>
 
-                                    <a href="/">ComCart</a>
+                                    <a href="/">{{ config('app.name') }}</a>
 
                                     <span>All Right Reserved</span>
                                 </div>

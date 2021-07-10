@@ -145,7 +145,7 @@
                                                                 <span class="timeline-circle"></span></div>
 
                                                             <span class="timeline-text">Delivered</span>
-                                                            @if($order->status != 'cancelled')
+                                                            @if(($order->status != 'cancelled') && ($order->status != 'delivered'))
                                                                 <span>Expected Delivery :{{ $order->estimate_delivery_date }}</span>
                                                             @endif
                                                         </div>
